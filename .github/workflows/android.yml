@@ -35,6 +35,24 @@ jobs:
         run: python3 scripts/check_catalog.py
       - name: Compile Android before speech synthesis
         run: gradle --no-daemon :app:assembleDebug
+      - name: Reuse unchanged v0.1.0 speech clips
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/prev-audio app/src/main/assets/audio
+          gh release download v0.1.0 --pattern Grammaire500.apk --dir /tmp/prev-audio
+          python3 - <<'PY'
+          import zipfile,json
+          from pathlib import Path
+          changed=set(json.loads(Path('app/src/main/assets/changed_ids.json').read_text())['changed_ids'])
+          with zipfile.ZipFile('/tmp/prev-audio/Grammaire500.apk') as apk:
+              for i in range(1,501):
+                  if i in changed:continue
+                  audio=apk.read(f'assets/audio/{i:04d}.ogg')
+                  assert len(audio)>1800
+                  Path(f'app/src/main/assets/audio/{i:04d}.ogg').write_bytes(audio)
+          print('Reused',500-len(changed),'original voice files')
+          PY
       - name: Generate 500 French female recordings
         run: |
           pip install -r scripts/requirements-audio.txt
@@ -59,8 +77,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          if gh release view v0.1.0 >/dev/null 2>&1; then
-            echo 'v0.1.0 already exists; not overwriting existing release.'
+          if gh release view v0.2.0 >/dev/null 2>&1; then
+            echo 'v0.2.0 already exists; not overwriting existing release.'
           else
-            gh release create v0.1.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.1.0' --notes '50 grammar sections, 500 bilingual example sentences, section quizzes, offline French female audio. Preview: full language/audio human proofreading not yet completed.'
+            gh release create v0.2.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.2.0' --notes '500 example-specific explanations, 50 importance-weighted sections, grammar-first chapter/section/example/question flow, and bundled French female audio. Individual native speaker/audio proofreading still needed.'
           fi

@@ -43,3 +43,12 @@ Android端末が通信することはありません。音声モデル本体はA
 GitHub ActionsはGradle 8.9、Android SDK 35、OpenJDK 17でビルドします。GitHubのワークフロー実行権限とRelease書き込み権限が必要です。
 
 アプリのパッケージIDは `com.francais.grammaire` で、既存の `com.francais.mille` と競合しません。
+
+
+## v0.2.0 文法専用UI・教材構成
+
+- 50単元・500例文、各単元の重要度に応じ6〜14文へ配分
+- 単語フラッシュカード中心ではなく、章→単元の規則→例文ごとの全文構造・意味・活用の理由→確認問題
+- 500例文それぞれに structure / whole / reason / contrast / tip / questionHint の解説欄を収録
+- 内容は自動＋手動の初稿であり、ネイティブ／文法教師による全件校閲完了を意味しない。音声の全件聴感確認も未実施
+- 参照：CLE International『Grammaire progressive du français — débutant』、TV5MONDE A1/A2 文法練習
