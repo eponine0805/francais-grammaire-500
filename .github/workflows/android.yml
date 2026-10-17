@@ -30,9 +30,11 @@ jobs:
         run: |
           sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
           sudo apt-get update -qq
-          sudo apt-get install -y -qq --no-install-recommends ffmpeg
+          sudo apt-get install -y -qq --no-install-recommends ffmpeg espeak-ng
       - name: Validate grammar and test invariants
-        run: python3 scripts/check_catalog.py
+        run: python3 scripts/build_annotations.py
+          python3 scripts/check_catalog.py
+          python3 scripts/test_learning_flow.py
       - name: Compile Android before speech synthesis
         run: gradle --no-daemon :app:assembleDebug
       - name: Reuse unchanged v0.1.0 speech clips
@@ -77,8 +79,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          if gh release view v0.2.0 >/dev/null 2>&1; then
-            echo 'v0.2.0 already exists; not overwriting existing release.'
+          if gh release view v0.3.0 >/dev/null 2>&1; then
+            echo 'v0.3.0 already exists; not overwriting existing release.'
           else
-            gh release create v0.2.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.2.0' --notes '500 example-specific explanations, 50 importance-weighted sections, grammar-first chapter/section/example/question flow, and bundled French female audio. Individual native speaker/audio proofreading still needed.'
+            gh release create v0.3.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.3.0' --notes 'Concise explanations, unverified IPA, word ordering, instant feedback and locally stored progress.'
           fi

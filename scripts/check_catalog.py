@@ -36,3 +36,11 @@ for i in range(10000):
 assert len(mastered)<=500
 assert not any(v<0 for v in wrong_count.values())
 print('OK: 50 sections, 500 examples, 10,000 4-choice permutations + 10,000 mastery events')
+
+notes=json.loads((root/'app/src/main/assets/annotations.json').read_text(encoding='utf8'))
+assert len(notes)==500
+for row,n in zip(rows,notes):
+    assert row['id']==n['id']
+    assert 0<len(n['brief'])<=200
+    assert n['ipa'].startswith('/') and n['ipa'].endswith('/')
+print('500 concise explanations and IPA estimates validated')

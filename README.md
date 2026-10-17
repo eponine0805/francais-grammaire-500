@@ -1,54 +1,20 @@
-# Français Grammaire 500 — フランス語文法500
+# Français Grammaire 500
 
-**フランス語文法参考書をスマートフォンに。** 「フランス語1000語」とは独立した、初心者向けの完全オフラインAndroid学習アプリです。
+フランス語文法別50項目、500例文を学べるAndroidアプリ。広告・ログイン・通信不要。単語アプリとは独立。
 
-## 設計コンセプト
+## v0.3.0
+- 文法解説は各例文200字以内。従来の長い5ブロック解説を統合。
+- 500例文にIPA（eSpeakによる自動推定。**専門家による正確性の保証なし**）。
+- 4択式＋語順組み立て式の確認問題。
+- 回答後すぐ緑／赤で結果を表示し、次問操作は画面下に固定。
+- 学習記録（正答数・回答回数・XP・日別の学習数・連続学習日数・文法項目ごとの習得・テスト履歴）を端末内に保存。
+- テストの途中再開と間隔を空けた復習。
+- 500個の女性合成音声をAPKに同梱し、オフラインで再生。
 
-- **文法別50セクション × 各10例文＝500例文**：主語・冠詞・être / avoir・動詞・否定・疑問・前置詞・比較・過去・未来・代名詞・条件法など。
-- **各セクションに1つの規則説明と注意点**。各例文にフランス語、自然な日本語訳、文法クイズの空欄と正解を紐付け。
-- **参考書モード**：章を選ぶ → 文法規則と注意点 → 例文10文。
-- **例文カード**：カード面を同じ場所でタップして「例文 → 和訳・解説 → 次の例文」。順番はセッションごとにランダム、録音の自動再生。
-- **セクション4択テスト / 今日の10問 / 苦手10問**：正誤を選択直後に表示し、理由を説明。間違いだけ再テスト。
-- **完全オフライン**：広告、ログイン、通信権限なし。履歴は端末内保存。
-- **白黒を基調としたUI**。単語アプリと区別できる専用の「G」アイコン。
+## 精度・検証上の注意
+IPAは自動推定であり、リエゾン・連音などに誤りがあり得ます。収録音声の全件聴感校閲は未実施。既存500例文と各説明も専門家監修済みではありません。販売前のフランス語専門家による校閲が必要です。
 
-## 教材と品質について
-
-`app/src/main/assets/lessons.json` と `examples.json` に50セクション、500例文を格納しています。
-編集用の原稿は `scripts/make_content.py` に収録されています。
-
-`python scripts/make_content.py` で教材データを再生成し、`python scripts/check_catalog.py` で以下を機械検証できます。
-
-- セクションID 1〜50 / 例文ID 1〜500 の連続性
-- 各セクション10例文、空欄と正解の一致、4択候補の重複排除
-- 10,000件のランダム4択生成と10,000回の記録更新シミュレーション
-
-**これはv0.1.0の学習用プレビューです。** 500例文すべての独立したネイティブ監修・音声試聴はまだ済んでいません。教育教材としての最終保証や販売可否を意味しません。疑義のある和訳・文法問題は今後個別修正します。
-
-**IPAを未監修のまま掲載すると学習者の誤学習につながるため、v0.1.0ではIPA表示を保留**しています。例文と生成音声の全件照合が済んだ時点で追加します。
-
-## 音声
-
-GitHub Actionsでは **Supertonic 3 / 女性 F2 / フランス語 / 44.1kHz** による500例文の音声を生成し、OggファイルをAPKに同梱する構成です。
-Android端末が通信することはありません。音声モデル本体はAPKに入りません。
-モデルの権利関係は [Supertone/supertonic-3](https://huggingface.co/Supertone/supertonic-3) の **BigScience OpenRAIL-M** に従います。音声はAI合成で、人間による聴感監修は未実施です。
-
-## アプリをビルドする
-
-1. このプロジェクトを新しいGitHubリポジトリの `main` にアップロードしてください。
-2. GitHub → **Actions** → **Build Android APK + 500 offline French female recordings** を開いて初回実行（push時も自動実行）。
-3. 初回はTTSモデルと500例文を生成するため時間がかかります。
-4. 成功すると `Actions` のAPK成果物、および `Releases` の `Grammaire500.apk` が利用できます。
-
-GitHub ActionsはGradle 8.9、Android SDK 35、OpenJDK 17でビルドします。GitHubのワークフロー実行権限とRelease書き込み権限が必要です。
-
-アプリのパッケージIDは `com.francais.grammaire` で、既存の `com.francais.mille` と競合しません。
-
-
-## v0.2.0 文法専用UI・教材構成
-
-- 50単元・500例文、各単元の重要度に応じ6〜14文へ配分
-- 単語フラッシュカード中心ではなく、章→単元の規則→例文ごとの全文構造・意味・活用の理由→確認問題
-- 500例文それぞれに structure / whole / reason / contrast / tip / questionHint の解説欄を収録
-- 内容は自動＋手動の初稿であり、ネイティブ／文法教師による全件校閲完了を意味しない。音声の全件聴感確認も未実施
-- 参照：CLE International『Grammaire progressive du français — débutant』、TV5MONDE A1/A2 文法練習
+## 他社UX参考（機能の独自実装）
+- Busuu Grammar Review: https://help.busuu.com/hc/en-us/articles/12575126438674-What-is-Grammar-Review
+- Babbel Grammar Guide: https://support.babbel.com/hc/en-us/articles/19260489559058-Grammar-guide
+- TV5MONDE A1: https://enseigner.tv5monde.com/articles-dossiers/articles/premiere-classe-avec-tv5monde-des-exercices-concus-pour-debuter-en
