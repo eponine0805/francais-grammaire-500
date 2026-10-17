@@ -34,6 +34,7 @@ jobs:
       - name: Validate grammar and test invariants
         run: python3 scripts/build_annotations.py
           python3 scripts/check_catalog.py
+          python3 scripts/test_ipa_review.py
           python3 scripts/test_learning_flow.py
           python3 scripts/check_quiz_ranges_v040.py
       - name: Compile Android before speech synthesis
@@ -79,8 +80,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          if gh release view v0.4.0 >/dev/null 2>&1; then
-            echo 'v0.4.0 already exists; not overwriting existing release.'
+          if gh release view v0.4.1 >/dev/null 2>&1; then
+            echo 'v0.4.1 already exists; not overwriting existing release.'
           else
-            gh release create v0.4.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.4.0' --notes 'Concise explanations, unverified IPA, word ordering, instant feedback and locally stored progress.'
+            gh release create v0.4.1 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.4.1' --notes 'Corrected 28 systematic French IPA errors, including glides, false liaison and English-fallback artifacts; regression tests added. 500 utterance native-speaker review is still pending.'
           fi

@@ -1,0 +1,15 @@
+# IPA review — v0.4.1
+- Data source: 500 IPA readings extracted from packaged v0.4.0 APK.
+- Confirmed systematic transcription issues include /syi/ instead of /sɥi/, /plyi/ instead of /plɥi/, /lyi/ instead of /lɥi/, /kyizin/ instead of /kɥizin/, and mixed English phonemes for French examples.
+- Applied deterministic replacements and 4 context-specific overrides, totaling **28 changed IPA entries** (compared with v0.4.0).
+- Notable overrides: #321 "Je pars à huit heures" (no /z/ liaison); #337 "Elle veut plus de café" (/plys/ quantity); #345 "qu'hier" (French pronunciation); #470 "football" (/futbol/).
+- References:
+  - French Academy, liaison rules https://www.academie-francaise.fr/questions-de-langue
+  - Wiktionnaire suis https://fr.wiktionary.org/wiki/suis
+  - Wiktionnaire pluie https://fr.wiktionary.org/wiki/pluie
+  - Wiktionnaire lui https://fr.wiktionary.org/wiki/lui
+  - Wiktionnaire cuisine https://fr.wiktionary.org/wiki/cuisine
+  - Wiktionnaire football https://fr.wiktionary.org/wiki/football
+  - Wiktionnaire plus https://fr.wiktionary.org/wiki/plus
+  - Wiktionnaire hier https://fr.wiktionary.org/wiki/hier
+- Remaining limitations: No independent dictionary alignment for all 500 full sentences, no 500-item human listening review, and no proof that AI-recorded audio matches the shown IPA. A successful Android build alone does not validate the linguistic content.
