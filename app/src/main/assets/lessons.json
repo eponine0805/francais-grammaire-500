@@ -1,0 +1,352 @@
+[
+ {
+  "id": 1,
+  "chapter": "文の基本",
+  "title": "主語の人称代名詞",
+  "rule": "フランス語は原則として主語を明示し、動詞は主語の人称と数に応じて活用します。",
+  "pitfall": "je は母音・無音のhの前で j’ になります。"
+ },
+ {
+  "id": 2,
+  "chapter": "文の基本",
+  "title": "elle・elles・on の使い方",
+  "rule": "elle は「彼女」、elles は女性だけの複数を指します。on は口語で「私たち」の意味にも使われ、動詞は三人称単数形になります。",
+  "pitfall": "on を使うときの動詞は nous と違って三人称単数形です。"
+ },
+ {
+  "id": 3,
+  "chapter": "基本動詞",
+  "title": "être：現在形",
+  "rule": "être（〜である）の現在形は je suis / tu es / il est / nous sommes / vous êtes / ils sont です。",
+  "pitfall": "être の活用形は規則動詞とは異なります。"
+ },
+ {
+  "id": 4,
+  "chapter": "基本動詞",
+  "title": "avoir：現在形",
+  "rule": "avoir（持っている）の現在形は j’ai / tu as / il a / nous avons / vous avez / ils ont です。年齢・空腹・暑さにも使います。",
+  "pitfall": "年齢は être ではなく avoir を用いて J’ai vingt ans. と言います。"
+ },
+ {
+  "id": 5,
+  "chapter": "名詞と冠詞",
+  "title": "不定冠詞 un・une・des",
+  "rule": "不特定の数えられる名詞に、男性単数 un、女性単数 une、複数 des を使います。",
+  "pitfall": "フランス語の名詞には文法上の性があります。"
+ },
+ {
+  "id": 6,
+  "chapter": "名詞と冠詞",
+  "title": "定冠詞 le・la・les・l’",
+  "rule": "特定できる名詞や一般的なものを表す名詞には、男性単数 le、女性単数 la、複数 les を使います。母音・無音hの前では l’ です。",
+  "pitfall": "好き嫌いの対象など、一般的な名詞にも定冠詞を使います。"
+ },
+ {
+  "id": 7,
+  "chapter": "名詞と冠詞",
+  "title": "部分冠詞 du・de la・de l’",
+  "rule": "数えられないものの不特定の量は、男性 du、女性 de la、母音・無音hの前 de l’ を使います。",
+  "pitfall": "否定文では通常 du / de la / de l’ が de / d’ になります（être構文などを除く）。"
+ },
+ {
+  "id": 8,
+  "chapter": "名詞と冠詞",
+  "title": "名詞の性：男性名詞・女性名詞",
+  "rule": "名詞には男性・女性の文法上の性があり、冠詞や形容詞がそれに一致します。",
+  "pitfall": "語尾だけでは性を確定できないため、名詞は冠詞と一緒に覚えます。"
+ },
+ {
+  "id": 9,
+  "chapter": "名詞と冠詞",
+  "title": "名詞の複数形",
+  "rule": "名詞は原則として -s を付けて複数にします。-eau は -eaux など例外があります。",
+  "pitfall": "単数・複数で発音が変わらない語も多いので冠詞を手掛かりにします。"
+ },
+ {
+  "id": 10,
+  "chapter": "形容詞",
+  "title": "形容詞の性数一致",
+  "rule": "形容詞は修飾する名詞の性・数と一致します。女性形は通常 -e、複数形は通常 -s を加えます。",
+  "pitfall": "beau/belle など不規則変化もあります。"
+ },
+ {
+  "id": 11,
+  "chapter": "形容詞",
+  "title": "形容詞の語順",
+  "rule": "多くの形容詞は名詞の後ろに置きますが、petit / grand / beau / bon などは通常前に置きます。",
+  "pitfall": "意味によって前後の位置が変わる形容詞もあります。"
+ },
+ {
+  "id": 12,
+  "chapter": "限定詞",
+  "title": "所有形容詞 mon・ma・mes",
+  "rule": "所有形容詞は所有者でなく、後ろの名詞の性・数に合わせます（mon / ma / mes など）。",
+  "pitfall": "女性名詞でも母音で始まる単数名詞の前では mon を使います（mon amie）。"
+ },
+ {
+  "id": 13,
+  "chapter": "限定詞",
+  "title": "指示形容詞 ce・cet・cette・ces",
+  "rule": "「この・その」の意味で男性 ce、男性かつ母音始まり cet、女性 cette、複数 ces を使います。",
+  "pitfall": "cet は男性名詞の母音・無音hの前だけです。"
+ },
+ {
+  "id": 14,
+  "chapter": "基本構文",
+  "title": "c’est と il est",
+  "rule": "c’est は人や物を提示・特定し、il est / elle est は既出の人物・物の性質を述べる際によく使います。",
+  "pitfall": "C’est un professeur. と Il est professeur. のように、冠詞の有無も違います。"
+ },
+ {
+  "id": 15,
+  "chapter": "動詞の現在形",
+  "title": "-er動詞：parler",
+  "rule": "parler などの規則 -er 動詞は -e / -es / -e / -ons / -ez / -ent と活用します。",
+  "pitfall": "-ent は通常発音しません。"
+ },
+ {
+  "id": 16,
+  "chapter": "動詞の現在形",
+  "title": "-ir動詞：finir",
+  "rule": "finir 型の規則動詞は -is / -is / -it / -issons / -issez / -issent と活用します。",
+  "pitfall": "-ir 動詞すべてが finir 型ではありません。"
+ },
+ {
+  "id": 17,
+  "chapter": "動詞の現在形",
+  "title": "-re動詞：attendre",
+  "rule": "attendre など一部の -re 動詞は j’attends / tu attends / il attend / nous attendons / vous attendez / ils attendent と活用します。",
+  "pitfall": "すべての -re 動詞が同じ活用になるわけではありません。"
+ },
+ {
+  "id": 18,
+  "chapter": "動詞の現在形",
+  "title": "aller：現在形",
+  "rule": "aller（行く）は je vais / tu vas / il va / nous allons / vous allez / ils vont と活用します。",
+  "pitfall": "aller + 不定詞の近接未来は別の重要項目です。"
+ },
+ {
+  "id": 19,
+  "chapter": "動詞の現在形",
+  "title": "faire：現在形",
+  "rule": "faire（する・作る）は je fais / tu fais / il fait / nous faisons / vous faites / ils font と活用します。",
+  "pitfall": "天候にも Il fait beau. のように faire を使います。"
+ },
+ {
+  "id": 20,
+  "chapter": "動詞の現在形",
+  "title": "venir：現在形",
+  "rule": "venir（来る）は je viens / tu viens / il vient / nous venons / vous venez / ils viennent と活用します。",
+  "pitfall": "venir de + 不定詞は「〜したばかり」という近接過去になります。"
+ },
+ {
+  "id": 21,
+  "chapter": "動詞の現在形",
+  "title": "prendre：現在形",
+  "rule": "prendre（取る・乗る）は je prends / tu prends / il prend / nous prenons / vous prenez / ils prennent と活用します。",
+  "pitfall": "prendre le train は「電車に乗る」、prendre un café は「コーヒーを飲む」です。"
+ },
+ {
+  "id": 22,
+  "chapter": "助動詞的表現",
+  "title": "pouvoir：〜できる",
+  "rule": "pouvoir + 不定詞で能力・可能性・許可を表します。現在形は peux / peux / peut / pouvons / pouvez / peuvent。",
+  "pitfall": "pouvoir の後ろの動詞は不定詞です。"
+ },
+ {
+  "id": 23,
+  "chapter": "助動詞的表現",
+  "title": "vouloir：〜したい",
+  "rule": "vouloir + 不定詞で「〜したい」を表します。現在形は veux / veux / veut / voulons / voulez / veulent。",
+  "pitfall": "Je veux... は状況によって強い言い方になるため、依頼では Je voudrais... が丁寧です。"
+ },
+ {
+  "id": 24,
+  "chapter": "助動詞的表現",
+  "title": "devoir：〜しなければならない",
+  "rule": "devoir + 不定詞で義務を表します。現在形は dois / dois / doit / devons / devez / doivent。",
+  "pitfall": "文脈により「〜のはずだ」という推量にもなります。"
+ },
+ {
+  "id": 25,
+  "chapter": "否定と疑問",
+  "title": "基本の否定 ne...pas",
+  "rule": "一般的な否定文では活用動詞を ne ... pas で挟みます。母音の前で ne は n’ になります。",
+  "pitfall": "口語で ne が省略されることがありますが、初級では完全形を学びます。"
+ },
+ {
+  "id": 26,
+  "chapter": "否定と疑問",
+  "title": "jamais・plus・rien の否定",
+  "rule": "ne...jamais（決して〜ない）、ne...plus（もう〜ない）、ne...rien（何も〜ない）で意味が変わります。",
+  "pitfall": "ne...rien は直接目的語として使え、語順に注意が必要です。"
+ },
+ {
+  "id": 27,
+  "chapter": "否定と疑問",
+  "title": "est-ce que による疑問文",
+  "rule": "平叙文の前に Est-ce que を置くと、語順を大きく変えずに疑問文を作れます。",
+  "pitfall": "母音始まりの前では est-ce qu’ になります。"
+ },
+ {
+  "id": 28,
+  "chapter": "否定と疑問",
+  "title": "疑問詞：いつ・どこ・なぜ",
+  "rule": "où（どこ）、quand（いつ）、comment（どのように）、pourquoi（なぜ）、combien（いくら・いくつ）などで情報を尋ねます。",
+  "pitfall": "疑問詞の後に est-ce que を使う形もあります。"
+ },
+ {
+  "id": 29,
+  "chapter": "否定と疑問",
+  "title": "否定文の冠詞 de",
+  "rule": "直接目的語の不定冠詞・部分冠詞は、否定文では原則 de / d’ に変わります。",
+  "pitfall": "être を使う否定文や定冠詞は通常この規則の対象外です。"
+ },
+ {
+  "id": 30,
+  "chapter": "前置詞",
+  "title": "à と定冠詞の縮約",
+  "rule": "à + le = au、à + les = aux。à la と à l’ は縮約しません。目的地などを表します。",
+  "pitfall": "都市には通常 à、男性形の国名には au、女性形の国名には en を使います。"
+ },
+ {
+  "id": 31,
+  "chapter": "前置詞",
+  "title": "de と定冠詞の縮約",
+  "rule": "de + le = du、de + les = des。de la / de l’ はそのままです。起点や所属を表します。",
+  "pitfall": "部分冠詞 du と縮約形 du は形が同じですが働きが異なります。"
+ },
+ {
+  "id": 32,
+  "chapter": "前置詞",
+  "title": "場所を表す前置詞",
+  "rule": "sur（上）、sous（下）、devant（前）、derrière（後ろ）、dans（中）、entre（間）などで位置を示します。",
+  "pitfall": "前置詞は日本語の助詞と一対一には対応しません。"
+ },
+ {
+  "id": 33,
+  "chapter": "前置詞",
+  "title": "時刻と時間の前置詞",
+  "rule": "à（時刻）、en（所要時間）、pendant（期間）、depuis（継続起点）、avant / après（前・後）を区別します。",
+  "pitfall": "depuis は現在まで継続する事柄と一緒に使うことが多いです。"
+ },
+ {
+  "id": 34,
+  "chapter": "数量・比較",
+  "title": "数量表現と de",
+  "rule": "数量を表す beaucoup de、peu de、un peu de、assez de、trop de などの後に名詞を置きます。",
+  "pitfall": "数量詞の後ろは原則として不定冠詞・部分冠詞ではなく de です。"
+ },
+ {
+  "id": 35,
+  "chapter": "数量・比較",
+  "title": "比較級 plus・moins・aussi",
+  "rule": "形容詞の比較は plus ... que（より〜）、moins ... que（それほど〜でない）、aussi ... que（同じくらい〜）。",
+  "pitfall": "形容詞は主語に性数一致させます。"
+ },
+ {
+  "id": 36,
+  "chapter": "動詞と構文",
+  "title": "代名動詞の現在形",
+  "rule": "se lever や se coucher など、主語に合わせて再帰代名詞 me / te / se / nous / vous / se を使います。",
+  "pitfall": "je me lève のように動詞自体も活用し、否定では ne が代名詞の前に来ます。"
+ },
+ {
+  "id": 37,
+  "chapter": "動詞と構文",
+  "title": "命令形",
+  "rule": "tu / nous / vous の命令形は通常主語代名詞を省略します。-er 動詞の tu 命令形は通常語尾の -s を取りません。",
+  "pitfall": "肯定命令文では目的語代名詞を動詞の後ろに置き、ハイフンでつなぎます。"
+ },
+ {
+  "id": 38,
+  "chapter": "未来",
+  "title": "近接未来 aller + 不定詞",
+  "rule": "aller の現在形の後に不定詞を置いて「これから〜する」を表します。",
+  "pitfall": "活用するのは aller で、後ろの動詞は不定詞のままです。"
+ },
+ {
+  "id": 39,
+  "chapter": "未来",
+  "title": "単純未来の基本",
+  "rule": "規則的な単純未来は、不定詞の語幹に -ai / -as / -a / -ons / -ez / -ont を付けます。",
+  "pitfall": "aller、être、avoir などは未来形の語幹が不規則です。"
+ },
+ {
+  "id": 40,
+  "chapter": "過去",
+  "title": "複合過去：avoir を使う形",
+  "rule": "複合過去は avoir の現在形＋過去分詞で作れます（j’ai parlé など）。",
+  "pitfall": "être を使う動詞もあるので助動詞を一律に avoir にしないでください。"
+ },
+ {
+  "id": 41,
+  "chapter": "過去",
+  "title": "複合過去：過去分詞の形",
+  "rule": "規則動詞の過去分詞は -er→-é、finir型 -ir→-i、attendre型 -re→-u です。不規則形も多くあります。",
+  "pitfall": "fait、pris、écrit などは不規則な過去分詞です。"
+ },
+ {
+  "id": 42,
+  "chapter": "過去",
+  "title": "複合過去：être を使う形",
+  "rule": "aller、venir、arriver、partir など一部の動詞の複合過去は être＋過去分詞で作ります。",
+  "pitfall": "être を使う場合、過去分詞は原則主語と性数一致します。"
+ },
+ {
+  "id": 43,
+  "chapter": "過去",
+  "title": "複合過去：性数一致",
+  "rule": "être を用いる複合過去では、過去分詞は主語と性数一致します。男性単数 -Ø、女性単数 -e、男性複数 -s、女性複数 -es が基本です。",
+  "pitfall": "avoir を使う複合過去は原則一致しませんが、先行する直接目的語など例外があります。"
+ },
+ {
+  "id": 44,
+  "chapter": "過去",
+  "title": "半過去：規則活用",
+  "rule": "半過去は現在形の nous の語幹から -ons を外し、-ais / -ais / -ait / -ions / -iez / -aient を付けます。",
+  "pitfall": "être だけは ét- という不規則な語幹になります。"
+ },
+ {
+  "id": 45,
+  "chapter": "過去",
+  "title": "複合過去と半過去の対比",
+  "rule": "複合過去は出来事や完了、半過去は背景・状態・習慣を表すことが多いです。",
+  "pitfall": "同じ日本語の「〜した」でも、文脈により時制が変わります。"
+ },
+ {
+  "id": 46,
+  "chapter": "人称代名詞",
+  "title": "直接目的語代名詞",
+  "rule": "直接目的語を置き換える me / te / le / la / nous / vous / les は、通常活用動詞の前に置きます。",
+  "pitfall": "複合過去で前に置く直接目的語は過去分詞の一致を引き起こす場合があります。"
+ },
+ {
+  "id": 47,
+  "chapter": "人称代名詞",
+  "title": "間接目的語代名詞 lui・leur",
+  "rule": "parler à などの「à＋人」を、単数なら lui、複数なら leur で置き換えます。",
+  "pitfall": "lui は男性にも女性にも使え、leur は複数の人を指します。"
+ },
+ {
+  "id": 48,
+  "chapter": "人称代名詞",
+  "title": "代名詞 y・en",
+  "rule": "y は主に「à＋物・場所」など、en は主に「de＋物」や数量を置き換えます。",
+  "pitfall": "y と en の意味は前置詞や文脈に依存します。"
+ },
+ {
+  "id": 49,
+  "chapter": "複文",
+  "title": "関係代名詞 qui・que・où",
+  "rule": "qui は主語、que は直接目的語、où は場所・時を示す関係節を導きます。",
+  "pitfall": "que は母音の前で qu’ になり、qui は通常省略しません。"
+ },
+ {
+  "id": 50,
+  "chapter": "丁寧な表現",
+  "title": "条件法現在：丁寧な依頼",
+  "rule": "je voudrais（〜が欲しい）、je pourrais（〜できるだろう）などの条件法現在は、丁寧な希望や依頼に使えます。",
+  "pitfall": "条件法の活用は未来形の語幹＋半過去形の語尾を基本とします。"
+ }
+]
