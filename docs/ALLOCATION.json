@@ -1,0 +1,352 @@
+[
+  {
+    "lesson": 1,
+    "chapter": "文の基本",
+    "title": "主語の人称代名詞",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 2,
+    "chapter": "文の基本",
+    "title": "elle・elles・on の使い方",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 3,
+    "chapter": "基本動詞",
+    "title": "être：現在形",
+    "examples": 14,
+    "priority": "high"
+  },
+  {
+    "lesson": 4,
+    "chapter": "基本動詞",
+    "title": "avoir：現在形",
+    "examples": 14,
+    "priority": "high"
+  },
+  {
+    "lesson": 5,
+    "chapter": "名詞と冠詞",
+    "title": "不定冠詞 un・une・des",
+    "examples": 14,
+    "priority": "high"
+  },
+  {
+    "lesson": 6,
+    "chapter": "名詞と冠詞",
+    "title": "定冠詞 le・la・les・l’",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 7,
+    "chapter": "名詞と冠詞",
+    "title": "部分冠詞 du・de la・de l’",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 8,
+    "chapter": "名詞と冠詞",
+    "title": "名詞の性：男性名詞・女性名詞",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 9,
+    "chapter": "名詞と冠詞",
+    "title": "名詞の複数形",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 10,
+    "chapter": "形容詞",
+    "title": "形容詞の性数一致",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 11,
+    "chapter": "形容詞",
+    "title": "形容詞の語順",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 12,
+    "chapter": "限定詞",
+    "title": "所有形容詞 mon・ma・mes",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 13,
+    "chapter": "限定詞",
+    "title": "指示形容詞 ce・cet・cette・ces",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 14,
+    "chapter": "基本構文",
+    "title": "c’est と il est",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 15,
+    "chapter": "動詞の現在形",
+    "title": "-er動詞：parler",
+    "examples": 14,
+    "priority": "high"
+  },
+  {
+    "lesson": 16,
+    "chapter": "動詞の現在形",
+    "title": "-ir動詞：finir",
+    "examples": 6,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 17,
+    "chapter": "動詞の現在形",
+    "title": "-re動詞：attendre",
+    "examples": 6,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 18,
+    "chapter": "動詞の現在形",
+    "title": "aller：現在形",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 19,
+    "chapter": "動詞の現在形",
+    "title": "faire：現在形",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 20,
+    "chapter": "動詞の現在形",
+    "title": "venir：現在形",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 21,
+    "chapter": "動詞の現在形",
+    "title": "prendre：現在形",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 22,
+    "chapter": "助動詞的表現",
+    "title": "pouvoir：〜できる",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 23,
+    "chapter": "助動詞的表現",
+    "title": "vouloir：〜したい",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 24,
+    "chapter": "助動詞的表現",
+    "title": "devoir：〜しなければならない",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 25,
+    "chapter": "否定と疑問",
+    "title": "基本の否定 ne...pas",
+    "examples": 14,
+    "priority": "high"
+  },
+  {
+    "lesson": 26,
+    "chapter": "否定と疑問",
+    "title": "jamais・plus・rien の否定",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 27,
+    "chapter": "否定と疑問",
+    "title": "est-ce que による疑問文",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 28,
+    "chapter": "否定と疑問",
+    "title": "疑問詞：いつ・どこ・なぜ",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 29,
+    "chapter": "否定と疑問",
+    "title": "否定文の冠詞 de",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 30,
+    "chapter": "前置詞",
+    "title": "à と定冠詞の縮約",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 31,
+    "chapter": "前置詞",
+    "title": "de と定冠詞の縮約",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 32,
+    "chapter": "前置詞",
+    "title": "場所を表す前置詞",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 33,
+    "chapter": "前置詞",
+    "title": "時刻と時間の前置詞",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 34,
+    "chapter": "数量・比較",
+    "title": "数量表現と de",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 35,
+    "chapter": "数量・比較",
+    "title": "比較級 plus・moins・aussi",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 36,
+    "chapter": "動詞と構文",
+    "title": "代名動詞の現在形",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 37,
+    "chapter": "動詞と構文",
+    "title": "命令形",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 38,
+    "chapter": "未来",
+    "title": "近接未来 aller + 不定詞",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 39,
+    "chapter": "未来",
+    "title": "単純未来の基本",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 40,
+    "chapter": "過去",
+    "title": "複合過去：avoir を使う形",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 41,
+    "chapter": "過去",
+    "title": "複合過去：過去分詞の形",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 42,
+    "chapter": "過去",
+    "title": "複合過去：être を使う形",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 43,
+    "chapter": "過去",
+    "title": "複合過去：性数一致",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 44,
+    "chapter": "過去",
+    "title": "半過去：規則活用",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 45,
+    "chapter": "過去",
+    "title": "複合過去と半過去の対比",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 46,
+    "chapter": "人称代名詞",
+    "title": "直接目的語代名詞",
+    "examples": 12,
+    "priority": "high"
+  },
+  {
+    "lesson": 47,
+    "chapter": "人称代名詞",
+    "title": "間接目的語代名詞 lui・leur",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 48,
+    "chapter": "人称代名詞",
+    "title": "代名詞 y・en",
+    "examples": 8,
+    "priority": "supplement"
+  },
+  {
+    "lesson": 49,
+    "chapter": "複文",
+    "title": "関係代名詞 qui・que・où",
+    "examples": 10,
+    "priority": "standard"
+  },
+  {
+    "lesson": 50,
+    "chapter": "丁寧な表現",
+    "title": "条件法現在：丁寧な依頼",
+    "examples": 10,
+    "priority": "standard"
+  }
+]

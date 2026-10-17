@@ -11,9 +11,12 @@ assert [x['id'] for x in rows]==list(range(1,501))
 assert len({x['fr'].casefold() for x in rows})==500
 assert all(l['title'] and l['chapter'] and l['rule'] and l['pitfall'] for l in lessons)
 ct=collections.Counter(x['lesson'] for x in rows)
-assert ct=={i:10 for i in range(1,51)}
+assert set(ct)==set(range(1,51)) and sum(ct.values())==500
+assert len(set(ct.values()))>=3
 for x in rows:
     assert x['fr'] and x['ja'] and x['detail'] and x['pitfall']
+    for key in ('structure','whole','reason','contrast','tip','questionHint'):
+        assert len(x[key])>=10,(x['id'],key)
     assert x['answer'] in x['options']
     assert len(set(x['options']))>=4
     assert x['blank'].count('___')==1
