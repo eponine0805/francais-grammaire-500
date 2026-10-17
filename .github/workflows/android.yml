@@ -79,8 +79,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          if gh release view v0.3.0 >/dev/null 2>&1; then
-            echo 'v0.3.0 already exists; not overwriting existing release.'
+          if gh release view v0.3.1 >/dev/null 2>&1; then
+            echo 'v0.3.1 already exists; not overwriting existing release.'
           else
-            gh release create v0.3.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.3.0' --notes 'Concise explanations, unverified IPA, word ordering, instant feedback and locally stored progress.'
+            gh release create v0.3.1 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.3.1' --notes 'Concise explanations, unverified IPA, word ordering, instant feedback and locally stored progress.'
           fi
