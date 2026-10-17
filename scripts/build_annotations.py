@@ -10,10 +10,11 @@ assert len(examples)==500 and len(lessons)==50
 notes=[]
 for row in examples:
     lesson=lessons[row['lesson']-1]
-    explanation=f"「{row['fr']}」では「{row['answer']}」が文法上のポイント。{lesson['rule']}"
-    if len(explanation)+len(lesson['pitfall'])<=200:
-        explanation+=lesson['pitfall']
-    explanation=explanation[:200]
+    # The explanation MUST come from this exact example, not the shared section rule.
+    # Section rules and caveats have their own screen.
+    explanation=f"「{row['answer']}」：{row['reason']}"
+    if not 1 <= len(explanation) <= 200:
+        raise ValueError(f"Example #{row['id']} explanation length: {len(explanation)}")
     proc=subprocess.run(['espeak-ng','-q','-v','fr-fr','--ipa=3',row['fr']],
         capture_output=True,text=True,check=True)
     ipa=' '.join(proc.stdout.replace('ˈ','').replace('ˌ','').replace('-','').split())

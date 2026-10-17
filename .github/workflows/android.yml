@@ -37,28 +37,27 @@ jobs:
           python3 scripts/test_learning_flow.py
       - name: Compile Android before speech synthesis
         run: gradle --no-daemon :app:assembleDebug
-      - name: Reuse unchanged v0.1.0 speech clips
+      - name: Reuse verified offline voice clips unchanged from v0.3.1
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p /tmp/prev-audio app/src/main/assets/audio
-          gh release download v0.1.0 --pattern Grammaire500.apk --dir /tmp/prev-audio
+          gh release download v0.3.1 --pattern Grammaire500.apk --dir /tmp/prev-audio
           python3 - <<'PY'
-          import zipfile,json
           from pathlib import Path
-          changed=set(json.loads(Path('app/src/main/assets/changed_ids.json').read_text())['changed_ids'])
+          import hashlib,zipfile
+          current=Path('app/src/main/assets/examples.json').read_bytes()
+          assert hashlib.sha256(current).hexdigest()=='42f52d078124792d799ec28d5ed85abca6384e19a876990a87023df18285a05e', 'Speech source text changed; audio regeneration is required'
           with zipfile.ZipFile('/tmp/prev-audio/Grammaire500.apk') as apk:
+              embedded=apk.read('assets/examples.json')
+              assert embedded==current, 'Word/voice alignment mismatch; regenerate audio'
               for i in range(1,501):
-                  if i in changed:continue
-                  audio=apk.read(f'assets/audio/{i:04d}.ogg')
-                  assert len(audio)>1800
-                  Path(f'app/src/main/assets/audio/{i:04d}.ogg').write_bytes(audio)
-          print('Reused',500-len(changed),'original voice files')
+                  clip=apk.read(f'assets/audio/{i:04d}.ogg')
+                  assert len(clip)>=1800
+                  Path(f'app/src/main/assets/audio/{i:04d}.ogg').write_bytes(clip)
+              Path('app/src/main/assets/audio/manifest.json').write_bytes(apk.read('assets/audio/manifest.json'))
+          print('Verified and restored 500 unchanged recordings')
           PY
-      - name: Generate 500 French female recordings
-        run: |
-          pip install -r scripts/requirements-audio.txt
-          python3 scripts/generate_audio.py
       - name: Validate all offline audio files
         run: |
           python3 - <<'PY'
