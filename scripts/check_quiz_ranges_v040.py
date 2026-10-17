@@ -17,16 +17,25 @@ for start in range(1,51):
         ids=[e['id'] for e in ex if start<=e['lesson']<=end]
         assert ids and len(ids)==len(set(ids))
         ranges+=1
-        for count in range(20,101,10):
+        for count in range(10,101,10):
             subset=ids[:min(count,len(ids))]
             assert len(subset)==min(count,len(ids))
             assert all(start<=ex[i-1]['lesson']<=end for i in subset)
             cases+=1
         assert len(ids)>0
         cases+=1
-assert ranges==1275 and cases==12750
+assert ranges==1275 and cases==14025
 for name in ('showQuizSetup(){','quizRange(first,last)','fr.post(()->','restoreQuizScroll(y)','add(bottomBar(),nav)','次の問題へ  →','onSaveInstanceState','resumeSavedQuiz'):
     assert name in java,name
 assert '文法のポイント  •  200字以内' not in java
 print('PASS: 50 sections, 500 examples, 500 annotations, 1,275 ranges and 12,750 configurations')
 print('NOTE: UI instrumentation and native-speaker audio/IPA review still required')
+
+assert source.count('全50単元を選択')==1
+assert '10+seek.getProgress()*10' in source
+assert 'mainTabs(header)' in source and 'private void showReviewHub()' in source
+assert 'quizReturnTab=data.optInt("returnTab",0)' in source
+assert 'if(s==9){showReviewHub();return true;}' in source
+for duplicate in ('全範囲から10問",false','間違えた問題を復習  →','今日の復習（忘れる前に10問）'):
+    assert duplicate not in source,duplicate
+print('OK: three tabs, integrated quiz setup and review')
