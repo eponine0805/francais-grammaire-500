@@ -20,6 +20,10 @@ import android.view.HapticFeedbackConstants;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.SeekBar;
+import android.widget.CheckBox;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -53,6 +57,7 @@ public class MainActivity extends Activity {
     private boolean resultLogged=false;
     private String selectedAnswer="";
     private int selectedExample=1;
+    private ScrollView activeScroll;
 
     private static class Lesson {
         final int id; final String chapter,title,rule,pitfall;
@@ -79,7 +84,7 @@ public class MainActivity extends Activity {
                 JSONObject note=annotations.getJSONObject(i);Example example=examples.get(i);
                 if(note.getInt("id")!=example.id)throw new IllegalStateException("IPA ID mismatch at "+i);
                 example.ipa=note.getString("ipa");example.compact=note.getString("brief");
-                if(example.compact.length()>200||example.ipa.isEmpty())throw new IllegalStateException("Invalid annotation "+example.id);
+                if(example.compact.isEmpty()||example.compact.length()>320||example.ipa.isEmpty())throw new IllegalStateException("Invalid annotation "+example.id);
             }
             if(lessons.size()!=50 || examples.size()!=500)throw new IllegalStateException("Lesson package incomplete");
         }catch(Exception ex){TextView v=new TextView(this);v.setText("教材データを読み込めません："+ex.getMessage());setContentView(v);return;}
@@ -107,7 +112,7 @@ public class MainActivity extends Activity {
         if(back!=null){TextView b=t("← 戻る",14,false,GRAY);b.setOnClickListener(back);add(header,b);gap(header,13);}
         add(header,t(title,24,true,BLACK));if(caption!=null){gap(header,5);add(header,t(caption,12,false,GRAY));}
         add(base,header);View line=new View(this);line.setBackgroundColor(LINE);base.addView(line,new LinearLayout.LayoutParams(-1,dp(1)));
-        ScrollView sc=new ScrollView(this);sc.setFillViewport(false);sc.setVerticalScrollBarEnabled(false);base.addView(sc,new LinearLayout.LayoutParams(-1,0,1));
+        ScrollView sc=new ScrollView(this);sc.setFillViewport(false);sc.setVerticalScrollBarEnabled(false);activeScroll=sc;base.addView(sc,new LinearLayout.LayoutParams(-1,0,1));
         mainArea=vertical();pad(mainArea,18,20);sc.addView(mainArea);
     }
     private ArrayList<Integer> lessonIds(int lesson){ArrayList<Integer> r=new ArrayList<>();for(Example e:examples)if(e.lesson==lesson)r.add(e.id);return r;}
@@ -151,7 +156,8 @@ public class MainActivity extends Activity {
         if(prefs.contains("pending_quiz_v3")){
             add(mainArea,btn("▶  前回のテストを再開",true,v->resumeSavedQuiz()));gap(mainArea,8);
         }
-        add(mainArea,btn("間違えた問題を復習  →",true,v->startWrongQuiz()));gap(mainArea,8);
+        add(mainArea,btn("範囲を指定して文法テスト  →",true,v->showQuizSetup()));gap(mainArea,8);
+        add(mainArea,btn("間違えた問題を復習  →",false,v->startWrongQuiz()));gap(mainArea,8);
         add(mainArea,btn("全範囲から10問",false,v->startMixedQuiz()));gap(mainArea,8);
         add(mainArea,btn("今日の復習（忘れる前に10問）",false,v->startDueQuiz()));gap(mainArea,8);
         add(mainArea,btn("学習記録を見る  →",false,v->showHistory()));gap(mainArea,24);
@@ -207,15 +213,70 @@ public class MainActivity extends Activity {
         TextView ipa=t(e.ipa+"  ※自動推定",13,false,GRAY);ipa.setGravity(Gravity.CENTER);add(sentence,ipa);gap(sentence,13);
         TextView ja=t(e.ja,16,false,BLACK);ja.setGravity(Gravity.CENTER);add(sentence,ja);gap(sentence,12);
         add(sentence,btn("▶  発音を聞く",false,v->play(id)));add(mainArea,sentence);gap(mainArea,13);
-        explainBlock(mainArea,"文法のポイント  •  200字以内",e.compact);
+        explainBlock(mainArea,"この例文の文法ポイント",e.compact);
         add(mainArea,btn("この例文を問題で確認",true,v->{ArrayList<Integer> one=new ArrayList<>();one.add(e.id);startQuiz(one);}));gap(mainArea,12);
+        TextView star=t(starred(id)?"★  保存済み":"☆  この例文を保存",14,false,GRAY);
+        star.setGravity(Gravity.CENTER);star.setOnClickListener(v->{prefs.edit().putBoolean("star_"+id,!starred(id)).apply();star.setText(starred(id)?"★  保存済み":"☆  この例文を保存");});add(mainArea,star);gap(mainArea,15);
         LinearLayout nav=new LinearLayout(this);nav.setOrientation(LinearLayout.HORIZONTAL);
         Button previous=btn("← 前",false,v->showExample(ids.get(at-1)));previous.setEnabled(at>0);previous.setAlpha(at>0?1f:0.35f);
         nav.addView(previous,new LinearLayout.LayoutParams(0,dp(56),1));View sep=new View(this);nav.addView(sep,new LinearLayout.LayoutParams(dp(9),1));
         Button next=btn("次の例文 →",true,v->showExample(ids.get(at+1)));next.setEnabled(at+1<ids.size());next.setAlpha(at+1<ids.size()?1f:0.35f);
-        nav.addView(next,new LinearLayout.LayoutParams(0,dp(56),2));add(mainArea,nav);gap(mainArea,12);
-        TextView star=t(starred(id)?"★  保存済み":"☆  この例文を保存",14,false,GRAY);
-        star.setGravity(Gravity.CENTER);star.setOnClickListener(v->{prefs.edit().putBoolean("star_"+id,!starred(id)).apply();star.setText(starred(id)?"★  保存済み":"☆  この例文を保存");});add(mainArea,star);
+        nav.addView(next,new LinearLayout.LayoutParams(0,dp(56),2));add(bottomBar(),nav);
+        // Start audio once when a new example screen opens.
+        fr.post(()->{if(screen==3 && selectedExample==id && !isFinishing())play(id);});
+    }
+    /** Flexible scope and question count, separate from focused one-section tests. */
+    private void showQuizSetup(){
+        screen=8;
+        startScreen("文法テストの設定","出題範囲と問題数を選んでください",v->home());
+        LinearLayout settings=panel();
+        eyebrow(settings,"RANGE / 文法単元の範囲");gap(settings,10);
+        add(settings,t("開始する単元",14,true,BLACK));gap(settings,5);
+        ArrayList<String> names=new ArrayList<>();
+        for(Lesson item:lessons)names.add(String.format(Locale.JAPAN,"%02d  %s",item.id,item.title));
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_dropdown_item,names);
+        Spinner start=new Spinner(this);start.setAdapter(adapter);
+        start.setSelection(Math.max(0,Math.min(49,prefs.getInt("quiz_range_start",1)-1)));add(settings,start);gap(settings,10);
+        add(settings,t("終了する単元",14,true,BLACK));gap(settings,5);
+        Spinner end=new Spinner(this);end.setAdapter(adapter);
+        end.setSelection(Math.max(0,Math.min(49,prefs.getInt("quiz_range_end",50)-1)));add(settings,end);
+        gap(settings,16);eyebrow(settings,"COUNT / 問題数");gap(settings,7);
+        TextView count=t("20問",18,true,BLACK);add(settings,count);gap(settings,5);
+        SeekBar seek=new SeekBar(this);seek.setMax(8);
+        int previousCount=prefs.getInt("quiz_range_count",20);
+        seek.setProgress(Math.max(0,Math.min(8,Math.round((previousCount-20)/10f))));add(settings,seek);
+        add(settings,t("20〜100問から10問刻みで選択（範囲内が少ない場合は全問）",12,false,GRAY));gap(settings,12);
+        CheckBox all=new CheckBox(this);all.setText("選択した単元の全問を出題");all.setTextSize(15);
+        all.setChecked(prefs.getBoolean("quiz_range_all",false));add(settings,all);gap(settings,9);
+        final Runnable updateCount=()->{seek.setEnabled(!all.isChecked());seek.setAlpha(all.isChecked()?0.45f:1f);
+            count.setText(all.isChecked()?"範囲内の全問":(20+seek.getProgress()*10)+"問");};
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+            @Override public void onProgressChanged(SeekBar bar,int progress,boolean user){updateCount.run();}
+            @Override public void onStartTrackingTouch(SeekBar bar){}
+            @Override public void onStopTrackingTouch(SeekBar bar){}
+        });
+        all.setOnCheckedChangeListener((v,checked)->updateCount.run());updateCount.run();
+        add(mainArea,settings);gap(mainArea,12);
+        add(mainArea,t("出題順は毎回シャッフルされます。選んだ範囲以外の例文は出題しません。",13,false,GRAY));
+        LinearLayout footer=bottomBar();
+        add(footer,btn("この範囲でテスト開始  →",true,v->{
+            int first=start.getSelectedItemPosition()+1,last=end.getSelectedItemPosition()+1;
+            if(first>last){Toast.makeText(this,"開始単元が終了単元より後になっています",Toast.LENGTH_LONG).show();return;}
+            ArrayList<Integer> candidates=quizRange(first,last);
+            if(candidates.isEmpty()){Toast.makeText(this,"この範囲には例文がありません",Toast.LENGTH_SHORT).show();return;}
+            int requested=20+seek.getProgress()*10;
+            int questions=all.isChecked()?candidates.size():Math.min(requested,candidates.size());
+            prefs.edit().putInt("quiz_range_start",first).putInt("quiz_range_end",last)
+                .putInt("quiz_range_count",requested).putBoolean("quiz_range_all",all.isChecked()).apply();
+            Collections.shuffle(candidates,random);
+            startQuiz(new ArrayList<>(candidates.subList(0,questions)));
+            quizFromHome=true;saveQuizSession();
+        }));
+    }
+    private ArrayList<Integer> quizRange(int first,int last){
+        ArrayList<Integer> ids=new ArrayList<>();
+        for(Example example:examples)if(example.lesson>=first&&example.lesson<=last)ids.add(example.id);
+        return ids;
     }
     private void startQuiz(ArrayList<Integer> ids){
         quizFromHome=false;quiz.clear();quiz.addAll(ids);Collections.shuffle(quiz,random);
@@ -324,7 +385,7 @@ public class MainActivity extends Activity {
             GridLayout current=new GridLayout(this);current.setColumnCount(3);
             for(int k=0;k<orderPicked.size();k++){
                 final int pos=k;int tokenId=orderPicked.get(k);
-                Button chip=btn(words.get(tokenId),false,v->{if(!answered){orderPicked.remove(pos);saveQuizSession();showQuiz();}});
+                Button chip=btn(words.get(tokenId),false,v->{if(!answered){int y=activeScroll.getScrollY();orderPicked.remove(pos);saveQuizSession();showQuiz();restoreQuizScroll(y);}});
                 chip.setTextSize(13);chip.setMinHeight(dp(42));pad(chip,3,3);
                 GridLayout.LayoutParams par=new GridLayout.LayoutParams();par.width=0;par.columnSpec=GridLayout.spec(GridLayout.UNDEFINED,1f);par.height=dp(49);par.setMargins(dp(2),dp(2),dp(2),dp(2));current.addView(chip,par);
             }
@@ -333,7 +394,7 @@ public class MainActivity extends Activity {
             add(mainArea,assembled);gap(mainArea,10);
             GridLayout bank=new GridLayout(this);bank.setColumnCount(3);
             for(int i:shuffledTokens(e)){
-                final int token=i;Button chip=btn(words.get(i),false,v->{if(!answered&&!orderPicked.contains(token)){orderPicked.add(token);saveQuizSession();showQuiz();}});
+                final int token=i;Button chip=btn(words.get(i),false,v->{if(!answered&&!orderPicked.contains(token)){int y=activeScroll.getScrollY();orderPicked.add(token);saveQuizSession();showQuiz();restoreQuizScroll(y);}});
                 chip.setTextSize(13);chip.setMinHeight(dp(44));pad(chip,3,3);
                 boolean used=orderPicked.contains(token);chip.setEnabled(!answered&&!used);chip.setAlpha(used?0.25f:1f);
                 GridLayout.LayoutParams par=new GridLayout.LayoutParams();par.width=0;par.columnSpec=GridLayout.spec(GridLayout.UNDEFINED,1f);par.height=dp(50);par.setMargins(dp(2),dp(2),dp(2),dp(2));bank.addView(chip,par);
@@ -346,7 +407,7 @@ public class MainActivity extends Activity {
         }
         if(answered){
             gap(mainArea,9);
-            LinearLayout details=panel();eyebrow(details,"短い文法解説・200字以内");gap(details,9);
+            LinearLayout details=panel();eyebrow(details,"この文の文法解説");gap(details,9);
             add(details,t(e.compact,14,false,BLACK));gap(details,8);
             add(details,t(e.ipa+"  ※IPA自動推定",12,false,GRAY));gap(details,8);
             add(details,btn("▶  正しい例文の発音",false,v->play(e.id)));add(mainArea,details);
@@ -366,6 +427,7 @@ public class MainActivity extends Activity {
             TextView instruction=t("答えを選ぶとすぐに正誤が分かります",13,false,GRAY);instruction.setGravity(Gravity.CENTER);add(footer,instruction);
         }
     }
+    private void restoreQuizScroll(int y){ScrollView sc=activeScroll;if(sc!=null)sc.post(()->{if(screen==5&&activeScroll==sc)sc.scrollTo(0,y);});}
     private void answer(Example e,String chosen){
         if(answered)return;answered=true;selectedAnswer=chosen;quizAnswers.add(chosen);
         boolean ok=chosen.equals(isOrderQuiz(e)?e.fr:e.answer);
@@ -408,7 +470,9 @@ public class MainActivity extends Activity {
         if(!failed.isEmpty()){
             add(mainArea,btn("間違えた"+failed.size()+"問をもう一度  →",true,v->startQuiz(new ArrayList<>(failed))));gap(mainArea,16);
             add(mainArea,t("間違えた問題の解説",18,true,BLACK));gap(mainArea,9);
-            for(int id:failed){Example e=ex(id);LinearLayout item=panel();add(item,t(e.fr,16,true,BLACK));gap(item,6);add(item,t(e.ja,14,false,GRAY));gap(item,8);add(item,t("解説を読む →",13,true,BLACK));item.setOnClickListener(v->showExample(e.id));add(mainArea,item);gap(mainArea,9);}
+            int shown=Math.min(30,failed.size());
+            for(int i=0;i<shown;i++){int id=failed.get(i);Example e=ex(id);LinearLayout item=panel();add(item,t(e.fr,16,true,BLACK));gap(item,6);add(item,t(e.ja,14,false,GRAY));gap(item,8);add(item,t("解説を読む →",13,true,BLACK));item.setOnClickListener(v->showExample(e.id));add(mainArea,item);gap(mainArea,9);}
+            if(failed.size()>shown){add(mainArea,t("残り"+(failed.size()-shown)+"問は上の再テストですべて復習できます。",14,false,GRAY));gap(mainArea,12);}
         }else{add(mainArea,t("全問正解。次の文法事項へ進みましょう。",16,true,BLACK));gap(mainArea,13);}
         add(mainArea,btn("目次に戻る",false,v->home()));
     }
@@ -429,7 +493,7 @@ public class MainActivity extends Activity {
         int s=b.getInt("screen",0);selectedLesson=b.getInt("lesson",1);if(selectedLesson<1||selectedLesson>50)return false;
         if(s==3){int eid=b.getInt("selectedExample",1);if(eid<1||eid>500)return false;showExample(eid);return true;}
         if(s==5){ArrayList<Integer> ids=b.getIntegerArrayList("quiz");ArrayList<Integer> misses=b.getIntegerArrayList("failed");ArrayList<String> a=b.getStringArrayList("quizAnswers");if(ids==null||ids.isEmpty()||ids.size()>500||a==null||misses==null)return false;for(int id:ids)if(id<1||id>500)return false;quiz.clear();quiz.addAll(ids);failed.clear();failed.addAll(misses);quizAnswers.clear();quizAnswers.addAll(a);quizIndex=b.getInt("quizIndex",0);correctCount=b.getInt("correctCount",0);answered=b.getBoolean("answered",false);selectedAnswer=b.getString("selectedAnswer","");quizFromHome=b.getBoolean("quizFromHome",false);orderPicked.clear();ArrayList<Integer> o=b.getIntegerArrayList("orderPicked");if(o!=null)orderPicked.addAll(o);if(quizIndex<0||quizIndex>=quiz.size()||quizAnswers.size()!=quizIndex+(answered?1:0))return false;showQuiz();return true;}
-        if(s==2){showLesson(selectedLesson);return true;}if(s==7){showHistory();return true;}return false;
+        if(s==2){showLesson(selectedLesson);return true;}if(s==7){showHistory();return true;}if(s==8){showQuizSetup();return true;}return false;
     }
-    @Override public void onBackPressed(){if(screen==0){super.onBackPressed();return;}if(screen==5&&quizFromHome)home();else if(screen==3||screen==5||screen==6)showLesson(selectedLesson);else home();}
+    @Override public void onBackPressed(){if(screen==0){super.onBackPressed();return;}if(screen==5&&quizFromHome)home();else if(screen==8)home();else if(screen==3||screen==5||screen==6)showLesson(selectedLesson);else home();}
 }

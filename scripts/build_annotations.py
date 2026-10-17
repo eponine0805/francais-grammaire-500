@@ -13,7 +13,7 @@ for row in examples:
     # The explanation MUST come from this exact example, not the shared section rule.
     # Section rules and caveats have their own screen.
     explanation=f"「{row['answer']}」：{row['reason']}"
-    if not 1 <= len(explanation) <= 200:
+    if not 1 <= len(explanation) <= 320:
         raise ValueError(f"Example #{row['id']} explanation length: {len(explanation)}")
     proc=subprocess.run(['espeak-ng','-q','-v','fr-fr','--ipa=3',row['fr']],
         capture_output=True,text=True,check=True)
@@ -21,6 +21,6 @@ for row in examples:
     if not ipa or len(ipa)>150:raise RuntimeError(f"Invalid IPA for #{row['id']}")
     notes.append({'id':row['id'],'ipa':'/'+ipa+'/','brief':explanation})
 assert [x['id'] for x in notes]==list(range(1,501))
-assert all(len(x['brief'])<=200 for x in notes)
+assert all(len(x['brief'])<=320 for x in notes)
 (folder/'annotations.json').write_text(json.dumps(notes,ensure_ascii=False,indent=1)+'\n',encoding='utf8')
 print('Generated 500 concise notes and 500 unverified IPA estimates')

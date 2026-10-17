@@ -35,14 +35,15 @@ jobs:
         run: python3 scripts/build_annotations.py
           python3 scripts/check_catalog.py
           python3 scripts/test_learning_flow.py
+          python3 scripts/check_quiz_ranges_v040.py
       - name: Compile Android before speech synthesis
         run: gradle --no-daemon :app:assembleDebug
-      - name: Reuse verified offline voice clips unchanged from v0.3.1
+      - name: Reuse verified offline voice clips from v0.3.2
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p /tmp/prev-audio app/src/main/assets/audio
-          gh release download v0.3.1 --pattern Grammaire500.apk --dir /tmp/prev-audio
+          gh release download v0.3.2 --pattern Grammaire500.apk --dir /tmp/prev-audio
           python3 - <<'PY'
           from pathlib import Path
           import hashlib,zipfile
@@ -78,8 +79,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          if gh release view v0.3.2 >/dev/null 2>&1; then
-            echo 'v0.3.2 already exists; not overwriting existing release.'
+          if gh release view v0.4.0 >/dev/null 2>&1; then
+            echo 'v0.4.0 already exists; not overwriting existing release.'
           else
-            gh release create v0.3.2 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.3.2' --notes 'Concise explanations, unverified IPA, word ordering, instant feedback and locally stored progress.'
+            gh release create v0.4.0 Grammaire500.apk --target "$GITHUB_SHA" --title 'Français Grammaire 500 — preview v0.4.0' --notes 'Concise explanations, unverified IPA, word ordering, instant feedback and locally stored progress.'
           fi

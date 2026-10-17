@@ -41,7 +41,7 @@ notes=json.loads((root/'app/src/main/assets/annotations.json').read_text(encodin
 assert len(notes)==500
 for row,n in zip(rows,notes):
     assert row['id']==n['id']
-    assert 0<len(n['brief'])<=200
+    assert 0<len(n['brief'])<=320
     assert n['brief']==f"「{row['answer']}」：{row['reason']}",row['id']
     assert n['ipa'].startswith('/') and n['ipa'].endswith('/')
 print('500 concise explanations and IPA estimates validated')
