@@ -8,6 +8,7 @@ on:
       - 'web/app.js'
       - 'web/sw.js'
       - 'scripts/test_audio_sw.js'
+      - 'scripts/test_audio_rate.js'
       - '.github/workflows/netlify.yml'
       - '.github/workflows/android.yml'
   workflow_dispatch:
