@@ -1,0 +1,24 @@
+name: Inspect actual Netlify production site
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/check_production_netlify.py'
+      - '.github/workflows/production-check.yml'
+      - 'netlify.toml'
+      - 'web/app.js'
+      - 'web/sw.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate the deployed Netlify JavaScript and example audio
+        run: python3 scripts/check_production_netlify.py --url https://francegrammarepo.netlify.app --wait-seconds 270
