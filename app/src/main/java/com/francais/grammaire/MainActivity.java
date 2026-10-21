@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
     private final ArrayList<Example> examples=new ArrayList<>();
     private final ArrayList<CourseChapter> courseChapters=new ArrayList<>();
     private final ArrayList<CourseUnit> courseUnits=new ArrayList<>();
-    private int currentCourseChapter=0,currentCourseUnit=1,coursePhase=0;
+    private int currentCourseChapter=0,currentCourseUnit=1,coursePhase=0,coursePage=0;
     // Independent textbook-first 20-task course sessions. Old learning keys retained.
     private JSONObject intensive;
     private int deepUnit=1,deepIndex=0;
@@ -318,7 +318,7 @@ public class MainActivity extends Activity {
             LinearLayout entry=panel();eyebrow(entry,"STEP "+String.format(Locale.JAPAN,"%02d",unitIds(chapter).indexOf(id)+1)+(done?"  ✓ 確認済み":"  • 未確認"));gap(entry,7);
             add(entry,t(u.title+"   →",18,true,BLACK));gap(entry,5);
             add(entry,t("詳細講義 · 7例文 · 確認テスト20問",13,false,GRAY));
-            entry.setOnClickListener(v->showCourseUnit(id));add(mainArea,entry);gap(mainArea,9);
+            entry.setOnClickListener(v->{coursePage=0;showCourseUnit(id);});add(mainArea,entry);gap(mainArea,9);
         }
         if(!c.legacy.isEmpty()){
             gap(mainArea,10);add(mainArea,t("さらに例文で練習",19,true,BLACK));gap(mainArea,8);
@@ -327,10 +327,21 @@ public class MainActivity extends Activity {
         }
     }
     private void showCourseUnit(int id){
+        if(currentCourseUnit!=id)coursePage=0;
         currentCourseUnit=id;CourseUnit u=cu(id);currentCourseChapter=u.chapter;screen=11;
         prefs.edit().putInt("course_resume_unit",id).apply();
         CourseChapter ch=courseChapters.get(u.chapter);ArrayList<Integer> within=unitIds(u.chapter);
         startScreen(u.title,""+(u.chapter==0?"序章":"第"+u.chapter+"章")+"  •  "+(within.indexOf(id)+1)+" / "+within.size(),v->showCourseChapter(u.chapter));
+        LinearLayout nav=new LinearLayout(this);nav.setOrientation(LinearLayout.HORIZONTAL);
+        Button lecture=btn("① 講義",coursePage==0,v->{coursePage=0;showCourseUnit(id);});
+        Button examples=btn("② 例文",coursePage==1,v->{coursePage=1;showCourseUnit(id);});
+        Button exam=btn("③ 20問",false,v->startDeep(id));
+        for(Button item:new Button[]{lecture,examples,exam}){
+            LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(0,dp(54),1f);
+            lp.setMargins(dp(3),0,dp(3),0);nav.addView(item,lp);
+        }
+        add(mainArea,nav);gap(mainArea,12);
+        if(coursePage==0){
         LinearLayout goal=panel();eyebrow(goal,"01 / 理解する");gap(goal,10);
         add(goal,t(u.rule,16,false,BLACK));add(mainArea,goal);gap(mainArea,11);
         try{
@@ -348,6 +359,11 @@ public class MainActivity extends Activity {
             if(i==0)gap(diff,9);
         }
         add(mainArea,diff);gap(mainArea,11);
+        LinearLayout learnFooter=bottomBar();
+        add(learnFooter,btn("7つの例文を確認  →",true,v->{coursePage=1;showCourseUnit(id);}));
+        return;
+        }
+        if(coursePage==1){
         LinearLayout sample=panel();eyebrow(sample,"03 / 文に当てはめる");gap(sample,12);
         TextView courseFrench=t(u.fr,21,true,BLACK);add(sample,courseFrench);gap(sample,5);
         add(sample,t(u.ipa+"  •  IPA自動推定",12,false,GRAY));gap(sample,7);
@@ -365,8 +381,10 @@ public class MainActivity extends Activity {
                 add(exPanel,t(item.getString("fr"),18,true,BLACK));gap(exPanel,5);
                 add(exPanel,t(item.getString("ja"),14,false,GRAY));gap(exPanel,9);
                 add(exPanel,t(item.getString("why"),13,false,BLACK));gap(exPanel,7);
-                final int recording=item.optInt("audio",0);
-                if(recording>0)add(exPanel,btn("▶ この文を聴く",false,v->play(recording)));
+                add(exPanel,t(item.optString("ipa")+"  •  IPA自動推定",12,false,GRAY));gap(exPanel,7);
+                final String recording=item.optString("audioFile");
+                if(recording.isEmpty())throw new IllegalStateException("Example has no audio: "+id);
+                add(exPanel,btn("▶ この文を聴く",false,v->playAsset(recording)));
                 add(mainArea,exPanel);gap(mainArea,10);
             }
         }catch(Exception ex){throw new IllegalStateException("Examples failed: "+id,ex);}
@@ -375,7 +393,9 @@ public class MainActivity extends Activity {
         add(mainArea,notice);gap(mainArea,11);
         LinearLayout footer=bottomBar();
         add(footer,btn("20問の確認テストへ  →",true,v->startDeep(id)));
-        courseFrench.post(()->{if(screen==11&&currentCourseUnit==id&&!isFinishing())playCourse(id);});
+        courseFrench.post(()->{if(screen==11&&currentCourseUnit==id&&coursePage==1&&!isFinishing())playCourse(id);});
+        }
+
     }
     private ArrayList<String> courseTokens(CourseUnit u){ArrayList<String> words=new ArrayList<>();for(String part:u.fr.trim().split("\\s+"))words.add(part);return words;}
     private String conceptComposed(CourseUnit u){ArrayList<String> words=courseTokens(u);StringBuilder sb=new StringBuilder();for(int i:conceptPicked){if(sb.length()>0)sb.append(' ');sb.append(words.get(i));}return sb.toString();}
@@ -481,7 +501,11 @@ public class MainActivity extends Activity {
         if(deepAnswered){
             LinearLayout box=panel();eyebrow(box,deepGood?"✓ 正解！":"✕ 不正解");gap(box,7);
             add(box,t("正解："+answer,17,true,deepGood?Color.rgb(31,123,68):Color.rgb(179,46,46)));gap(box,8);
-            add(box,t(item.optString("why"),14,false,BLACK));add(mainArea,box);gap(mainArea,9);
+            add(box,t("正しい例文  "+item.optString("spokenFr"),16,true,BLACK));gap(box,7);
+            add(box,t(item.optString("ipa")+"  •  IPA自動推定",12,false,GRAY));gap(box,8);
+            final String spoken=item.optString("audioFile");
+            if(!spoken.isEmpty())add(box,btn("▶ 正しい例文を聴く",false,v->playAsset(spoken)));
+            gap(box,8);add(box,t(item.optString("why"),14,false,BLACK));add(mainArea,box);gap(mainArea,9);
         }
         LinearLayout footer=bottomBar();
         if(deepAnswered)add(footer,btn(deepIndex+1==deepIndices.size()?"結果を見る  →":"次の問題  →",true,v->{deepResults.add(deepGood);deepIndex++;deepAnswered=false;deepPicked.clear();deepChoice="";saveDeep();if(deepIndex>=deepIndices.size())finishDeep();else showDeepQuiz();}));
@@ -605,7 +629,10 @@ public class MainActivity extends Activity {
         }
         if(conceptAnswered){
             LinearLayout info=panel();eyebrow(info,conceptCorrect?"✓ 正解":"✕ 不正解");gap(info,7);
-            add(info,t("正解  "+u.answer,17,true,conceptCorrect?Color.rgb(23,115,50):Color.rgb(174,38,38)));gap(info,6);add(info,t(u.why,14,false,BLACK));
+            add(info,t("正解  "+u.answer,17,true,conceptCorrect?Color.rgb(23,115,50):Color.rgb(174,38,38)));gap(info,6);add(info,t(u.why,14,false,BLACK));gap(info,8);
+            add(info,t("例文  "+u.fr,16,true,BLACK));gap(info,7);
+            add(info,t(u.ipa+"  •  IPA自動推定",12,false,GRAY));gap(info,7);
+            add(info,btn("▶ 正しい例文を聴く",false,v->playCourse(u.id)));
             add(mainArea,info);
         }
         LinearLayout footer=bottomBar();
@@ -1008,17 +1035,23 @@ public class MainActivity extends Activity {
             if(notifyError)Toast.makeText(this,"音声を再生できません。再度お試しください",Toast.LENGTH_SHORT).show();
         }
     }
+    private void playAsset(String filename){
+        if(!filename.matches("(?:[0-9]{4}|course_[0-9]{4}|extra_[0-9]{4}_[0-9]{2})\\.ogg")){
+            Toast.makeText(this,"音声が見つかりません",Toast.LENGTH_SHORT).show();return;
+        }
+        startSpeech("audio/"+filename,true);
+    }
     private void playCourse(int id){startSpeech(String.format(Locale.US,"audio/course_%04d.ogg",id),true);}
     private void play(int id){startSpeech(String.format(Locale.US,"audio/%04d.ogg",id),true);}
     private void stopAudio(){if(player!=null){try{player.stop();player.release();}catch(Exception ignored){}player=null;}}
     @Override protected void onPause(){super.onPause();stopAudio();}
     @Override protected void onDestroy(){stopAudio();super.onDestroy();}
     @Override protected void onSaveInstanceState(Bundle b){
-        super.onSaveInstanceState(b);b.putInt("screen",screen);b.putInt("lesson",selectedLesson);b.putInt("selectedExample",selectedExample);b.putIntegerArrayList("deck",new ArrayList<>(deck));b.putInt("cardIndex",cardIndex);b.putBoolean("revealed",revealed);b.putIntegerArrayList("quiz",new ArrayList<>(quiz));b.putInt("quizIndex",quizIndex);b.putInt("correctCount",correctCount);b.putIntegerArrayList("failed",new ArrayList<>(failed));b.putStringArrayList("quizAnswers",new ArrayList<>(quizAnswers));b.putBoolean("answered",answered);b.putString("selectedAnswer",selectedAnswer);b.putBoolean("quizFromHome",quizFromHome);b.putInt("quizReturnTab",quizReturnTab);b.putIntegerArrayList("orderPicked",new ArrayList<>(orderPicked));b.putInt("currentCourseChapter",currentCourseChapter);b.putInt("currentCourseUnit",currentCourseUnit);b.putInt("coursePhase",coursePhase);b.putBoolean("conceptAnswered",conceptAnswered);b.putBoolean("conceptCorrect",conceptCorrect);b.putIntegerArrayList("conceptPicked",new ArrayList<>(conceptPicked));b.putIntegerArrayList("conceptQueue",new ArrayList<>(conceptQueue));b.putInt("conceptIndex",conceptIndex);b.putInt("conceptTotalCorrect",conceptTotalCorrect);b.putBoolean("courseQuizFromReview",courseQuizFromReview);
+        super.onSaveInstanceState(b);b.putInt("screen",screen);b.putInt("lesson",selectedLesson);b.putInt("selectedExample",selectedExample);b.putIntegerArrayList("deck",new ArrayList<>(deck));b.putInt("cardIndex",cardIndex);b.putBoolean("revealed",revealed);b.putIntegerArrayList("quiz",new ArrayList<>(quiz));b.putInt("quizIndex",quizIndex);b.putInt("correctCount",correctCount);b.putIntegerArrayList("failed",new ArrayList<>(failed));b.putStringArrayList("quizAnswers",new ArrayList<>(quizAnswers));b.putBoolean("answered",answered);b.putString("selectedAnswer",selectedAnswer);b.putBoolean("quizFromHome",quizFromHome);b.putInt("quizReturnTab",quizReturnTab);b.putIntegerArrayList("orderPicked",new ArrayList<>(orderPicked));b.putInt("currentCourseChapter",currentCourseChapter);b.putInt("coursePage",coursePage);b.putInt("currentCourseUnit",currentCourseUnit);b.putInt("coursePhase",coursePhase);b.putBoolean("conceptAnswered",conceptAnswered);b.putBoolean("conceptCorrect",conceptCorrect);b.putIntegerArrayList("conceptPicked",new ArrayList<>(conceptPicked));b.putIntegerArrayList("conceptQueue",new ArrayList<>(conceptQueue));b.putInt("conceptIndex",conceptIndex);b.putInt("conceptTotalCorrect",conceptTotalCorrect);b.putBoolean("courseQuizFromReview",courseQuizFromReview);
     }
     private boolean restore(Bundle b){
         int s=b.getInt("screen",0);selectedLesson=b.getInt("lesson",1);if(selectedLesson<1||selectedLesson>50)return false;
-        currentCourseChapter=b.getInt("currentCourseChapter",0);currentCourseUnit=b.getInt("currentCourseUnit",1);
+        currentCourseChapter=b.getInt("currentCourseChapter",0);currentCourseUnit=b.getInt("currentCourseUnit",1);coursePage=b.getInt("coursePage",0);
         coursePhase=b.getInt("coursePhase",0);conceptAnswered=b.getBoolean("conceptAnswered",false);conceptCorrect=b.getBoolean("conceptCorrect",false);
         ArrayList<Integer> picks=b.getIntegerArrayList("conceptPicked");conceptPicked.clear();if(picks!=null)conceptPicked.addAll(picks);
         ArrayList<Integer> queued=b.getIntegerArrayList("conceptQueue");conceptQueue.clear();if(queued!=null)conceptQueue.addAll(queued);

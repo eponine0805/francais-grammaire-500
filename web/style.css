@@ -7,3 +7,18 @@
 .lectureSection{padding:22px 22px 23px}.lectureSection .lessonRule{line-height:2;letter-spacing:.1px;font-size:15px}.lectureSection .overline{font-size:13px;color:#333;margin-bottom:11px}
 .workedStack{display:grid;gap:10px}.worked{border:1px solid var(--border);border-radius:14px;padding:19px;background:#fff}.workedFr{font-size:19px;font-weight:750;line-height:1.6}.workedJa{font-size:14px;color:#333;line-height:1.7;margin:9px 0}.workedWhy{font-size:13px;line-height:1.8;color:#555;padding-top:10px;border-top:1px solid #eee;white-space:pre-line;max-height:10em;overflow:auto}.worked button{margin-top:8px}.lessonRule{line-height:1.95}.answerChoices .choice{line-height:1.55}
 @media(max-width:500px){.lectureSection{padding:19px 17px}.worked{padding:15px}.workedFr{font-size:17px}.lectureSection .lessonRule{font-size:14px}}
+
+/* v0.6.1: direct textbook step navigation and fully accessible spoken examples. */
+.studyNav{position:sticky;top:53px;z-index:4;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;background:#fafaf9;padding:12px 2px;margin:12px 0 16px}
+.studyNav a{border:1px solid #d8d8d8;border-radius:11px;padding:11px 5px;background:white;color:#222;font-size:13px;text-align:center;text-decoration:none;font-weight:800}
+.studyNav a:focus-visible{outline:3px solid #85a1d8}
+#lecture,#worked,#test{scroll-margin-top:175px}
+.lectureSection summary{cursor:pointer;color:#303038;font-size:15px;font-weight:800;padding:8px 0;line-height:1.5}
+.lectureSection:not([open]){padding-top:10px;padding-bottom:10px}
+.lectureSection .lessonRule{padding-top:13px}
+.worked .ipa{font-size:12px;text-align:left;margin:7px 0}
+.worked .workedWhy{max-height:none;overflow:visible}
+.soundButton{width:100%;margin-top:13px;min-height:47px}
+.feedback .ipa{font-size:13px;text-align:left;margin:10px 0}
+.feedback .soundButton{background:white;color:#202020}
+@media(min-width:710px){.studyNav{top:60px}.studyNav a{font-size:14px}}

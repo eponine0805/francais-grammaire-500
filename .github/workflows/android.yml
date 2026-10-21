@@ -42,6 +42,8 @@ jobs:
           set -euo pipefail
           python3 scripts/build_course_ipa.py
           python3 scripts/build_intensive.py
+          python3 scripts/enrich_intensive.py
+          python3 scripts/test_voice_coverage.py
           python3 scripts/test_intensive.py
           python3 scripts/check_catalog.py
           python3 scripts/test_learning_flow.py
@@ -73,12 +75,17 @@ jobs:
                   (root/'audio'/name).write_bytes(apk.read('assets/audio/'+name))
           print('Reused 559 full-quality original voice masters. Runtime pitch-preserving rate defaults to 0.8x.')
           PYVOICE
+      - name: Generate 114 missing female French example recordings
+        run: |
+          set -euo pipefail
+          pip install -r scripts/requirements-audio.txt
+          python3 scripts/generate_extra_audio.py
       - name: Validate technical audio quality of every recording
         run: |
           set -euo pipefail
           pip install 'numpy>=1.26,<3' 'soundfile>=0.12,<1'
-          python3 scripts/check_audio_quality.py --report docs/AUDIO_QA_v051.json
-      - name: Verify 559 audio clips and ordered IPA data
+          python3 scripts/check_audio_quality.py --report docs/AUDIO_QA_v061.json
+      - name: Verify 673 audio clips and IPA mapping
         run: |
           set -euo pipefail
           python3 - <<'PY'
@@ -87,14 +94,16 @@ jobs:
           f=Path('app/src/main/assets/audio')
           assert len(list(f.glob('[0-9][0-9][0-9][0-9].ogg')))==500
           assert len(list(f.glob('course_*.ogg')))==59
+          assert len(list(f.glob('extra_*.ogg')))==114
+          assert len(list(f.glob('*.ogg')))==673
           assert all(p.stat().st_size>1800 for p in f.glob('*.ogg'))
           marks=json.loads(Path('app/src/main/assets/course_ipa.json').read_text(encoding='utf8'))
           assert [x['id'] for x in marks]==list(range(1,60))
-          print('559 clips present, original book assets + course IPA matched')
+          print('673 voice files checked')
           PY
       - name: Build final APK
         run: gradle --no-daemon :app:assembleDebug
-      - name: Bundle matching Netlify PWA with all 559 audio clips
+      - name: Bundle 673 audio files for Netlify
         run: |
           set -euo pipefail
           python3 scripts/build_web.py --apk app/build/outputs/apk/debug/app-debug.apk
@@ -102,20 +111,20 @@ jobs:
           test -s Netlify-site.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: FrancaisGrammaire-v0.6.0
+          name: FrancaisGrammaire-v0.6.1
           path: app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: FrancaisGrammaire-Netlify-site-v0.6.0
+          name: FrancaisGrammaire-Netlify-site-v0.6.1
           path: Netlify-site.zip
       - name: Publish immutable preview release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if gh release view v0.6.0 >/dev/null 2>&1; then
-            echo 'ERROR: v0.6.0 already exists. Bump version instead of replacing a published APK.' >&2
+          if gh release view v0.6.1 >/dev/null 2>&1; then
+            echo 'ERROR: v0.6.1 already exists. Bump version instead of replacing a published APK.' >&2
             exit 1
           fi
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          gh release create v0.6.0 Grammaire500.apk Netlify-site.zip docs/AUDIO_QA_v051.json --target "$GITHUB_SHA" --title 'Français Grammaire v0.6.0 — 詳細講義と1180問' --notes 'Expanded every unit to three textbook-style explanations and 7 annotated example sentences, then 20 questions: one rule check, seven sentence-ordering, six fill-in, six meaning questions. 59 units, 1,180 graded prompts. Android+Netlify retain the same 559 prerecorded clips and 0.8x pitch-preserved playback. Exam session and results saved locally. Additional text examples without original recordings have no new sound. Linguistic expert audit still pending.'
+          gh release create v0.6.1 Grammaire500.apk Netlify-site.zip docs/AUDIO_QA_v061.json --target "$GITHUB_SHA" --title 'Français Grammaire v0.6.1 — 詳細講義と1180問' --notes 'Added 114 new female sentence recordings. All 413 example slots and 1180 answers have sentence IPA and audio links. Android and Web have streamlined lecture/example/test flow. Pronunciation not certified by French native-speaker review.'

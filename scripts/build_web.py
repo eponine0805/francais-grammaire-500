@@ -25,7 +25,7 @@ shutil.copytree(ROOT/'web',a.out)
 (a.out/'data').mkdir(exist_ok=True)
 (a.out/'audio').mkdir(exist_ok=True)
 assets=ROOT/'app/src/main/assets'
-for name in ('course.json','course_ipa.json','lessons.json','examples.json','annotations.json','intensive.json'):
+for name in ('course.json','course_ipa.json','lessons.json','examples.json','annotations.json','intensive.json','extra_audio_manifest.json'):
     shutil.copyfile(assets/name,a.out/'data'/name)
 
 apk=a.apk
@@ -48,7 +48,8 @@ if apk:
         files=[x for x in z.namelist() if x.startswith('assets/audio/') and x.endswith('.ogg')]
         words=[x for x in files if x.split('/')[-1][:4].isdigit()]
         course=[x for x in files if x.split('/')[-1].startswith('course_')]
-        assert len(words)==500 and len(course)==59,(len(words),len(course))
+        extras=[x for x in files if x.split('/')[-1].startswith('extra_')]
+        assert len(words)==500 and len(course)==59 and len(extras)==114,(len(words),len(course),len(extras))
         for f in files:
             target=a.out/'audio'/Path(f).name
             target.write_bytes(z.read(f))
@@ -59,6 +60,7 @@ else:print('LOCAL DEV ONLY: no audio files. Do not claim offline TTS works.')
 c=json.loads((a.out/'data/course.json').read_text(encoding='utf-8'))
 assert len(c['chapters'])==24 and len(c['units'])==59
 assert len(json.loads((a.out/'data/intensive.json').read_text(encoding='utf8'))['units'])==59
+assert len(json.loads((a.out/'data/extra_audio_manifest.json').read_text(encoding='utf8')))==114
 legacy=json.loads((a.out/'data/examples.json').read_text(encoding='utf-8'))
 assert len(legacy)==500
 print('Web build:',a.out,'with',len(c['units']),'grammar units and',len(legacy),'examples')

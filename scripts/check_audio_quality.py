@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify decoding, boundaries, unique bytes and pace of 559 recordings, not phoneme quality."""
+"""Verify decoding, boundaries, unique bytes and pace of 673 recordings, not phoneme quality."""
 import json,io,hashlib
 from pathlib import Path
 import numpy as np,soundfile as sf
@@ -8,7 +8,9 @@ a=root/'app/src/main/assets'
 examples=json.loads((a/'examples.json').read_text())
 units=json.loads((a/'course.json').read_text())['units']
 recordings=[(f'{x["id"]:04d}.ogg',x["fr"]) for x in examples]+[(f'course_{x["id"]:04d}.ogg',x["fr"]) for x in units]
-assert len(recordings)==len(list((a/'audio').glob('*.ogg')))==559
+extra=json.loads((a/'extra_audio_manifest.json').read_text(encoding='utf8'))
+recordings.extend([(file,d['fr']) for file,d in sorted(extra.items())])
+assert len(recordings)==len(list((a/'audio').glob('*.ogg')))==673
 hashes=set();fast=[];durations=[]
 for name,phrase in recordings:
     raw=(a/'audio'/name).read_bytes()
@@ -22,7 +24,7 @@ for name,phrase in recordings:
     wps=len(phrase.split())/t
     if wps>4.7:fast.append({'file':name,'phrase':phrase,'words_per_second':round(wps,2)})
     durations.append(round(t,3))
-report={'audio_count':559,'version':'0.5.1','sample_rate_hz':44100,'duration_min_seconds':min(durations),'duration_max_seconds':max(durations),'fast_at_original_speed':fast,'default_playback_speed':0.8,'limitations':'This cannot validate any French phoneme, stress, liaison or semantic content; listening review pending.'}
-out=root/'docs/AUDIO_QA_v051.json';out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
-print('PASS: 559 files decoded; no corrupt, duplicated, clipped or extreme silence recorded')
+report={'audio_count':673,'version':'0.6.1','sample_rate_hz':44100,'duration_min_seconds':min(durations),'duration_max_seconds':max(durations),'fast_at_original_speed':fast,'default_playback_speed':0.8,'limitations':'This cannot validate any French phoneme, stress, liaison or semantic content; listening review pending.'}
+out=root/'docs/AUDIO_QA_v061.json';out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print('PASS: 673 files decoded; no corrupt, duplicated, clipped or extreme silence recorded')
 print('Fast speech queue:',len(fast))
