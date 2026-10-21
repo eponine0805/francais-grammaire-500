@@ -31,7 +31,17 @@ function voiceControl(){return `<div class="voiceSpeed"><span class="voiceCaptio
 let currentAudio=null;
 function changeVoiceRate(value){if(!audioRates.includes(value))return;audioRate=value;try{localStorage.setItem(AUDIO_RATE_KEY,String(value))}catch(e){}if(currentAudio){currentAudio.playbackRate=audioRate;}
  document.querySelectorAll('[data-act="voice-rate"]').forEach(b=>{const chosen=Number(b.dataset.val)===value;b.classList.toggle('chosen',chosen);b.setAttribute('aria-pressed',String(chosen));});}
-function playFile(filename){if(!/^(?:[0-9]{4}|course_[0-9]{4}|extra_[0-9]{4}_[0-9]{2})\.ogg$/.test(filename)){toast('音声が見つかりません');return}if(currentAudio){currentAudio.pause();currentAudio.currentTime=0}const a=new Audio('/audio/'+filename);currentAudio=a;a.preload='auto';a.preservesPitch=true;a.playbackRate=audioRate;a.play().catch(()=>toast('音声を再生できません。接続やオフライン保存を確認してください'))}
+function playFile(filename){
+ if(!/^(?:[0-9]{4}|course_[0-9]{4}|extra_[0-9]{4}_[0-9]{2})\.ogg$/.test(filename)){toast('音声の参照先が正しくありません');return}
+ if(currentAudio){currentAudio.pause();currentAudio.removeAttribute('src');currentAudio.load();currentAudio=null}
+ const a=new Audio();currentAudio=a;let notified=false;
+ const fail=()=>{if(currentAudio!==a||notified)return;notified=true;toast('音声を取得できませんでした。オンラインで再読み込みしてから、もう一度再生してください。')};
+ a.addEventListener('error',fail,{once:true});
+ a.addEventListener('ended',()=>{if(currentAudio===a)currentAudio=null},{once:true});
+ a.preload='auto';a.preservesPitch=true;a.playbackRate=audioRate;
+ a.src='/audio/'+encodeURIComponent(filename);
+ a.play().catch(err=>{if(err?.name!=='AbortError')fail()});
+}
 function play(kind,id){playFile(kind==='course'?`course_${String(id).padStart(4,'0')}.ogg`:`${String(id).padStart(4,'0')}.ogg`)}
 function autoPlay(kind,id){setTimeout(()=>{if(kind==='course'&&state.view==='unit'&&state.unit===id)play(kind,id);else if(kind==='legacy'&&state.view==='legacy'&&state.legacyId===id)play(kind,id)},50)}
 function navigate(tab){if(currentAudio){currentAudio.pause();currentAudio=null;}state.tab=tab;state.view='home';state.unit=null;state.legacyId=null;render();window.scrollTo(0,0)}

@@ -5,6 +5,9 @@ on:
     paths:
       - 'netlify.toml'
       - 'scripts/deploy_netlify_release.py'
+      - 'web/app.js'
+      - 'web/sw.js'
+      - 'scripts/test_audio_sw.js'
       - '.github/workflows/netlify.yml'
   workflow_dispatch:
 permissions:
@@ -20,10 +23,14 @@ jobs:
           python-version: '3.12'
       - name: Build exactly as Netlify does
         run: python3 scripts/deploy_netlify_release.py --release v0.6.1
+      - name: Test HTTP Range and offline audio playback
+        run: node scripts/test_audio_sw.js
       - name: Verify static PWA output
         run: |
           test -s dist/index.html
           test -s dist/app.js
+          cmp web/app.js dist/app.js
+          cmp web/sw.js dist/sw.js
           test -s dist/data/intensive.json
           test "$(find dist/audio -name '*.ogg' | wc -l)" -eq 673
           python3 - <<'PY'

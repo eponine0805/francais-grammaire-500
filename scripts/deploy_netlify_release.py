@@ -98,6 +98,13 @@ def run():
             verify(archive)
             stage = Path(temp)/'dist'
             archive.extractall(stage)
+            # Deploy current tested runtime while retaining pinned v0.6.1 audio.
+            # Netlify clones only tracked sources; this overlay is required.
+            for patched in ('app.js', 'sw.js'):
+                source = ROOT/'web'/patched
+                if not source.is_file():
+                    raise RuntimeError(f'Missing web runtime: {patched}')
+                shutil.copyfile(source, stage/patched)
             dest = args.out.resolve()
             if dest.exists():
                 shutil.rmtree(dest)

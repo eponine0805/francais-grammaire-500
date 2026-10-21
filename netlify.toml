@@ -1,4 +1,5 @@
-# Redeploy: verified v0.6.1 Netlify release bundle (673 audio clips).
+# Netlify web voice fix v0.6.2: 206 byte-range, offline replay, new SW cache.
+# Bundled v0.6.1 audio (673 clips), web app.js/sw.js patched from GitHub main.
 [build]
   command = "python3 scripts/deploy_netlify_release.py --release v0.6.1"
   publish = "dist"

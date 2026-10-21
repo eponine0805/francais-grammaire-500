@@ -5,6 +5,9 @@ on:
     paths-ignore:
       - 'netlify.toml'
       - 'scripts/deploy_netlify_release.py'
+      - 'web/app.js'
+      - 'web/sw.js'
+      - 'scripts/test_audio_sw.js'
       - '.github/workflows/netlify.yml'
       - '.github/workflows/android.yml'
   workflow_dispatch:
