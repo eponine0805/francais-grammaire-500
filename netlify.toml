@@ -1,3 +1,4 @@
+# Redeploy: verified v0.6.1 Netlify release bundle (673 audio clips).
 [build]
   command = "python3 scripts/deploy_netlify_release.py --release v0.6.1"
   publish = "dist"
