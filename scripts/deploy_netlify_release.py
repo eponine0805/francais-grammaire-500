@@ -37,7 +37,7 @@ def verify(archive: zipfile.ZipFile):
     required = ['index.html','app.js','style.css','sw.js',
                 'manifest.webmanifest','data/course.json','data/intensive.json',
                 'data/examples.json','data/annotations.json','data/course_ipa.json',
-                'data/lessons.json']
+                'data/lessons.json','data/extra_audio_manifest.json']
     for name in required:
         if name not in seen:
             raise RuntimeError(f'Missing required web resource: {name}')
@@ -53,14 +53,26 @@ def verify(archive: zipfile.ZipFile):
             len(intensive['units'])==59 and len(examples)==500 and
             sum(len(u['tasks']) for u in intensive['units'])==1180):
         raise RuntimeError('Release does not contain the expected grammar curriculum')
+    manifest=json.loads(archive.read('data/extra_audio_manifest.json'))
+    if len(manifest)!=114:raise RuntimeError('Missing additional example audio manifest')
+    for unit in intensive['units']:
+        for worked in unit['examples']:
+            if not worked.get('ipa') or not worked.get('audioFile'):
+                raise RuntimeError('An example has no phonetic annotation or audio reference')
+        for task in unit['tasks']:
+            if not task.get('ipa') or not task.get('spokenFr') or not task.get('audioFile'):
+                raise RuntimeError('A quiz answer lacks a corresponding sentence/audio/IPA')
     audio = [p for p in seen if p.startswith('audio/') and p.endswith('.ogg')]
     word_audio = [p for p in audio if re.fullmatch(r'audio/\d{4}\.ogg',p)]
     lesson_audio = [p for p in audio if re.fullmatch(r'audio/course_\d{4}\.ogg',p)]
-    if len(word_audio)!=500 or len(lesson_audio)!=59 or len(audio)!=559:
-        raise RuntimeError(f'Audio mismatch: {len(word_audio)} + {len(lesson_audio)} != 559')
+    extra_audio = [p for p in audio if re.fullmatch(r'audio/extra_\d{4}_\d{2}\.ogg',p)]
+    if len(word_audio)!=500 or len(lesson_audio)!=59 or len(extra_audio)!=114 or len(audio)!=673:
+        raise RuntimeError(f'Audio mismatch: {len(word_audio)}+{len(lesson_audio)}+{len(extra_audio)} != 673')
+    if {path.split('/',1)[1] for path in extra_audio}!=set(manifest):
+        raise RuntimeError('Extra voice manifest and release ZIP disagree')
     if any(archive.getinfo(name).file_size < 1800 for name in audio):
         raise RuntimeError('Audio file is empty or truncated')
-    print('Verified release: 24 chapters, 59 lessons, 1180 exercises, 500 examples and 559 offline audio clips',flush=True)
+    print('Verified release: 24 chapters, 59 lessons, 1180 exercises, 500 examples and 673 offline audio clips',flush=True)
 
 
 def run():

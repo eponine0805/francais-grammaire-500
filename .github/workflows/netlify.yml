@@ -19,13 +19,13 @@ jobs:
         with:
           python-version: '3.12'
       - name: Build exactly as Netlify does
-        run: python3 scripts/deploy_netlify_release.py --release v0.6.0
+        run: python3 scripts/deploy_netlify_release.py --release v0.6.1
       - name: Verify static PWA output
         run: |
           test -s dist/index.html
           test -s dist/app.js
           test -s dist/data/intensive.json
-          test "$(find dist/audio -name '*.ogg' | wc -l)" -eq 559
+          test "$(find dist/audio -name '*.ogg' | wc -l)" -eq 673
           python3 - <<'PY'
           import json
           from pathlib import Path
