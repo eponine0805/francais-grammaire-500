@@ -1,5 +1,5 @@
 [build]
-  command = "python3 scripts/build_web.py --release v0.5.1"
+  command = "python3 scripts/deploy_netlify_release.py --release v0.6.0"
   publish = "dist"
 
 [build.environment]

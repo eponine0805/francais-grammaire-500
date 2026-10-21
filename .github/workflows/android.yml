@@ -2,6 +2,11 @@ name: Build Android APK — 59 intensive textbook units
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'netlify.toml'
+      - 'scripts/deploy_netlify_release.py'
+      - '.github/workflows/netlify.yml'
+      - '.github/workflows/android.yml'
   workflow_dispatch:
 permissions:
   contents: write

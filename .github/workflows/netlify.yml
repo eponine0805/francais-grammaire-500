@@ -1,0 +1,36 @@
+name: Verify Netlify release-based deployment
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'netlify.toml'
+      - 'scripts/deploy_netlify_release.py'
+      - '.github/workflows/netlify.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  netlify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build exactly as Netlify does
+        run: python3 scripts/deploy_netlify_release.py --release v0.6.0
+      - name: Verify static PWA output
+        run: |
+          test -s dist/index.html
+          test -s dist/app.js
+          test -s dist/data/intensive.json
+          test "$(find dist/audio -name '*.ogg' | wc -l)" -eq 559
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('dist/data/intensive.json').read_text(encoding='utf8'))
+          assert len(d['units']) == 59
+          assert sum(len(x['tasks']) for x in d['units']) == 1180
+          print('Netlify ZIP contents validated.')
+          PY
