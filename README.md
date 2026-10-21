@@ -54,3 +54,9 @@ GitHub Actionsが `scripts/build_annotations.py`、`scripts/build_course_ipa.py`
 Android APKを用意した場合は `python3 scripts/build_web.py --apk /path/to/Grammaire500.apk` で559音声付きのNetlify公開フォルダを生成します。ブラウザのセキュリティにより、未操作時の自動音声再生はブロックされる場合があります。
 
 `python3 scripts/check_course.py` で24章59項目と出題データ構造を検査。Web UIのブラウザ実機操作と全559音声・IPAの言語監修は別途必要です。
+
+## v0.5.1 — 速度調節と559音声の品質検査
+- 初期値0.8倍。0.7/0.8/0.9/1.0倍速へいつでも変更可能。音の高さを変えず、設定を端末に保存。
+- Android・Netlifyの両方に対応。新規画面で一度だけ自動再生。切り替えでは再生し直さない。
+- 559録音は元のv0.5.0と同一。破損・重複・極端な欠落がないか全件検査する。
+- 注意：この検査と速度変更は発音の正確さを保証しない。母語話者による全559件の校閲は未実施。

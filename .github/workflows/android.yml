@@ -40,33 +40,36 @@ jobs:
           python3 scripts/test_learning_flow.py
           python3 scripts/check_quiz_ranges_v040.py
           python3 scripts/check_course.py
+          node --check web/app.js
       - name: Compile app before TTS synthesis
         run: gradle --no-daemon :app:assembleDebug
-      - name: Restore 500 unchanged offline recordings
+
+      - name: Copy matching 559 audio masters unchanged
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          mkdir -p /tmp/previous-app app/src/main/assets/audio
-          gh release download v0.4.3 --repo '${{ github.repository }}' --pattern Grammaire500.apk --dir /tmp/previous-app
-          python3 - <<'PY'
-          import zipfile,hashlib
+          mkdir -p /tmp/old-master app/src/main/assets/audio
+          gh release download v0.5.0 --repo '${{ github.repository }}' --pattern Grammaire500.apk --dir /tmp/old-master
+          python3 - <<'PYVOICE'
+          import zipfile
           from pathlib import Path
-          ours=Path('app/src/main/assets/examples.json').read_bytes()
-          with zipfile.ZipFile('/tmp/previous-app/Grammaire500.apk') as apk:
-              assert apk.read('assets/examples.json')==ours,'Old example data changed; regenerate instead of reusing sound'
-              for i in range(1,501):
-                  b=apk.read(f'assets/audio/{i:04d}.ogg')
-                  assert len(b)>1800
-                  Path(f'app/src/main/assets/audio/{i:04d}.ogg').write_bytes(b)
-              Path('app/src/main/assets/audio/manifest.json').write_bytes(apk.read('assets/audio/manifest.json'))
-          print('500 existing recordings match the exact current vocabulary content')
-          PY
-      - name: Create 59 original French female recordings
+          assets=Path('app/src/main/assets')
+          with zipfile.ZipFile('/tmp/old-master/Grammaire500.apk') as apk:
+              for filename in ('examples.json','course.json'):
+                  assert apk.read('assets/'+filename)==(assets/filename).read_bytes(),filename
+              ogg=[n for n in apk.namelist() if n.startswith('assets/audio/') and n.endswith('.ogg')]
+              assert len(ogg)==559,len(ogg)
+              for filename in ogg:
+                  (assets/'audio'/Path(filename).name).write_bytes(apk.read(filename))
+              for filename in ('manifest.json','course_manifest.json'):
+                  (assets/'audio'/filename).write_bytes(apk.read('assets/audio/'+filename))
+          PYVOICE
+      - name: Validate audio decoding and signal quality
         run: |
           set -euo pipefail
-          pip install -r scripts/requirements-audio.txt
-          python3 scripts/generate_course_audio.py
+          pip install 'numpy>=1.26,<3' 'soundfile>=0.12,<1'
+          python3 scripts/check_audio_quality.py
       - name: Verify 559 audio clips and ordered IPA data
         run: |
           set -euo pipefail
@@ -91,20 +94,20 @@ jobs:
           test -s Netlify-site.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: FrancaisGrammaire-v0.5.0
+          name: FrancaisGrammaire-v0.5.1
           path: app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: FrancaisGrammaire-Netlify-site-v0.5.0
+          name: FrancaisGrammaire-Netlify-site-v0.5.1
           path: Netlify-site.zip
       - name: Publish immutable preview release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if gh release view v0.5.0 >/dev/null 2>&1; then
-            echo 'ERROR: v0.5.0 already exists. Bump version instead of replacing a published APK.' >&2
+          if gh release view v0.5.1 >/dev/null 2>&1; then
+            echo 'ERROR: v0.5.1 already exists. Bump version instead of replacing a published APK.' >&2
             exit 1
           fi
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          gh release create v0.5.0 Grammaire500.apk Netlify-site.zip --target "$GITHUB_SHA" --title 'Français Grammaire — PDF-based course v0.5.0' --notes 'Rebuilt as a 24-chapter systematic learning course following the supplied 2022 grammar text structure: 59 newly authored concise grammar units, contrast examples, 2-stage checks, scoped chapter quizzes, spaced review, 500 original supplemental examples, and 559 offline voice clips. Draft IPA/human pronunciation review still pending; this is a preview.'
+          gh release create v0.5.1 Grammaire500.apk Netlify-site.zip docs/AUDIO_QA_v051.json --target "$GITHUB_SHA" --title 'Français Grammaire — PDF-based course v0.5.1' --notes 'Rebuilt as a 24-chapter systematic learning course following the supplied 2022 grammar text structure: 59 newly authored concise grammar units, contrast examples, 2-stage checks, scoped chapter quizzes, spaced review, 500 original supplemental examples, and 559 offline voice clips. Playback speed 0.8x by default, switchable to 0.7x/0.9x/1.0x with pitch preserved, 559 clips QA checked. Full native-speaker pronunciation review not completed.'

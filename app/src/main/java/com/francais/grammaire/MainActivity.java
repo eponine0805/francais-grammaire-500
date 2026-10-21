@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.media.MediaPlayer;
+import android.media.PlaybackParams;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -53,6 +54,7 @@ public class MainActivity extends Activity {
     private SharedPreferences prefs;
     private LinearLayout base,mainArea;
     private MediaPlayer player;
+    private static final float[] VOICE_RATES={.70f,.80f,.90f,1.00f};
     private int screen=0,selectedLesson=1,cardIndex=0,quizIndex=0,correctCount=0;
     private boolean revealed=false,answered=false,quizFromHome=false;
     private final ArrayList<Integer> deck=new ArrayList<>(),quiz=new ArrayList<>(),failed=new ArrayList<>();
@@ -143,6 +145,36 @@ public class MainActivity extends Activity {
     private void add(LinearLayout l,View v){l.addView(v,new LinearLayout.LayoutParams(-1,-2));}
     private void pad(View v,int x,int y){v.setPadding(dp(x),dp(y),dp(x),dp(y));}
     private Button btn(String label,boolean primary,View.OnClickListener click){Button b=new Button(this);b.setText(label);b.setAllCaps(false);b.setTextSize(15);b.setTypeface(Typeface.DEFAULT,Typeface.BOLD);b.setTextColor(primary?WHITE:BLACK);b.setBackground(rounded(primary?BLACK:WHITE,primary?0:LINE,13));b.setMinHeight(dp(56));b.setOnClickListener(click);return b;}
+
+    private float voiceRate(){
+        float stored=prefs.getFloat("voice_rate_v1",.80f);
+        for(float candidate:VOICE_RATES)if(Math.abs(stored-candidate)<.001f)return candidate;
+        return .80f;
+    }
+    private void voiceControl(LinearLayout target){
+        gap(target,12);add(target,t("発音の速さ・声の高さはそのまま",12,false,GRAY));gap(target,7);
+        LinearLayout controls=new LinearLayout(this);controls.setOrientation(LinearLayout.HORIZONTAL);
+        ArrayList<Button> buttons=new ArrayList<>();
+        for(int i=0;i<VOICE_RATES.length;i++){
+            final float rate=VOICE_RATES[i];
+            Button b=btn(String.format(Locale.US,"%.1f×",rate),Math.abs(voiceRate()-rate)<.001f,v->{
+                prefs.edit().putFloat("voice_rate_v1",rate).apply();
+                if(player!=null)try{player.setPlaybackParams(new PlaybackParams().setSpeed(rate).setPitch(1f));}
+                    catch(Exception ex){android.util.Log.w("Grammaire","Speed setting unsupported",ex);}
+                for(int k=0;k<buttons.size();k++){
+                    Button each=buttons.get(k);boolean selected=Math.abs(rate-VOICE_RATES[k])<.001f;
+                    each.setTextColor(selected?WHITE:BLACK);
+                    each.setBackground(rounded(selected?BLACK:WHITE,selected?0:LINE,10));
+                    each.setContentDescription(VOICE_RATES[k]+"倍速"+(selected?"選択中":""));
+                }
+            });
+            b.setMinHeight(dp(46));b.setTextSize(12);buttons.add(b);
+            LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(0,dp(46),1);
+            if(i>0)lp.leftMargin=dp(5);
+            controls.addView(b,lp);
+        }
+        add(target,controls);
+    }
     private LinearLayout panel(){LinearLayout v=vertical();pad(v,16,18);v.setBackground(rounded(WHITE,LINE,18));return v;}
     /** Three persistent destinations; navigation has one clear owner per learning goal. */
     private void showRootTabs(LinearLayout header){
@@ -296,6 +328,7 @@ public class MainActivity extends Activity {
         add(sample,t(u.ja,15,false,GRAY));gap(sample,11);
         add(sample,t("POINT  "+u.focus,14,false,BLACK));gap(sample,10);
         add(sample,btn("▶  この例文を聴く",false,v->playCourse(u.id)));
+        voiceControl(sample);
         add(mainArea,sample);gap(mainArea,12);
         TextView notice=t("女性合成音声を端末内で再生。IPAは自動推定のため、辞書や音声との全件一致監修は未完了です。",12,false,GRAY);
         add(mainArea,notice);gap(mainArea,11);
@@ -469,7 +502,8 @@ public class MainActivity extends Activity {
         TextView fr=t(e.fr,24,true,BLACK);fr.setGravity(Gravity.CENTER);add(sentence,fr);gap(sentence,9);
         TextView ipa=t(e.ipa+"  ※自動推定",13,false,GRAY);ipa.setGravity(Gravity.CENTER);add(sentence,ipa);gap(sentence,13);
         TextView ja=t(e.ja,16,false,BLACK);ja.setGravity(Gravity.CENTER);add(sentence,ja);gap(sentence,12);
-        add(sentence,btn("▶  発音を聞く",false,v->play(id)));add(mainArea,sentence);gap(mainArea,13);
+        add(sentence,btn("▶  発音を聞く",false,v->play(id)));
+        voiceControl(sentence);add(mainArea,sentence);gap(mainArea,13);
         explainBlock(mainArea,"この例文の文法ポイント",e.compact);
         add(mainArea,btn("この例文を問題で確認",true,v->{ArrayList<Integer> one=new ArrayList<>();one.add(e.id);startQuiz(one);}));gap(mainArea,12);
         TextView star=t(starred(id)?"★  保存済み":"☆  この例文を保存",14,false,GRAY);
@@ -797,21 +831,29 @@ public class MainActivity extends Activity {
         }else{add(mainArea,t("全問正解。次の文法事項へ進みましょう。",16,true,BLACK));gap(mainArea,13);}
         add(mainArea,btn(quizFromHome?(quizReturnTab==9?"復習に戻る":quizReturnTab==8?"文法テストに戻る":"学習に戻る"):"単元に戻る",false,v->returnToQuizOrigin()));
     }
-    private void playCourse(int id){
-        stopAudio();try{
-            String name=String.format(Locale.US,"audio/course_%04d.ogg",id);
-            AssetFileDescriptor fd=getAssets().openFd(name);
-            player=new MediaPlayer();player.setDataSource(fd.getFileDescriptor(),fd.getStartOffset(),fd.getLength());fd.close();
-            player.prepare();player.start();player.setOnCompletionListener(v->stopAudio());
-        }catch(Exception err){stopAudio();Toast.makeText(this,"音声を再生できません",Toast.LENGTH_SHORT).show();}
+
+    private void startSpeech(String path){
+        stopAudio();
+        MediaPlayer next=null;
+        try{
+            next=new MediaPlayer();
+            try(AssetFileDescriptor fd=getAssets().openFd(path)){
+                next.setDataSource(fd.getFileDescriptor(),fd.getStartOffset(),fd.getLength());
+            }
+            next.prepare();
+            next.setOnCompletionListener(mp->{if(player==mp)stopAudio();});
+            player=next;
+            next.setPlaybackParams(new PlaybackParams().setSpeed(voiceRate()).setPitch(1f));
+            next.start();
+        }catch(Exception ex){
+            if(player==null&&next!=null)try{next.release();}catch(Exception ignored){}
+            stopAudio();
+            android.util.Log.e("Grammaire","Speech error: "+path,ex);
+            Toast.makeText(this,"音声を再生できません",Toast.LENGTH_SHORT).show();
+        }
     }
-    private void play(int id){
-        stopAudio();try{
-            String path=String.format(java.util.Locale.US,"audio/%04d.ogg",id);
-            AssetFileDescriptor a=getAssets().openFd(path);
-            player=new MediaPlayer();player.setDataSource(a.getFileDescriptor(),a.getStartOffset(),a.getLength());a.close();player.prepare();player.start();player.setOnCompletionListener(v->stopAudio());
-        }catch(Exception ex){stopAudio();/* Developer source can run without generated audio. */}
-    }
+    private void playCourse(int id){startSpeech(String.format(Locale.US,"audio/course_%04d.ogg",id));}
+    private void play(int id){startSpeech(String.format(Locale.US,"audio/%04d.ogg",id));}
     private void stopAudio(){if(player!=null){try{player.stop();player.release();}catch(Exception ignored){}player=null;}}
     @Override protected void onPause(){super.onPause();stopAudio();}
     @Override protected void onDestroy(){stopAudio();super.onDestroy();}

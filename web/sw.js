@@ -1,5 +1,5 @@
 /* Offline-first shell/data with on-demand caching of prerecorded French speech. */
-const CACHE='fr-grammaire-v050-shell';
+const CACHE='fr-grammaire-v051-shell';
 const AUDIO='fr-grammaire-v050-audio';
 const SHELL=['/','/index.html','/style.css','/app.js','/manifest.webmanifest','/icon-192.png','/icon-512.png','/data/course.json','/data/course_ipa.json','/data/lessons.json','/data/examples.json','/data/annotations.json'];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
