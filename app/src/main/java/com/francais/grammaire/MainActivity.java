@@ -48,13 +48,21 @@ public class MainActivity extends Activity {
     private final ArrayList<CourseChapter> courseChapters=new ArrayList<>();
     private final ArrayList<CourseUnit> courseUnits=new ArrayList<>();
     private int currentCourseChapter=0,currentCourseUnit=1,coursePhase=0;
+    // Independent textbook-first 20-task course sessions. Old learning keys retained.
+    private JSONObject intensive;
+    private int deepUnit=1,deepIndex=0;
+    private boolean deepAnswered=false,deepGood=false;
+    private String deepChoice="";
+    private final ArrayList<Integer> deepIndices=new ArrayList<>(),deepPicked=new ArrayList<>();
+    private final ArrayList<Boolean> deepResults=new ArrayList<>();
+
     private boolean conceptAnswered=false,conceptCorrect=false,courseQuizFromReview=false;
     private final ArrayList<Integer> conceptPicked=new ArrayList<>(),conceptQueue=new ArrayList<>();
     private int conceptIndex=0,conceptTotalCorrect=0;
     private SharedPreferences prefs;
     private LinearLayout base,mainArea;
     private MediaPlayer player;
-    private static final float[] VOICE_RATES={.70f,.80f,.90f,1.00f};
+    private static final float[] VOICE_RATES={0.70f,0.80f,0.90f,1.00f};
     private int screen=0,selectedLesson=1,cardIndex=0,quizIndex=0,correctCount=0;
     private boolean revealed=false,answered=false,quizFromHome=false;
     private final ArrayList<Integer> deck=new ArrayList<>(),quiz=new ArrayList<>(),failed=new ArrayList<>();
@@ -115,6 +123,10 @@ public class MainActivity extends Activity {
                 if(example.compact.isEmpty()||example.compact.length()>320||example.ipa.isEmpty())throw new IllegalStateException("Invalid annotation "+example.id);
             }
             if(lessons.size()!=50 || examples.size()!=500)throw new IllegalStateException("Lesson package incomplete");
+            intensive=new JSONObject(assetText("intensive.json"));
+            if(intensive.getJSONArray("units").length()!=59)throw new IllegalStateException("59 detailed lessons not found");
+            for(int i=0;i<59;i++)if(intensive.getJSONArray("units").getJSONObject(i).getJSONArray("tasks").length()!=20)
+                throw new IllegalStateException("20-question unit incomplete: "+(i+1));
             JSONObject course=new JSONObject(assetText("course.json"));
             JSONArray chapters=course.getJSONArray("chapters"),units=course.getJSONArray("units");
             for(int i=0;i<chapters.length();i++)courseChapters.add(new CourseChapter(chapters.getJSONObject(i)));
@@ -145,35 +157,36 @@ public class MainActivity extends Activity {
     private void add(LinearLayout l,View v){l.addView(v,new LinearLayout.LayoutParams(-1,-2));}
     private void pad(View v,int x,int y){v.setPadding(dp(x),dp(y),dp(x),dp(y));}
     private Button btn(String label,boolean primary,View.OnClickListener click){Button b=new Button(this);b.setText(label);b.setAllCaps(false);b.setTextSize(15);b.setTypeface(Typeface.DEFAULT,Typeface.BOLD);b.setTextColor(primary?WHITE:BLACK);b.setBackground(rounded(primary?BLACK:WHITE,primary?0:LINE,13));b.setMinHeight(dp(56));b.setOnClickListener(click);return b;}
-
     private float voiceRate(){
-        float stored=prefs.getFloat("voice_rate_v1",.80f);
-        for(float candidate:VOICE_RATES)if(Math.abs(stored-candidate)<.001f)return candidate;
-        return .80f;
+        float saved=prefs.getFloat("voice_rate_v1",0.80f);
+        for(float rate:VOICE_RATES)if(Math.abs(rate-saved)<0.001f)return rate;
+        return 0.80f;
     }
-    private void voiceControl(LinearLayout target){
-        gap(target,12);add(target,t("発音の速さ・声の高さはそのまま",12,false,GRAY));gap(target,7);
-        LinearLayout controls=new LinearLayout(this);controls.setOrientation(LinearLayout.HORIZONTAL);
+    /** Speed control is not a navigation event: changing it never replays the sentence. */
+    private void voiceControl(LinearLayout parent){
+        gap(parent,12);add(parent,t("発音の速さ  ·  声の高さは変わりません",12,false,GRAY));gap(parent,7);
+        LinearLayout bar=new LinearLayout(this);bar.setOrientation(LinearLayout.HORIZONTAL);
         ArrayList<Button> buttons=new ArrayList<>();
         for(int i=0;i<VOICE_RATES.length;i++){
             final float rate=VOICE_RATES[i];
-            Button b=btn(String.format(Locale.US,"%.1f×",rate),Math.abs(voiceRate()-rate)<.001f,v->{
+            String label=i==0?"0.7×":""+rate+"×";
+            Button b=btn(label,Math.abs(voiceRate()-rate)<0.001f,v->{
                 prefs.edit().putFloat("voice_rate_v1",rate).apply();
-                if(player!=null)try{player.setPlaybackParams(new PlaybackParams().setSpeed(rate).setPitch(1f));}
-                    catch(Exception ex){android.util.Log.w("Grammaire","Speed setting unsupported",ex);}
-                for(int k=0;k<buttons.size();k++){
-                    Button each=buttons.get(k);boolean selected=Math.abs(rate-VOICE_RATES[k])<.001f;
-                    each.setTextColor(selected?WHITE:BLACK);
-                    each.setBackground(rounded(selected?BLACK:WHITE,selected?0:LINE,10));
-                    each.setContentDescription(VOICE_RATES[k]+"倍速"+(selected?"選択中":""));
+                if(player!=null){try{player.setPlaybackParams(new PlaybackParams().setSpeed(rate).setPitch(1.0f));}
+                    catch(Exception ex){android.util.Log.w("Grammaire","Playback speed update failed",ex);}}
+                for(int j=0;j<buttons.size();j++){
+                    Button button=buttons.get(j);boolean active=Math.abs(VOICE_RATES[j]-rate)<0.001f;
+                    button.setTextColor(active?WHITE:BLACK);
+                    button.setBackground(rounded(active?BLACK:WHITE,active?0:LINE,10));
+                    button.setContentDescription(VOICE_RATES[j]+"倍速"+(active?"、選択中":""));
                 }
             });
             b.setMinHeight(dp(46));b.setTextSize(12);buttons.add(b);
             LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(0,dp(46),1);
-            if(i>0)lp.leftMargin=dp(5);
-            controls.addView(b,lp);
+            if(i>0)lp.leftMargin=dp(5);bar.addView(b,lp);
+            b.setContentDescription(rate+"倍速"+(Math.abs(voiceRate()-rate)<0.001f?"、選択中":""));
         }
-        add(target,controls);
+        add(parent,bar);
     }
     private LinearLayout panel(){LinearLayout v=vertical();pad(v,16,18);v.setBackground(rounded(WHITE,LINE,18));return v;}
     /** Three persistent destinations; navigation has one clear owner per learning goal. */
@@ -246,6 +259,10 @@ public class MainActivity extends Activity {
         add(summary,t("初級教科書の序章＋23章  •  重要事項を段階的に学習",13,false,GRAY));gap(summary,7);
         add(summary,t("今日 "+prefs.getInt("today_count_"+today(),0)+"問  •  XP "+prefs.getInt("xp",0)+"  •  継続 "+prefs.getInt("study_streak",0)+"日",12,false,GRAY));
         add(mainArea,summary);gap(mainArea,13);
+        if(prefs.contains("deep_session")){
+            add(mainArea,btn("▶ 前回の20問テストを再開",true,v->{if(restoreDeep())showDeepQuiz();else Toast.makeText(this,"続きの読み込みに失敗しました",Toast.LENGTH_SHORT).show();}));gap(mainArea,10);
+        }
+
         int next=1;for(CourseUnit u:courseUnits){if(!prefs.getBoolean("cu_done_"+u.id,false)){next=u.id;break;}}
         final int open=next;
         add(mainArea,btn("▶  続きの文法から学ぶ  →",true,v->showCourseUnit(open)));gap(mainArea,9);
@@ -300,7 +317,7 @@ public class MainActivity extends Activity {
             CourseUnit u=cu(id);boolean done=prefs.getBoolean("cu_done_"+id,false);
             LinearLayout entry=panel();eyebrow(entry,"STEP "+String.format(Locale.JAPAN,"%02d",unitIds(chapter).indexOf(id)+1)+(done?"  ✓ 確認済み":"  • 未確認"));gap(entry,7);
             add(entry,t(u.title+"   →",18,true,BLACK));gap(entry,5);
-            add(entry,t(u.rule,13,false,GRAY));
+            add(entry,t("詳細講義 · 7例文 · 確認テスト20問",13,false,GRAY));
             entry.setOnClickListener(v->showCourseUnit(id));add(mainArea,entry);gap(mainArea,9);
         }
         if(!c.legacy.isEmpty()){
@@ -316,6 +333,15 @@ public class MainActivity extends Activity {
         startScreen(u.title,""+(u.chapter==0?"序章":"第"+u.chapter+"章")+"  •  "+(within.indexOf(id)+1)+" / "+within.size(),v->showCourseChapter(u.chapter));
         LinearLayout goal=panel();eyebrow(goal,"01 / 理解する");gap(goal,10);
         add(goal,t(u.rule,16,false,BLACK));add(mainArea,goal);gap(mainArea,11);
+        try{
+            JSONObject deep=deepBook(id);
+            JSONArray sections=deep.getJSONArray("sections");
+            for(int i=0;i<sections.length();i++){
+                JSONObject part=sections.getJSONObject(i);
+                explainBlock(mainArea,String.format(Locale.JAPAN,"講義 %d / 3　%s",i+1,part.getString("heading")),part.getString("text"));
+            }
+        }catch(Exception ex){throw new IllegalStateException("Detailed course failed: "+id,ex);}
+
         LinearLayout diff=panel();eyebrow(diff,"02 / 形を見比べる");gap(diff,10);
         for(int i=0;i<u.contrast.size();i++){
             TextView v=t((i==0?"A   ":"B   ")+u.contrast.get(i),16,i==1,BLACK);add(diff,v);
@@ -330,10 +356,25 @@ public class MainActivity extends Activity {
         add(sample,btn("▶  この例文を聴く",false,v->playCourse(u.id)));
         voiceControl(sample);
         add(mainArea,sample);gap(mainArea,12);
+        try{
+            JSONObject deep=deepBook(id);JSONArray worked=deep.getJSONArray("examples");
+            add(mainArea,t("詳しく読み解く  ·  追加の6例文",19,true,BLACK));gap(mainArea,10);
+            for(int i=0;i<worked.length();i++){
+                JSONObject item=worked.getJSONObject(i);LinearLayout exPanel=panel();
+                eyebrow(exPanel,"EXAMPLE "+(i+2)+" / 7");gap(exPanel,8);
+                add(exPanel,t(item.getString("fr"),18,true,BLACK));gap(exPanel,5);
+                add(exPanel,t(item.getString("ja"),14,false,GRAY));gap(exPanel,9);
+                add(exPanel,t(item.getString("why"),13,false,BLACK));gap(exPanel,7);
+                final int recording=item.optInt("audio",0);
+                if(recording>0)add(exPanel,btn("▶ この文を聴く",false,v->play(recording)));
+                add(mainArea,exPanel);gap(mainArea,10);
+            }
+        }catch(Exception ex){throw new IllegalStateException("Examples failed: "+id,ex);}
+
         TextView notice=t("女性合成音声を端末内で再生。IPAは自動推定のため、辞書や音声との全件一致監修は未完了です。",12,false,GRAY);
         add(mainArea,notice);gap(mainArea,11);
         LinearLayout footer=bottomBar();
-        add(footer,btn("04  この文法を使えるか確認  →",true,v->{coursePhase=0;conceptAnswered=false;conceptPicked.clear();showCourseCheck(id);}));
+        add(footer,btn("20問の確認テストへ  →",true,v->startDeep(id)));
         courseFrench.post(()->{if(screen==11&&currentCourseUnit==id&&!isFinishing())playCourse(id);});
     }
     private ArrayList<String> courseTokens(CourseUnit u){ArrayList<String> words=new ArrayList<>();for(String part:u.fr.trim().split("\\s+"))words.add(part);return words;}
@@ -358,6 +399,119 @@ public class MainActivity extends Activity {
             .putInt("today_count_"+day,prefs.getInt("today_count_"+day,0)+1)
             .putString("last_study_day",day).putInt("study_streak",streak).commit();
     }
+    private JSONObject deepBook(int id){
+        try{return intensive.getJSONArray("units").getJSONObject(id-1);}
+        catch(Exception e){throw new IllegalStateException("Missing intensive unit #"+id,e);}
+    }
+    private JSONObject deepTask(){
+        try{return deepBook(deepUnit).getJSONArray("tasks").getJSONObject(deepIndices.get(deepIndex));}
+        catch(Exception e){throw new IllegalStateException("Missing intensive task",e);}
+    }
+    private void saveDeep(){
+        try{
+            JSONObject o=new JSONObject();o.put("unit",deepUnit);o.put("index",deepIndex);
+            JSONArray indices=new JSONArray(),res=new JSONArray(),chosen=new JSONArray();
+            for(int x:deepIndices)indices.put(x);for(Boolean x:deepResults)res.put(x);
+            for(int x:deepPicked)chosen.put(x);
+            o.put("indices",indices);o.put("results",res);o.put("tiles",chosen);
+            o.put("answered",deepAnswered);o.put("good",deepGood);o.put("choice",deepChoice);
+            prefs.edit().putString("deep_session",o.toString()).commit();
+        }catch(Exception e){android.util.Log.e("Grammaire","Cannot persist detailed quiz",e);}
+    }
+    private boolean restoreDeep(){
+        try{
+            JSONObject o=new JSONObject(prefs.getString("deep_session",""));
+            int uid=o.getInt("unit"),idx=o.getInt("index");
+            if(uid<1||uid>59)return false;
+            deepUnit=uid;deepIndex=idx;deepAnswered=o.getBoolean("answered");
+            deepGood=o.getBoolean("good");deepChoice=o.optString("choice","");
+            deepIndices.clear();deepResults.clear();deepPicked.clear();
+            JSONArray ids=o.getJSONArray("indices"),rs=o.getJSONArray("results"),ts=o.getJSONArray("tiles");
+            for(int i=0;i<ids.length();i++)deepIndices.add(ids.getInt(i));
+            for(int i=0;i<rs.length();i++)deepResults.add(rs.getBoolean(i));
+            for(int i=0;i<ts.length();i++)deepPicked.add(ts.getInt(i));
+            return !deepIndices.isEmpty()&&deepIndex>=0&&deepIndex<deepIndices.size()&&deepResults.size()==deepIndex;
+        }catch(Exception e){android.util.Log.w("Grammaire","Bad detailed session",e);return false;}
+    }
+    private void startDeep(int uid){startDeepSubset(uid,null);}
+    private void startDeepSubset(int uid,ArrayList<Integer> ids){
+        deepUnit=uid;deepIndex=0;deepResults.clear();deepPicked.clear();deepAnswered=false;deepGood=false;deepChoice="";deepIndices.clear();
+        if(ids==null){for(int i=0;i<20;i++)deepIndices.add(i);}else deepIndices.addAll(ids);
+        saveDeep();showDeepQuiz();
+    }
+    private ArrayList<String> deepWords(String fr){
+        ArrayList<String> words=new ArrayList<>();for(String w:fr.trim().split("\\s+"))words.add(w);return words;
+    }
+    private String deepComposed(ArrayList<String> words){
+        StringBuilder b=new StringBuilder();for(int i:deepPicked){if(b.length()>0)b.append(' ');b.append(words.get(i));}return b.toString();
+    }
+    private void showDeepQuiz(){
+        if(deepIndex>=deepIndices.size()){finishDeep();return;}
+        screen=20;JSONObject item=deepTask();String kind=item.optString("kind"),answer=item.optString("answer");
+        startScreen("20問で定着させる",cu(deepUnit).title+"  ·  "+(deepIndex+1)+" / "+deepIndices.size(),v->{saveDeep();showCourseUnit(deepUnit);});
+        progress(mainArea,deepIndex,deepIndices.size());gap(mainArea,13);
+        LinearLayout q=panel();eyebrow(q,kind.equals("order")?"語順を組み立てる":kind.equals("meaning")?"意味を判断する":"規則・空欄を判断する");gap(q,11);
+        String prompt=kind.equals("meaning")?item.optString("fr"):item.optString("prompt");
+        add(q,t(prompt,20,true,BLACK));
+        if(!item.optString("ja").isEmpty()){gap(q,8);add(q,t(item.optString("ja"),14,false,GRAY));}
+        add(mainArea,q);gap(mainArea,11);
+        if(kind.equals("order")){
+            ArrayList<String> words=deepWords(item.optString("fr"));
+            LinearLayout current=panel();eyebrow(current,"今の並び（タップで戻す）");gap(current,8);
+            add(current,t(deepComposed(words).isEmpty()?"下の語句を順番に押してください":deepComposed(words),17,true,BLACK));
+            add(mainArea,current);gap(mainArea,10);
+            ArrayList<Integer> indices=new ArrayList<>();for(int i=0;i<words.size();i++)indices.add(i);
+            Collections.shuffle(indices,new Random(deepUnit*1003L+deepIndices.get(deepIndex)*19L));
+            GridLayout grid=new GridLayout(this);grid.setColumnCount(2);
+            for(int pos:indices){Button b=btn(words.get(pos),false,v->{if(deepAnswered||deepPicked.contains(pos))return;int old=activeScroll!=null?activeScroll.getScrollY():0;deepPicked.add(pos);saveDeep();showDeepQuiz();if(activeScroll!=null)activeScroll.post(()->activeScroll.scrollTo(0,old));});
+                b.setEnabled(!deepAnswered&&!deepPicked.contains(pos));
+                GridLayout.LayoutParams lp=new GridLayout.LayoutParams();lp.columnSpec=GridLayout.spec(GridLayout.UNDEFINED,1f);lp.width=0;lp.height=dp(52);lp.setMargins(dp(3),dp(3),dp(3),dp(3));grid.addView(b,lp);}
+            add(mainArea,grid);
+        }else{
+            JSONArray options=item.optJSONArray("options");
+            if(options==null)throw new IllegalStateException("Missing options in task");
+            for(int i=0;i<options.length();i++){
+                String o=options.optString(i);
+                Button b=btn(o,false,v->{if(deepAnswered)return;deepChoice=o;deepAnswered=true;deepGood=o.equals(answer);saveDeep();showDeepQuiz();});
+                if(deepAnswered){b.setEnabled(false);if(o.equals(answer))b.setBackground(rounded(Color.rgb(215,244,224),Color.rgb(33,127,68),12));
+                    else if(o.equals(deepChoice))b.setBackground(rounded(Color.rgb(255,228,228),Color.rgb(188,54,54),12));}
+                add(mainArea,b);gap(mainArea,8);
+            }
+        }
+        if(deepAnswered){
+            LinearLayout box=panel();eyebrow(box,deepGood?"✓ 正解！":"✕ 不正解");gap(box,7);
+            add(box,t("正解："+answer,17,true,deepGood?Color.rgb(31,123,68):Color.rgb(179,46,46)));gap(box,8);
+            add(box,t(item.optString("why"),14,false,BLACK));add(mainArea,box);gap(mainArea,9);
+        }
+        LinearLayout footer=bottomBar();
+        if(deepAnswered)add(footer,btn(deepIndex+1==deepIndices.size()?"結果を見る  →":"次の問題  →",true,v->{deepResults.add(deepGood);deepIndex++;deepAnswered=false;deepPicked.clear();deepChoice="";saveDeep();if(deepIndex>=deepIndices.size())finishDeep();else showDeepQuiz();}));
+        else if(kind.equals("order")){
+            LinearLayout controls=vertical();
+            Button check=btn("答え合わせ  "+deepPicked.size()+" / "+deepWords(item.optString("fr")).size(),true,v->{if(deepPicked.size()!=deepWords(item.optString("fr")).size())return;deepAnswered=true;deepChoice=deepComposed(deepWords(item.optString("fr")));deepGood=deepChoice.equals(answer);saveDeep();showDeepQuiz();});
+            check.setEnabled(deepPicked.size()==deepWords(item.optString("fr")).size());add(controls,check);
+            if(!deepPicked.isEmpty()){gap(controls,5);add(controls,btn("一つ戻す",false,v->{deepPicked.remove(deepPicked.size()-1);saveDeep();showDeepQuiz();}));}
+            add(footer,controls);
+        }else add(footer,t("答えを選ぶとすぐに正誤を表示",13,false,GRAY));
+    }
+    private void finishDeep(){
+        int count=0;ArrayList<Integer> wrong=new ArrayList<>();
+        for(int i=0;i<deepResults.size();i++){if(deepResults.get(i))count++;else wrong.add(deepIndices.get(i));}
+        final int passed=count, total=deepIndices.size(),unit=deepUnit;boolean good=passed>=Math.ceil(total*0.8);
+        int best=Math.max(prefs.getInt("deep_best_"+unit,0),total==20?passed:0);
+        org.json.JSONArray wrongJson=new org.json.JSONArray();for(int i:wrong)wrongJson.put(i);
+        prefs.edit().putInt("deep_best_"+unit,best).putInt("deep_last_"+unit,passed)
+          .putString("deep_wrong_"+unit,wrongJson.toString()).remove("deep_session").commit();
+        markConcept(cu(unit),good);screen=21;
+        startScreen("20問の結果",cu(unit).title,v->showCourseUnit(unit));
+        LinearLayout p=panel();eyebrow(p,"RESULT");gap(p,7);
+        add(p,t(passed+" / "+total+"  正解",30,true,BLACK));gap(p,8);progress(p,passed,total);gap(p,10);
+        add(p,t(good?"✓ 80％以上正解！":"講義を復習して、もう一度挑戦しよう",16,true,BLACK));
+        add(mainArea,p);gap(mainArea,12);
+        if(!wrong.isEmpty())add(mainArea,btn("間違えた"+wrong.size()+"問だけ再挑戦",true,v->startDeepSubset(unit,wrong)));
+        gap(mainArea,9);add(mainArea,btn("もう一度20問に挑戦",false,v->startDeep(unit)));
+        gap(mainArea,9);add(mainArea,btn("テキストへ戻る",false,v->showCourseUnit(unit)));
+    }
+
     private void showCourseCheck(int id){
         currentCourseUnit=id;CourseUnit u=cu(id);screen=12;
         startScreen("理解チェック",u.title+"  •  "+(coursePhase==0?"1 / 2  判断":"2 / 2  語順"),v->showCourseUnit(id));
@@ -624,6 +778,10 @@ public class MainActivity extends Activity {
         add(summary,t("今日の復習  "+dueCount+"問     苦手  "+wrongCount+"問",18,true,BLACK));gap(summary,7);
         add(summary,t("どちらも10問ずつ練習できます。重複する問題は両方に表示される場合があります。",12,false,GRAY));
         add(mainArea,summary);gap(mainArea,13);
+        if(prefs.contains("deep_session")){
+            add(mainArea,btn("▶ 前回の20問テストを再開",true,v->{if(restoreDeep())showDeepQuiz();else Toast.makeText(this,"続きの読み込みに失敗しました",Toast.LENGTH_SHORT).show();}));gap(mainArea,10);
+        }
+
         LinearLayout due=panel();eyebrow(due,"01 / 間隔を空けた復習");gap(due,8);
         add(due,t("今日の復習",19,true,BLACK));gap(due,8);
         add(due,t(dueCount>0?"復習予定日を迎えた問題から最大10問を出題。":"現在、復習予定の問題はありません。",13,false,GRAY));gap(due,12);
@@ -831,29 +989,27 @@ public class MainActivity extends Activity {
         }else{add(mainArea,t("全問正解。次の文法事項へ進みましょう。",16,true,BLACK));gap(mainArea,13);}
         add(mainArea,btn(quizFromHome?(quizReturnTab==9?"復習に戻る":quizReturnTab==8?"文法テストに戻る":"学習に戻る"):"単元に戻る",false,v->returnToQuizOrigin()));
     }
-
-    private void startSpeech(String path){
+    private void startSpeech(String assetPath,boolean notifyError){
         stopAudio();
-        MediaPlayer next=null;
         try{
-            next=new MediaPlayer();
-            try(AssetFileDescriptor fd=getAssets().openFd(path)){
+            AssetFileDescriptor fd=getAssets().openFd(assetPath);
+            MediaPlayer next=new MediaPlayer();
+            try{
                 next.setDataSource(fd.getFileDescriptor(),fd.getStartOffset(),fd.getLength());
-            }
+            }finally{fd.close();}
             next.prepare();
             next.setOnCompletionListener(mp->{if(player==mp)stopAudio();});
+            // PlaybackParams preserves pitch at 1.0 while slowing the recording.
             player=next;
-            next.setPlaybackParams(new PlaybackParams().setSpeed(voiceRate()).setPitch(1f));
+            next.setPlaybackParams(new PlaybackParams().setSpeed(voiceRate()).setPitch(1.0f));
             next.start();
-        }catch(Exception ex){
-            if(player==null&&next!=null)try{next.release();}catch(Exception ignored){}
-            stopAudio();
-            android.util.Log.e("Grammaire","Speech error: "+path,ex);
-            Toast.makeText(this,"音声を再生できません",Toast.LENGTH_SHORT).show();
+        }catch(Exception err){
+            stopAudio();android.util.Log.e("Grammaire","Speech playback failed: "+assetPath,err);
+            if(notifyError)Toast.makeText(this,"音声を再生できません。再度お試しください",Toast.LENGTH_SHORT).show();
         }
     }
-    private void playCourse(int id){startSpeech(String.format(Locale.US,"audio/course_%04d.ogg",id));}
-    private void play(int id){startSpeech(String.format(Locale.US,"audio/%04d.ogg",id));}
+    private void playCourse(int id){startSpeech(String.format(Locale.US,"audio/course_%04d.ogg",id),true);}
+    private void play(int id){startSpeech(String.format(Locale.US,"audio/%04d.ogg",id),true);}
     private void stopAudio(){if(player!=null){try{player.stop();player.release();}catch(Exception ignored){}player=null;}}
     @Override protected void onPause(){super.onPause();stopAudio();}
     @Override protected void onDestroy(){stopAudio();super.onDestroy();}

@@ -1,0 +1,59 @@
+1|アクサンは飾りではなく、綴りの一部。é と è は原則として異なる母音を表し、ç は c が /s/ と読まれることを示す。音と文字の両方を見ながら覚える。|café の é、français の ç を確認し、音を聞いてから自分で綴る。アクセントの打ち忘れは別の語になったり誤字になったりする。|ê・â などは現代フランス語で必ずしも発音の差を作らない。記号があれば必ず音が変わる、とは考えない。
+2|フランス語の単語末の子音は発音しない場合が多い。petit の t、grand の d などが典型。ただし sac の c、avec の c、sel の l のように発音する語もある。|男性形 petit /pəti/ と女性形 petite /pətit/ の対比を見ると、綴りの変化が発音にどう現れるか理解しやすい。語形は音だけでなく文字で確認する。|「語末子音は全部無音」という暗記は危険。規則は目安とし、単語ごとにIPAや録音を確認する。
+3|リエゾンは、普段は無音の語末子音が次の母音の前で現れる現象。les amis では /z/ が聞こえる。対して、アンシェヌマンは元から発音する子音が次の母音に続くこと。|冠詞＋名詞の les amis や un ami など、基本的にリエゾンするまとまりから耳を慣らす。les livres のように次が子音なら /z/ は出ない。|母音が隣り合えば必ずリエゾンするわけではない。文法的なつながりや語の種類により、禁止される場合もある。
+4|フランス語の名詞には男性と女性の文法的な性があり、実物の性別とは無関係なことも多い。livre は男性、table は女性。新しい単語は冠詞とセットで覚える。|un livre / une table のように名詞と冠詞をまとめて暗唱する。形容詞や代名詞にも性の区別が影響するので、名詞の性は基礎中の基礎。|語尾の -e だけで女性名詞と決めない。男性名詞でも -e で終わるものがある。
+5|数えられる名詞の複数形は多くの場合 -s を付ける。un livre → des livres。書き言葉では綴りが異なるが、語末 -s は通常発音しない。|deux livres のように数詞に続く名詞も複数形にする。-x を付ける語や特別な複数形もあるため、最初は典型形を確実に習得する。|音だけでは単数・複数が判別しづらい。冠詞・数詞・動詞の一致と併せて読む。
+6|不定冠詞はまだ特定されていない数えられる名詞に使う。男性単数 un、女性単数 une、複数 des。un livre と une table は名詞の性で区別する。|「1台の車」なら voiture が女性名詞なので une voiture。「何冊かの本」なら des livres。性と数を順番に判断する。|否定文では不定冠詞が de に変わることが多い。ただし être の補語など例外があるので、否定文の単元で整理する。
+7|定冠詞 le/la/les は特定の対象だけでなく種類全体を述べる場合にも使う。部分冠詞 du/de la/de l' は量を決めない飲食物などに使う。|Je bois du lait. の du は牛乳の不特定の量。J'aime le lait. では牛乳という種類一般が好き、という意味。動詞によって冠詞が変わる点を見る。|du は部分冠詞の場合と de＋le の縮約の場合がある。形が同じでも文の構造で意味を判断する。
+8|形容詞は名詞を説明し、基本的に性・数が一致する。petit→petite、petits→petites と変化する例が典型。語尾が変化しない形容詞もある。|une petite maison / des petites maisons のように、冠詞・名詞・形容詞をセットで読み、どの語が女性・複数かを見る。|フランス語では形容詞が名詞の後に来ることも多い。一致と語順は別々の規則として考える。
+9|一般に色・国籍・性質などの形容詞は名詞の後に置かれる。une voiture rouge の rouge は voiture を説明する。一方、grand、petit、beau などは前置されることが多い。|une grande maison / une maison blanche のように、前に来る語と後ろに来る語を比較する。語順で意味が変わる形容詞もある。|英語のように形容詞を常に名詞の前へ置かない。例文ごとの結び付きを覚える。
+10|être は主語とその性質・身分を結びつける。Elle est contente. では contente が elle の状態を述べる。主語が男性なら content。|Il est fatigué. / Elle est fatiguée. を比較すると、同じ意味でも形容詞の綴りが変化することが分かる。|être の後だから無条件に男性形にはならない。主語が指す人・物の性と数を確認する。
+11|je（私）、tu（親しい相手）、il/elle（彼・彼女）、nous（私たち）、vous（丁寧なあなた／あなたたち）、ils/elles（彼ら／彼女ら）が基本主語。|フランス語では通常、文に主語が必要。主語を変えると動詞の形も変わる。tu と vous は相手との関係で選ぶ。|on は三人称単数の活用を取り、会話では「私たち」を表すこともある。nous と活用を混同しない。
+12|être の現在形は je suis / tu es / il est / nous sommes / vous êtes / ils sont。規則変化しないため、主語ごと覚える必要がある。|身分なら Je suis étudiant.、場所なら Nous sommes ici. と使う。être の後の形容詞は主語に一致させる。|est と et（「そして」）は綴りと役割が異なる。êtes の ê も省略しない。
+13|前置詞 à＋定冠詞 le は au、à＋les は aux。de＋le は du、de＋les は des。la と l' の場合は縮約しない。|à la gare / au cinéma / aux États-Unis と比較する。de la ville / du musée のように場所や所属の表現でも同じ。|du が部分冠詞か de＋le の縮約かは、直前の動詞・前置詞の働きで判断する。
+14|avoir は「持つ」のほか、年齢・空腹・喉の渇きなどに用いる。j'ai / tu as / il a / nous avons / vous avez / ils ont。|J'ai vingt ans. は英語の I am とは違い avoir を使う。J'ai faim. も同じ。「どの動詞を使う表現か」を覚える。|a（持っている）と à（〜へ）は別の語。発音が似てもアクセントを省略しない。
+15|疑問文は、平叙文＋上昇調、est-ce que＋平叙文、主語と動詞の倒置などで作れる。初心者は est-ce que を最初に使えるようにする。|Vous parlez français. → Est-ce que vous parlez français ? では est-ce que の後は元の語順を保つ。答えは oui / non で確認する。|倒置形 Parlez-vous français ? と、est-ce que の語順を混ぜない。
+16|書き言葉の基本否定は ne＋活用した動詞＋pas。動詞が母音または無音の h で始まると ne は n' になる。|Je parle. → Je ne parle pas.、J'ai faim. → Je n'ai pas faim. と比較する。ne と pas の位置を二つの動詞で確かめる。|会話では ne を落とすこともあるが、学習の初期は完全形を作れるようにする。
+17|-er規則動詞の現在形は parler を例に je parle, tu parles, il parle, nous parlons, vous parlez, ils parlent。主語に対応させて活用する。|英語と異なり主語によって語尾が多く変わる。nous -ons、vous -ez、ils -ent は特に綴りを意識する。|aller は -er で終わるが不規則動詞。すべての -er が同じというわけではない。
+18|parle、parles、parlent の語尾は綴りが違っても通常ほぼ同じ発音になる。綴りを書くときは音ではなく主語を見る必要がある。|Je parle / Tu parles / Ils parlent と声に出し、聞こえない -s や -ent を綴りで確認する。nous parlons と vous parlez は語尾も聞き分ける。|語尾 -ent は一般的に動詞の三人称複数では発音しないが、すべての単語の -ent が無音ではない。
+19|-er動詞の否定も ne＋活用形＋pas の順。écouter のように母音で始まる動詞では n'écoute と縮まる。|J'écoute la radio. → Je n'écoute pas la radio. 主語と動詞の間へ ne を入れ、pas を動詞の後に置く。|不定詞や複合過去では否定の位置が異なる場面がある。今は現在形の1動詞文を確実にする。
+20|est-ce que の後は通常の主語＋動詞の語順。Tu étudies. → Est-ce que tu étudies ?。倒置なら Étudies-tu ? のように主語と動詞の順が変わる。|二つの形式を並べて「疑問であることをどこで示すか」を確認する。日常会話ではイントネーションだけの疑問も多い。|est-ce que を使った上に主語と動詞まで倒置する誤りを避ける。
+21|ce/cet/cette/ces は「この・その」を表す指示形容詞。男性名詞が子音で始まれば ce、母音・無音hで始まれば cet、女性単数は cette、複数は ces。|ce livre / cet ami / cette amie / ces livres を並べ、性・数に加えて語頭の音を見る。|cet は男性単数の母音前に使う。女性単数の母音前は基本的に cette のまま。
+22|finir 型の第2群規則動詞は je finis / tu finis / il finit / nous finissons / vous finissez / ils finissent。複数形に -iss- が現れる。|finir の活用表を先に読み、Nous finissons tôt. の主語と語尾を見比べる。|venir、partir などの -ir動詞はこの型ではない。辞書形が -ir というだけで判断しない。
+23|rendre型の -re動詞の現在形は je rends / tu rends / il rend / nous rendons / vous rendez / ils rendent。単数の語尾と複数の語尾を対にして覚える。|Il rend le livre. を nous / vous に変える練習で、rends と rendons を対比する。|prendre は見た目が -re でも同じ活用ではない。よく使う不規則動詞は別表で確認する。
+24|aller は vais/vas/va/allons/allez/vont、venir は viens/viens/vient/venons/venez/viennent。どちらも頻出なので主語ごと暗唱する。|Je vais à Paris. は移動先、Je viens de Paris. は出発点や出身地の意味になる。前置詞の違いも確認する。|venir de＋不定詞なら「〜したばかり」で、単なる「〜から来る」と区別する。
+25|aller の現在形＋不定詞は近い未来、venir de＋不定詞は直近の過去。どちらも後ろの動詞は活用させず不定詞のまま。|Je vais dormir. / Je viens de manger. のように、活用する部分と原形の部分を分けて読む。|Je vais mange や Je viens manger de のような語順にならないようにする。
+26|直接目的語は前置詞なしで動詞の対象になる語。le/la/les はその名詞句を受け、通常は活用した動詞の直前に置く。|Je connais Marie. → Je la connais. のように、何を置き換えたのか文の前後で確認する。|le は定冠詞として名詞の前に置く場合もある。代名詞の le は動詞の前。
+27|à＋人で表す間接目的語を lui（1人）や leur（複数人）へ置き換えることができる。例：Je téléphone à Marie. → Je lui téléphone.。|直接目的語の le/la/les と比べて、元の動詞が à を要求するかを先に確かめる。|lui は男性にも女性にも使える。leur は複数であり、所有形容詞 leur と役割が違う。
+28|目的語代名詞は通常、活用動詞の前に置く。否定文の基本語順は ne＋目的語代名詞＋動詞＋pas。|Je la connais. → Je ne la connais pas. と変化させ、ne と pas が動詞を挟み、代名詞が動詞のすぐ前にあることを見る。|不定詞の前、肯定命令文などでは別の配置規則があるので、まず現在形の平叙文・否定文を身につける。
+29|pouvoir（〜できる）、vouloir（〜したい）、devoir（〜しなければならない）は後ろに不定詞を置く。意味が異なるため場面で選ぶ。|Je peux venir / Je veux venir / Je dois venir を比べ、後半が同じでも前の動詞で可能・希望・義務に変わることを見る。|je peux と je veux は似ているが別の動詞。後ろの動詞を現在形にしない。
+30|複合過去は、現在形の助動詞 avoir または être＋過去分詞。過去の完了した出来事を述べるときに用いる。|J'ai regardé un film. では ai が活用し、regardé が過去分詞。現在形の Je regarde と並べて差をつかむ。|être を使う移動動詞・代名動詞がある。すべての動詞を avoir にしない。
+31|規則動詞の過去分詞は parler→parlé、finir→fini、rendre→rendu。過去分詞は複合過去の助動詞と組み合わせる。|Nous avons fini. の avons は avoir の現在形、fini は finir の過去分詞。両方をまとめて読む。|prendre→pris、faire→fait など不規則な過去分詞も多い。
+32|faire（する）、prendre（取る・乗る）、mettre（置く・身につける）は日常会話で特によく使う不規則動詞。|Je fais du sport / Je prends le train / Je mets un manteau のように、名詞とセットで自然な意味を覚える。|音や語尾から規則活用を作らない。特に vous faites、vous prenez、vous mettez は別々に覚える。
+33|複合過去の否定は ne＋助動詞＋pas＋過去分詞。目的語代名詞も助動詞の前に置かれる。|J'ai mangé. → Je n'ai pas mangé.。Je l'ai vu. の l' は ai の前。分けて書くと順番を理解しやすい。|ne と pas で過去分詞だけを挟まない。否定の中心は活用した助動詞。
+34|代名動詞は主語に対応する再帰代名詞 me/te/se/nous/vous/se を伴う。se lever の現在形は je me lève, tu te lèves など。|Je me couche tôt. の me は je に対応する。起床・着替え・洗顔などの行動でまとめて覚える。|「自分自身へ」の意味が薄い代名動詞もあるので、意味を機械的に直訳しない。
+35|代名動詞の複合過去は基本的に être を助動詞に使う。Elle s'est levée. の levée は主語の女性単数に一致する。|Je me suis levé(e). / Nous nous sommes levé(e)s. で再帰代名詞と助動詞の位置を確認する。|過去分詞の一致は、再帰代名詞が直接目的語かどうかにも左右される。すべての代名動詞が単純に主語一致するわけではない。
+36|所有形容詞は所有者の性別ではなく、所有される名詞の性・数で mon/ma/mes などを選ぶ。|mon frère / ma sœur / mes amis を比べる。女性単数でも母音や無音hで始まる場合は mon amie のように言う。|「女性が持っているから ma」とは決めない。名詞の性と数が第一基準。mon amie のように女性単数でも母音の前では mon を使う例を合わせて確認する。
+37|天候・時刻の il は特定の人を指さない非人称主語。Il pleut.、Il fait froid.、Il est huit heures. などで使われる。|「寒い」は J'ai froid（私は寒い）と Il fait froid（天気が寒い）で主語と意味が違う。|Il pleut の il を「彼」と訳さない。使う動詞と組み合わせで覚える。
+38|関係代名詞 qui は関係節の主語に当たる語を受ける。La femme qui parle... では qui が parle の主語。|二文 La femme parle. / Je connais la femme. から La femme qui parle... とまとめる練習をする。|関係節の動詞は先行詞の数に一致。qui が目的語になると考えない。que との違いは、抜けている語が関係節の主語か目的語かで判断する。
+39|関係代名詞 que は関係節の直接目的語を受ける。Le livre que je lis... は、je lis le livre の livre を前へ出した形。|qui の後には通常動詞、que の後には主語＋動詞が続くことが多い。ただし文の構造で判断する。|que は母音前で qu'。複合過去では先行する直接目的語と過去分詞の一致が関わる場合がある。
+40|celui/celle/ceux/celles は名詞を繰り返さずに「その人・もの」を指す代名詞。男性・女性、単数・複数で形が変わる。|ce livre と celui-ci、cette voiture と celle-là の対応を比べる。-ci は近い方、-là は遠い方を指し示す。|celui は通常それだけで名詞に直接かけられない。形容詞の ce と代名詞の celui を分ける。
+41|関係副詞 où は先行詞の場所・時に関係する節を導く。La ville où j'habite は「私が住んでいる町」。|lieu（場所）や jour（日）など、先行詞の意味と従属節の役割を見て où を選ぶ。|où は「どこ？」の疑問副詞としても使える。同じ綴りでも文の中での役割は異なる。
+42|半過去は過去に継続していた状態・習慣・背景を表す。基本語幹は nous の現在形から -ons を除いて作り、-ais/-ait/-ions などを付ける。|Quand j'étais petit, je lisais beaucoup. の étais は「当時の状態」、lisais は「繰り返した習慣」。|être だけは ét- を語幹とする特例。半過去を単純に「過去に一度した」に当てない。
+43|複合過去は出来事の発生・完了、半過去は背景や進行中の動作。Je dormais quand il a téléphoné. では、寝ていた背景へ電話が入る。|「何が起きたか」と「そのときどういう状態だったか」を分けて時制を選ぶ。|日本語訳がどちらも「〜した」になり得るので、時間の捉え方で判断する。背景となる動作なら半過去、物語を進める出来事なら複合過去が基本。
+44|大過去は「過去のある時点よりさらに前」に完了した出来事。avoir/être の半過去＋過去分詞で作る。|Quand il est arrivé, j'avais déjà fini. では到着（過去）以前に終えていた。時系列を線で考える。|大過去は「ずっと昔」という意味ではない。基準となる過去時点との前後関係が重要。
+45|比較級は plus/aussi/moins＋形容詞や副詞＋que。plus grande que moi は「私より背が高い」、aussi grande は「同じくらい」。|than に相当する部分は que。形容詞は主語・名詞の性数に一致する。|bon の比較級 meilleur など不規則形がある。英語の more に必ず単純対応しない。
+46|最上級は le/la/les＋plus/moins＋形容詞などで「最も〜」。比較対象の範囲は de や dans で示すことが多い。|la plus grande ville と les plus grandes villes の冠詞・形容詞の一致を確かめる。|形容詞が名詞の後に来る場合の冠詞の位置も見る。plus を置けば冠詞なしで最上級になるわけではない。
+47|受動態は être＋過去分詞で「〜される」を表す。La porte est fermée. の fermée は女性単数 la porte に一致する。|on＋能動形で「人々は〜する」と表現することもできる。文脈に合わせてどちらが自然か考える。|être＋過去分詞は状態を表す形容詞との境界がある。すべてを機械的に受動態と決めない。
+48|単純未来は不定詞などを語幹にして -ai/-as/-a/-ons/-ez/-ont を付ける。Je travaillerai. は将来の動作。|近接未来 Je vais travailler. と並べ、どちらも未来に触れるが構造が異なることを確認する。|être→ser-、avoir→aur-、aller→ir- など不規則語幹もある。
+49|ne…jamais は「決して〜ない」、ne…plus は「もう〜ない」、ne…rien は「何も〜ない」。ne…pas と置き換えると意味が変わる。|Je ne fume jamais / Je ne fume plus を比べ、習慣が無いのか、以前は吸っていたが今はやめたのかを区別する。|複合過去では jamais・plus の位置も確認する。rien は文中の役割により位置が変わる。
+50|命令形は相手への指示・依頼。tu・nous・vous 形をもとに通常主語を省く。Écoutez ! は vous に向けた依頼。|Parlez ! / Parlons ! / Parle ! を比べ、丁寧度や対象人数を判断する。|多くの -er 動詞では肯定命令の tu 形で語尾 -s を落とす。ただし y/en が続く場合など例外がある。
+51|quel/quelle/quels/quelles は後に続く名詞の性と数に一致する。「何の・どの」は、名詞を手がかりに形を選ぶ。|Quel livre ? / Quelle heure ? / Quels livres ? / Quelles heures ? の対応を確認する。|Quel est... ? のように être と組む用法もある。語形は続く名詞・指示対象に合わせる。
+52|quand は時、où は場所、pourquoi は理由を問う。語順は Où habitez-vous ? / Vous habitez où ? など文体で変わる。|Pourquoi ? への返答には parce que... がよく使われる。Quand には時刻や日付を答える。|où のアクサンを忘れると ou（または）と別の語になる。発音が同じでも、疑問詞と接続詞では綴りと意味が異なる。
+53|y は場所や à＋物、en は de＋物・量を受けることが多い。いずれも通常は活用した動詞の前。|Tu vas à Paris ? — Oui, j'y vais. / Tu veux du café ? — Oui, j'en veux. をセットで読む。|人には原則として別の代名詞を使うことが多い。y/en をすべての à/de に機械的に当てない。
+54|条件法現在は単純未来の語幹と半過去に似た語尾で作る。Je voudrais... は直接的な Je veux... より丁寧に響く。|Je voudrais de l'eau, s'il vous plaît. は注文や依頼で定番。pourrais も丁寧な依頼に使える。|条件法を「仮定の話」だけと考えない。日常の丁寧な希望や依頼でもよく使う。特に注文の場面では voudrais をまとまりとして言えるようにする。
+55|現実とは異なる仮定には si＋半過去、主節に条件法現在を使う。Si j'avais le temps, je voyagerais. は「時間があれば旅行するのに」。|si節に半過去（avais）、結果の節に条件法（voyagerais）を配置する。時制の形が過去でも、意味は現在の仮定になり得る。|基本の非現実仮定では si の直後に条件法を置かない。単なる未来の可能性なら別構文を使う。
+56|間接疑問文は、疑問を「知りたい・分からない」などの文へ埋め込んだもの。Je ne sais pas où il habite. の où 以下は平叙文の語順。|直接疑問 Où habite-t-il ? → Je ne sais pas où il habite. と比較する。はい・いいえで答える疑問には si（〜かどうか）を使う。|間接疑問の内部で倒置を残しすぎない。est-ce que をそのまま置かない。
+57|直接話法は発言をそのまま引用する。間接話法は dire que... などで内容を伝え、主節が過去の場合に時制や時間表現が変わることがある。|Elle dit « Je suis malade ». と Elle a dit qu'elle était malade. を比較する。話した時点と報告する時点を分けて考える。|時制の一致は全て機械的な置換ではない。現在でも真実である内容など、文脈により変わる。
+58|接続法は話し手の評価・必要性・希望などと結びつく叙法。Il faut que tu viennes. は「君が来る必要がある」。|主語が異なる場合は que＋接続法を使う典型を覚える。重要なのは「どの表現が接続法を要求するか」を文ごとに学ぶこと。|すべての que節を接続法にしない。penser que の肯定形など直説法が自然なものも多い。
+59|単純過去は主に文学や物語の叙述で現れ、会話では通常複合過去を使う。Il entra dans la maison. は il est entré と対比すると理解しやすい。|読解では entra、fut、eut のような形を見分け、誰が何をしたかつかむのが第一目標。|初級者は特殊な活用を全部暗唱するより、現在形・複合過去・半過去を先に使えるようにする。

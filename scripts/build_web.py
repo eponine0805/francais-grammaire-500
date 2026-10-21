@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Produce an entirely static Netlify/PWA site using the same data and audio as the Android APK.
 
-Default `--release v0.5.0` fetches the published APK from GitHub. `--apk` uses
+Use --release to fetch a prerecorded APK from GitHub. `--apk` uses
 an existing local APK (used by Actions to build identical web/APK packages).
 `--no-audio` is for local UI testing only: never distribute it as offline-ready.
 """
@@ -25,7 +25,7 @@ shutil.copytree(ROOT/'web',a.out)
 (a.out/'data').mkdir(exist_ok=True)
 (a.out/'audio').mkdir(exist_ok=True)
 assets=ROOT/'app/src/main/assets'
-for name in ('course.json','course_ipa.json','lessons.json','examples.json','annotations.json'):
+for name in ('course.json','course_ipa.json','lessons.json','examples.json','annotations.json','intensive.json'):
     shutil.copyfile(assets/name,a.out/'data'/name)
 
 apk=a.apk
@@ -58,6 +58,7 @@ else:print('LOCAL DEV ONLY: no audio files. Do not claim offline TTS works.')
 
 c=json.loads((a.out/'data/course.json').read_text(encoding='utf-8'))
 assert len(c['chapters'])==24 and len(c['units'])==59
+assert len(json.loads((a.out/'data/intensive.json').read_text(encoding='utf8'))['units'])==59
 legacy=json.loads((a.out/'data/examples.json').read_text(encoding='utf-8'))
 assert len(legacy)==500
 print('Web build:',a.out,'with',len(c['units']),'grammar units and',len(legacy),'examples')

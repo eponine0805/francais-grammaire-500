@@ -1,0 +1,114 @@
+1|J'aime le café.|私はコーヒーが好きです。|J'aime le ___.|café|cafe,café,caffé,cafee
+1|Il habite à Paris.|彼はパリに住んでいます。|Il habite ___ Paris.|à|a,à,â,ä
+1|Elle est française.|彼女はフランス人です。|Elle est ___.|française|francaise,française,francès,françaises
+1|Où est la gare ?|駅はどこですか？|___ est la gare ?|Où|Ou,Où,Oû,Óu
+1|Ça va bien.|元気です。|___ va bien.|Ça|Ca,Ça,Çà,Cas
+1|C'est très bon.|とてもおいしいです。|C'est ___ bon.|très|tres,très,tré,tresè
+2|Il est petit.|彼は小柄です。|Il est ___.|petit|petit,petite,petits,petites
+2|Elle est petite.|彼女は小柄です。|Elle est ___.|petite|petit,petite,petits,petites
+2|Il est grand.|彼は背が高いです。|Il est ___.|grand|grand,grande,grands,grandes
+2|Elle est grande.|彼女は背が高いです。|Elle est ___.|grande|grand,grande,grands,grandes
+2|Le chat dort.|猫が眠っています。|Le chat ___.|dort|dort,dors,dorte,dor
+2|J'ai un sac.|私はかばんを持っています。|J'ai un ___.|sac|sac,sacs,sacq,sace
+3|Les amis arrivent.|友達が到着します。|Les ___ arrivent.|amis|amis,ami,amie,ames
+3|J'ai deux amis.|私には友達が2人います。|J'ai deux ___.|amis|ami,amis,amie,amiee
+3|Un ami arrive.|友達が1人到着します。|Un ___ arrive.|ami|ami,amis,amie,amiś
+3|Les enfants jouent.|子どもたちは遊んでいます。|Les ___ jouent.|enfants|enfant,enfants,enfantes,enfantss
+3|Nous avons un ami.|私たちには友達が1人います。|Nous avons un ___.|ami|ami,amis,amie,amiś
+3|Ils arrivent ici.|彼らはここに到着します。|Ils ___ ici.|arrivent|arrive,arrives,arrivons,arrivent
+35|Je me suis levé tôt.|私は早く起きました。（男性話者）|Je me suis ___ tôt.|levé|levé,levée,lever,lève
+35|Elle s'est levée tôt.|彼女は早く起きました。|Elle s'est ___ tôt.|levée|levé,levée,lever,lève
+35|Nous nous sommes levés.|私たちは起きました。（男性または混合の集団）|Nous nous sommes ___.|levés|levé,levée,levés,lever
+35|Elles se sont levées.|彼女たちは起きました。|Elles se sont ___.|levées|levé,levée,levés,levées
+35|Je me suis couché tard.|私は遅く寝ました。（男性話者）|Je me suis ___ tard.|couché|couché,couchée,coucher,couche
+35|Tu t'es levé à sept heures.|君は7時に起きました。（男性に向けて）|Tu t'es ___ à sept heures.|levé|levé,levée,lever,levons
+37|Il pleut aujourd'hui.|今日は雨が降っています。|Il ___ aujourd'hui.|pleut|pleut,pleuvons,pleuvent,pleus
+37|Il fait froid.|寒いです。|Il ___ froid.|fait|fait,fais,faire,faites
+37|Il fait beau.|いい天気です。|Il ___ beau.|fait|fait,fais,faire,font
+37|Il est neuf heures.|9時です。|Il ___ neuf heures.|est|est,es,suis,sont
+37|J'ai froid.|私は寒いです。|J'___ froid.|ai|ai,est,suis,as
+37|Quel temps fait-il ?|天気はどうですか？|Quel temps ___-il ?|fait|fait,fais,font,faire
+40|Je préfère celui-ci.|私はこちらのものが好きです。（男性名詞を受ける）|Je préfère ___.|celui-ci|celui-ci,celle-ci,ceux-ci,celles-ci
+40|Je préfère celle-ci.|私はこちらのものが好きです。（女性名詞を受ける）|Je préfère ___.|celle-ci|celui-ci,celle-ci,ceux-ci,celles-ci
+40|Ce livre est nouveau.|この本は新しいです。|___ livre est nouveau.|Ce|Ce,Cet,Cette,Ces
+40|Cette voiture est rouge.|この車は赤いです。|___ voiture est rouge.|Cette|Ce,Cet,Cette,Ces
+40|Je choisis ceux-ci.|私はこれらを選びます。（男性複数を受ける）|Je choisis ___.|ceux-ci|celui-ci,celle-ci,ceux-ci,celles-ci
+40|Je choisis celles-là.|私はあちらのものを選びます。（女性複数を受ける）|Je choisis ___.|celles-là|celle-là,celui-là,ceux-là,celles-là
+44|J'avais fini avant midi.|私は正午前に終えていました。|J'___ fini avant midi.|avais|avais,ai,aurai,étais
+44|Il avait déjà mangé.|彼はすでに食べ終えていました。|Il ___ déjà mangé.|avait|a,avait,aura,était
+44|Nous avions compris.|私たちは理解していました。|Nous ___ compris.|avions,avons,aurons,étions
+44|Elle était déjà partie.|彼女はすでに出発していました。|Elle ___ déjà partie.|était,est,sera,avait
+44|Ils avaient terminé.|彼らは終えていました。|Ils ___ terminé.|avaient,ont,auront,étaient
+44|Tu avais oublié.|君は忘れていました。|Tu ___ oublié.|avais,as,auras,étais
+46|C'est le plus grand livre.|これは一番大きな本です。|C'est le ___ grand livre.|plus|plus,moins,aussi,très
+46|C'est la plus grande maison.|これは一番大きな家です。|C'est la plus ___ maison.|grande|grand,grande,grands,grandes
+46|Ce sont les plus beaux jardins.|これらは最も美しい庭です。|Ce sont les plus ___ jardins.|beaux|beau,belle,beaux,belles
+46|C'est la moins chère.|これは最も安いものです。（女性名詞を受ける）|C'est la moins ___.|chère|cher,chère,chers,chères
+46|Elle est la plus rapide.|彼女は一番速いです。|Elle est la plus ___.|rapide|rapide,rapides,rapidement,rapidité
+46|Il est le plus jeune.|彼は一番若いです。|Il est le plus ___.|jeune|jeune,jeunes,jeunesse,jeuneses
+47|La porte est fermée.|ドアは閉まっています。|La porte est ___.|fermée|fermé,fermée,fermer,fermant
+47|Le livre est vendu.|その本は売られています。|Le livre est ___.|vendu|vendu,vendue,vendre,vend
+47|Les portes sont ouvertes.|ドアは開いています。|Les portes sont ___.|ouvertes|ouvert,ouverte,ouverts,ouvertes
+47|On parle français ici.|ここではフランス語を話します。|___ parle français ici.|On|On,Nous,Ils,Vous
+47|Le repas est préparé.|食事は準備されています。|Le repas est ___.|préparé|prépare,préparer,préparé,préparée
+47|Les lettres sont écrites.|手紙は書かれています。|Les lettres sont ___.|écrites|écrit,écrite,écrits,écrites
+51|Quelle heure est-il ?|何時ですか？|___ heure est-il ?|Quelle|Quel,Quelle,Quels,Quelles
+51|Quel livre préfères-tu ?|どの本が好きですか？|___ livre préfères-tu ?|Quel|Quel,Quelle,Quels,Quelles
+51|Quels livres lis-tu ?|どの本を読んでいますか？|___ livres lis-tu ?|Quels|Quel,Quelle,Quels,Quelles
+51|Quelles chaussures portes-tu ?|どの靴を履いていますか？|___ chaussures portes-tu ?|Quelles|Quel,Quelle,Quels,Quelles
+51|Quel jour sommes-nous ?|今日は何曜日ですか？|___ jour sommes-nous ?|Quel|Quel,Quelle,Quels,Quelles
+51|Quelle couleur aimez-vous ?|どの色が好きですか？|___ couleur aimez-vous ?|Quelle|Quel,Quelle,Quels,Quelles
+55|Si j'avais le temps, je voyagerais.|時間があれば旅行するのに。|Si j'___ le temps, je voyagerais.|avais|ai,avais,aurai,aurais
+55|Si tu étudiais, tu réussirais.|君が勉強するなら、成功するのに。|Si tu ___, tu réussirais.|étudiais|étudies,étudiais,étudieras,étudierais
+55|Si nous avions une voiture, nous partirions.|車があれば出発するのに。|Si nous ___ une voiture, nous partirions.|avions|avons,avions,aurons,aurions
+55|Si elle était ici, elle serait heureuse.|彼女がここにいれば幸せなのに。|Si elle ___ ici, elle serait heureuse.|était|est,était,sera,serait
+55|Je viendrais si je pouvais.|できるなら私は来るのに。|Je ___ si je pouvais.|viendrais|viens,venais,viendrai,viendrais
+55|S'il faisait beau, nous sortirions.|晴れていたら、私たちは外出するのに。|S'il ___ beau, nous sortirions.|faisait|fait,faisait,fera,ferait
+56|Je ne sais pas où il habite.|彼がどこに住んでいるか分かりません。|Je ne sais pas ___ il habite.|où|ou,où,quand,qui
+56|Elle demande quand il arrive.|彼女は彼がいつ到着するか尋ねます。|Elle demande ___ il arrive.|quand|quand,que,qui,quel
+56|Je sais pourquoi elle part.|彼女がなぜ出発するか知っています。|Je sais ___ elle part.|pourquoi|pourquoi,parce que,qui,quel
+56|Je me demande s'il vient.|彼が来るかどうか気になります。|Je me demande ___ vient.|s'il|il,s'il,qu'il,qui
+56|Tu sais où est la gare.|君は駅がどこにあるか知っています。|Tu sais ___ est la gare.|où|ou,où,que,quoi
+56|Dites-moi quand vous partez.|いつ出発するか教えてください。|Dites-moi ___ vous partez.|quand|quand,quel,qui,que
+57|Elle a dit qu'elle était malade.|彼女は病気だと言いました。|Elle a dit qu'elle ___ malade.|était|est,était,sera,serait
+57|Il a dit qu'il avait faim.|彼はおなかがすいていると言いました。|Il a dit qu'il ___ faim.|avait|a,avait,aura,aurait
+57|Elle dit qu'elle est prête.|彼女は準備ができていると言っています。|Elle dit qu'elle ___ prête.|est,était,sera,serait
+57|Je pensais qu'il viendrait.|彼が来るだろうと思っていました。|Je pensais qu'il ___.|viendrait|vient,venait,viendra,viendrait
+57|Il a expliqué qu'il partait.|彼は出発すると説明しました。|Il a expliqué qu'il ___.|partait|part,partait,partira,partirait
+57|Nous savions qu'elle était là.|私たちは彼女がそこにいると知っていました。|Nous savions qu'elle ___ là.|était|est,était,sera,serait
+58|Il faut que tu viennes.|君が来る必要があります。|Il faut que tu ___.|viennes|viens,venais,viendras,viennes
+58|Je veux qu'il parte.|彼に出発してほしいです。|Je veux qu'il ___.|parte|part,partait,partira,parte
+58|Il faut que nous travaillions.|私たちは働く必要があります。|Il faut que nous ___.|travaillions|travaillons,travaillerons,travaillions,travaillerions
+58|Je souhaite qu'elle réussisse.|彼女が成功することを願います。|Je souhaite qu'elle ___.|réussisse|réussit,réussira,réussissait,réussisse
+58|Il est important que vous soyez ici.|あなたがここにいることは重要です。|Il est important que vous ___ ici.|soyez|êtes,étiez,serez,soyez
+58|Je doute qu'il sache.|彼が知っているか疑わしいです。|Je doute qu'il ___.|sache|sait,saura,savait,sache
+59|Il entra dans la maison.|彼は家の中へ入った。（書き言葉）|Il ___ dans la maison.|entra|entre,entrait,est entré,entra
+59|Elle parla au professeur.|彼女は教師に話した。（書き言葉）|Elle ___ au professeur.|parla|parle,parlait,a parlé,parla
+59|Ils arrivèrent ensemble.|彼らは一緒に到着した。（書き言葉）|Ils ___ ensemble.|arrivèrent|arrivent,arrivaient,sont arrivés,arrivèrent
+59|Il fut surpris.|彼は驚いた。（書き言葉）|Il ___ surpris.|fut|est,était,sera,fut
+59|Elle eut peur.|彼女は怖くなった。（書き言葉）|Elle ___ peur.|eut|a,avait,aura,eut
+59|Il termina son travail.|彼は仕事を終えた。（書き言葉）|Il ___ son travail.|termina|termine,terminait,a terminé,termina
+38|Je connais une femme qui parle français.|私はフランス語を話す女性を知っています。|Je connais une femme ___ parle français.|qui|qui,que,où,quoi
+38|C'est un professeur qui arrive.|これは到着する教師です。|C'est un professeur ___ arrive.|qui|qui,que,où,dont
+38|Voilà les enfants qui jouent.|ほら、遊んでいる子どもたちです。|Voilà les enfants ___ jouent.|qui|qui,que,où,quoi
+38|J'ai un ami qui habite à Lyon.|私にはリヨンに住んでいる友達がいます。|J'ai un ami ___ habite à Lyon.|qui|qui,que,où,quoi
+38|C'est la fille qui chante.|それが歌っている少女です。|C'est la fille ___ chante.|qui|qui,que,où,quoi
+38|Voici un livre qui explique la grammaire.|これは文法を説明する本です。|Voici un livre ___ explique la grammaire.|qui|qui,que,où,dont
+39|Je lis le livre que tu aimes.|私は君が好きな本を読んでいます。|Je lis le livre ___ tu aimes.|que|qui,que,où,quoi
+39|Voici la voiture que je cherche.|これが私の探している車です。|Voici la voiture ___ je cherche.|que|qui,que,où,quoi
+39|C'est le film qu'elle regarde.|これは彼女が見ている映画です。|C'est le film ___elle regarde.|qu'|qui,que,qu',où
+39|Voilà le café que nous préférons.|あれが私たちの好きなカフェです。|Voilà le café ___ nous préférons.|que|qui,que,où,dont
+39|C'est la maison que je regarde.|これは私が見ている家です。|C'est la maison ___ je regarde.|que|qui,que,où,quoi
+39|Tu connais la chanson que je chante.|君は私が歌う曲を知っています。|Tu connais la chanson ___ je chante.|que|qui,que,où,quoi
+41|C'est la ville où j'habite.|これは私が住んでいる町です。|C'est la ville ___ j'habite.|où|ou,où,qui,que
+41|Voici le café où nous allons.|これが私たちの行くカフェです。|Voici le café ___ nous allons.|où|ou,où,qui,que
+41|Je connais le lieu où il travaille.|私は彼が働く場所を知っています。|Je connais le lieu ___ il travaille.|où|ou,où,qui,que
+41|C'est le jour où nous partons.|それが私たちの出発する日です。|C'est le jour ___ nous partons.|où|ou,où,qui,que
+41|Voici la maison où elle vit.|これが彼女の住む家です。|Voici la maison ___ elle vit.|où|ou,où,qui,que
+41|C'est l'année où il arrive.|それは彼が到着する年です。|C'est l'année ___ il arrive.|où|ou,où,qui,que
+33|Je n'ai pas mangé.|私は食べませんでした。|Je n'ai ___ mangé.|pas|pas,plus,personne,rien
+33|Elle n'a pas travaillé.|彼女は働きませんでした。|Elle n'a ___ travaillé.|pas|pas,plus,jamais,rien
+33|Nous n'avons pas fini.|私たちは終えていません。|Nous n'avons ___ fini.|pas|pas,plus,personne,rien
+33|Je l'ai vu hier.|私は昨日彼に会いました。|Je l'___ vu hier.|ai|ai,as,a,avons
+33|Elle m'a appelé.|彼女は私に電話しました。|Elle m'___ appelé.|a|a,ai,as,avons
+33|Je ne l'ai pas trouvé.|私はそれを見つけられませんでした。|Je ne l'ai ___ trouvé.|pas|pas,plus,rien,personne
