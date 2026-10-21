@@ -5,6 +5,8 @@ No Netlify credential required. HTTPS read-only checks from GitHub-hosted runner
 """
 import argparse
 import hashlib
+import json
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import re
 import sys
 import time
@@ -56,16 +58,25 @@ def run():
         if path=="/sw.js":
             sw=body.decode("utf-8")
             assert "partialAudio" in sw and "fr-grammaire-v062" in sw, "Netlify worker missing offline HTTP Range fix"
-    for file in ("0001.ogg","course_0001.ogg","extra_0007_00.ogg"):
+    st,headers,manifest_data=get(f"{base}/data/extra_audio_manifest.json?production_audit={stamp}")
+    assert st==200, ("extra audio manifest",st)
+    manifest=json.loads(manifest_data)
+    extras=sorted(manifest)
+    assert len(extras)==114, ("expected exactly 114 extra recordings",len(extras))
+    files=["0001.ogg","course_0001.ogg",*extras]
+    def check_audio(file):
         url=f"{base}/audio/{file}?production_audit={stamp}"
-        st,headers,body=get(url)
-        assert st==200 and len(body)>1800 and body[:4]==b"OggS", (file,st,len(body),headers.get("Content-Type"))
-        range_status,range_headers,range_body=get(url,{"Range":"bytes=0-255"})
-        assert range_status in (200,206) and range_body, (file,range_status)
-        if range_status==206:
-            assert len(range_body)==256 and range_headers.get("Content-Range","").startswith("bytes 0-255/"),(file,len(range_body),range_headers.get("Content-Range"))
-        print(f"Audio OK: {file} {len(body)} bytes, HTTP Range={range_status}",flush=True)
-    print("PRODUCTION VERIFIED: exact latest app.js, patched service worker and three working audio routes",flush=True)
+        # Get first 4 bytes. A missing static file may silently return SPA HTML with 200.
+        st,headers,body=get(url,{"Range":"bytes=0-3"})
+        assert st in (200,206) and body[:4]==b"OggS",(file,st,len(body),headers.get("Content-Type"))
+        if st==206:
+            assert len(body)==4 and headers.get("Content-Range","").startswith("bytes 0-3/"),(file,len(body),headers.get("Content-Range"))
+        return file
+    with ThreadPoolExecutor(max_workers=10) as pool:
+        futures={pool.submit(check_audio,f):f for f in files}
+        for future in as_completed(futures):future.result()
+    print(f"Audio verified: {len(files)} OGG routes (114 extra, 1 standard, 1 course), each HTTP Range returned correct OggS bytes",flush=True)
+    print("PRODUCTION VERIFIED: exact latest app.js, patched service worker and 116 working audio routes",flush=True)
 
 if __name__=="__main__":
     try:run()

@@ -9,6 +9,8 @@ on:
       - 'web/sw.js'
       - 'scripts/test_audio_sw.js'
       - 'scripts/test_audio_rate.js'
+      - 'scripts/check_production_netlify.py'
+      - '.github/workflows/production-check.yml'
       - '.github/workflows/netlify.yml'
       - '.github/workflows/android.yml'
   workflow_dispatch:
