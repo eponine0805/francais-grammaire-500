@@ -4,7 +4,9 @@ const start=js.indexOf("const AUDIO_RATE_KEY="),end=js.indexOf("function autoPla
 assert(start>0&&end>start,'Voice control functions missing');
 const code=js.slice(start,end);
 class AudioMock{
- constructor(){this.playbackRate=1;this.listeners={};AudioMock.instances.push(this)}
+ constructor(){this.playbackRate=1;this.defaultPlaybackRate=1;this.listeners={};AudioMock.instances.push(this)}
+ set src(url){this.url=url;this.playbackRate=this.defaultPlaybackRate} // HTML media load resets rate
+ get src(){return this.url}
  addEventListener(t,fn){this.listeners[t]=fn}
  play(){this.startedAtRate=this.playbackRate;return Promise.resolve()}
  pause(){this.paused=true}
@@ -21,13 +23,21 @@ const ctx={localStorage:{getItem:k=>memory.get(k)||null,setItem:(k,v)=>memory.se
 vm.createContext(ctx);vm.runInContext(code,ctx);
 vm.runInContext("changeVoiceRate(0.5);playFile('0001.ogg')",ctx);
 assert.strictEqual(AudioMock.instances.at(-1).startedAtRate,.5);
+assert.strictEqual(AudioMock.instances.at(-1).defaultPlaybackRate,.5);
+AudioMock.instances.at(-1).playbackRate=1;
+AudioMock.instances.at(-1).listeners.loadedmetadata();
+assert.strictEqual(AudioMock.instances.at(-1).playbackRate,.5);
 vm.runInContext("changeVoiceRate(0.6)",ctx);
 assert.strictEqual(AudioMock.instances.at(-1).playbackRate,.6);
+assert.strictEqual(AudioMock.instances.at(-1).defaultPlaybackRate,.6);
 vm.runInContext("replayAtRate()",ctx);
 assert.strictEqual(AudioMock.instances.at(-1).startedAtRate,.6);
+AudioMock.instances.at(-1).playbackRate=1;
+AudioMock.instances.at(-1).listeners.playing();
+assert.strictEqual(AudioMock.instances.at(-1).playbackRate,.6);
 assert.strictEqual(meters[0].textContent,'0.6倍');
 assert.strictEqual(memory.get('fr-grammaire-voice-rate-v1'),'0.6');
 vm.runInContext("changeVoiceRate(1.0);replayAtRate()",ctx);
 assert.strictEqual(AudioMock.instances.at(-1).startedAtRate,1);
 assert(vm.runInContext("voiceControl()",ctx).includes('data-act="sound-compare"'));
-console.log('PASS: 0.5x, 0.6x, live speed update, replay speed, displayed setting and saved setting');
+console.log('PASS: browser media-load reset, metadata reapply, playing reapply, 0.5/0.6x, rate persistence and replay');

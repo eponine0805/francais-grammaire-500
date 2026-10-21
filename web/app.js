@@ -33,7 +33,7 @@ let currentAudio=null;
 let lastAudioFile=null;
 function replayAtRate(){if(lastAudioFile)playFile(lastAudioFile);else toast('先に例文を再生してください')}
 
-function changeVoiceRate(value){if(!audioRates.includes(value))return;audioRate=value;try{localStorage.setItem(AUDIO_RATE_KEY,String(value))}catch(e){}if(currentAudio){currentAudio.playbackRate=audioRate;}
+function changeVoiceRate(value){if(!audioRates.includes(value))return;audioRate=value;try{localStorage.setItem(AUDIO_RATE_KEY,String(value))}catch(e){}if(currentAudio){currentAudio.defaultPlaybackRate=audioRate;currentAudio.playbackRate=audioRate;}
  document.querySelectorAll('[data-act="voice-rate"]').forEach(b=>{const chosen=Number(b.dataset.val)===value;b.classList.toggle('chosen',chosen);b.setAttribute('aria-pressed',String(chosen));});
  document.querySelectorAll('[data-voice-current]').forEach(el=>{el.textContent=value.toFixed(1)+'倍';});}
 function playFile(filename){
@@ -44,8 +44,15 @@ function playFile(filename){
  const fail=()=>{if(currentAudio!==a||notified)return;notified=true;toast('音声を取得できませんでした。オンラインで再読み込みしてから、もう一度再生してください。')};
  a.addEventListener('error',fail,{once:true});
  a.addEventListener('ended',()=>{if(currentAudio===a)currentAudio=null},{once:true});
- a.preload='auto';a.preservesPitch=true;a.playbackRate=audioRate;
+ // Some browsers reset playbackRate to defaultPlaybackRate while loading src.
+ // Set both default and current rate, then reapply after metadata/playing.
+ a.preload='auto';a.preservesPitch=true;
+ a.defaultPlaybackRate=audioRate;
  a.src='/audio/'+encodeURIComponent(filename);
+ const ensureRate=()=>{if(currentAudio===a&&Math.abs(a.playbackRate-audioRate)>0.001)a.playbackRate=audioRate};
+ a.playbackRate=audioRate;
+ a.addEventListener('loadedmetadata',ensureRate,{once:true});
+ a.addEventListener('playing',ensureRate,{once:true});
  a.play().catch(err=>{if(err?.name!=='AbortError')fail()});
 }
 function play(kind,id){playFile(kind==='course'?`course_${String(id).padStart(4,'0')}.ogg`:`${String(id).padStart(4,'0')}.ogg`)}
