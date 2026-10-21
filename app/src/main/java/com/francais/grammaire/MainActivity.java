@@ -62,7 +62,8 @@ public class MainActivity extends Activity {
     private SharedPreferences prefs;
     private LinearLayout base,mainArea;
     private MediaPlayer player;
-    private static final float[] VOICE_RATES={0.70f,0.80f,0.90f,1.00f};
+    private static final float[] VOICE_RATES={0.50f,0.60f,0.70f,0.80f,0.90f,1.00f};
+    private String lastSpokenAsset=null;
     private int screen=0,selectedLesson=1,cardIndex=0,quizIndex=0,correctCount=0;
     private boolean revealed=false,answered=false,quizFromHome=false;
     private final ArrayList<Integer> deck=new ArrayList<>(),quiz=new ArrayList<>(),failed=new ArrayList<>();
@@ -169,7 +170,7 @@ public class MainActivity extends Activity {
         ArrayList<Button> buttons=new ArrayList<>();
         for(int i=0;i<VOICE_RATES.length;i++){
             final float rate=VOICE_RATES[i];
-            String label=i==0?"0.7×":""+rate+"×";
+            String label=String.format(Locale.US,"%.1f×",rate);
             Button b=btn(label,Math.abs(voiceRate()-rate)<0.001f,v->{
                 prefs.edit().putFloat("voice_rate_v1",rate).apply();
                 if(player!=null){try{player.setPlaybackParams(new PlaybackParams().setSpeed(rate).setPitch(1.0f));}
@@ -187,6 +188,11 @@ public class MainActivity extends Activity {
             b.setContentDescription(rate+"倍速"+(Math.abs(voiceRate()-rate)<0.001f?"、選択中":""));
         }
         add(parent,bar);
+        gap(parent,7);
+        add(parent,btn("▶ 選んだ速さで聞き直す",false,v->{
+            if(lastSpokenAsset!=null)startSpeech(lastSpokenAsset,true);
+            else Toast.makeText(this,"先に例文を再生してください",Toast.LENGTH_SHORT).show();
+        }));
     }
     private LinearLayout panel(){LinearLayout v=vertical();pad(v,16,18);v.setBackground(rounded(WHITE,LINE,18));return v;}
     /** Three persistent destinations; navigation has one clear owner per learning goal. */
@@ -1028,8 +1034,12 @@ public class MainActivity extends Activity {
             next.setOnCompletionListener(mp->{if(player==mp)stopAudio();});
             // PlaybackParams preserves pitch at 1.0 while slowing the recording.
             player=next;
-            next.setPlaybackParams(new PlaybackParams().setSpeed(voiceRate()).setPitch(1.0f));
             next.start();
+            float targetRate=voiceRate();
+            next.setPlaybackParams(new PlaybackParams().setSpeed(targetRate).setPitch(1.0f));
+            float applied=next.getPlaybackParams().getSpeed();
+            if(Math.abs(applied-targetRate)>0.02f)throw new IllegalStateException("Playback speed was not applied: "+applied);
+            lastSpokenAsset=assetPath;
         }catch(Exception err){
             stopAudio();android.util.Log.e("Grammaire","Speech playback failed: "+assetPath,err);
             if(notifyError)Toast.makeText(this,"音声を再生できません。再度お試しください",Toast.LENGTH_SHORT).show();

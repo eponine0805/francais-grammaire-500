@@ -6,8 +6,8 @@ android {
         applicationId 'com.francais.grammaire'
         minSdk 24
         targetSdk 28
-        versionCode 12
-        versionName '0.6.1'
+        versionCode 13
+        versionName '0.6.3'
     }
     buildTypes { release { minifyEnabled false } }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }

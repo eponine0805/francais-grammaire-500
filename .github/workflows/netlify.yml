@@ -8,6 +8,7 @@ on:
       - 'web/app.js'
       - 'web/sw.js'
       - 'scripts/test_audio_sw.js'
+      - 'scripts/test_audio_rate.js'
       - '.github/workflows/netlify.yml'
   workflow_dispatch:
 permissions:
@@ -25,6 +26,8 @@ jobs:
         run: python3 scripts/deploy_netlify_release.py --release v0.6.1
       - name: Test HTTP Range and offline audio playback
         run: node scripts/test_audio_sw.js
+      - name: Test speech speed selection and replay
+        run: node scripts/test_audio_rate.js
       - name: Verify static PWA output
         run: |
           test -s dist/index.html

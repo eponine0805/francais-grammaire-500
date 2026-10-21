@@ -53,6 +53,7 @@ jobs:
           python3 scripts/check_quiz_ranges_v040.py
           python3 scripts/check_course.py
           node --check web/app.js
+          node scripts/test_audio_rate.js
       - name: Compile app before TTS synthesis
         run: gradle --no-daemon :app:assembleDebug
       - name: Reuse all 559 matching offline recordings from v0.5.0
@@ -114,20 +115,20 @@ jobs:
           test -s Netlify-site.zip
       - uses: actions/upload-artifact@v4
         with:
-          name: FrancaisGrammaire-v0.6.1
+          name: FrancaisGrammaire-v0.6.3
           path: app/build/outputs/apk/debug/app-debug.apk
       - uses: actions/upload-artifact@v4
         with:
-          name: FrancaisGrammaire-Netlify-site-v0.6.1
+          name: FrancaisGrammaire-Netlify-site-v0.6.3
           path: Netlify-site.zip
       - name: Publish immutable preview release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if gh release view v0.6.1 >/dev/null 2>&1; then
-            echo 'ERROR: v0.6.1 already exists. Bump version instead of replacing a published APK.' >&2
+          if gh release view v0.6.3 >/dev/null 2>&1; then
+            echo 'ERROR: v0.6.3 already exists. Bump version instead of replacing a published APK.' >&2
             exit 1
           fi
           cp app/build/outputs/apk/debug/app-debug.apk Grammaire500.apk
-          gh release create v0.6.1 Grammaire500.apk Netlify-site.zip docs/AUDIO_QA_v061.json --target "$GITHUB_SHA" --title 'Français Grammaire v0.6.1 — 詳細講義と1180問' --notes 'Added 114 new female sentence recordings. All 413 example slots and 1180 answers have sentence IPA and audio links. Android and Web have streamlined lecture/example/test flow. Pronunciation not certified by French native-speaker review.'
+          gh release create v0.6.3 Grammaire500.apk Netlify-site.zip docs/AUDIO_QA_v061.json --target "$GITHUB_SHA" --title 'Français Grammaire v0.6.3 — 詳細講義と1180問' --notes 'Added 114 new female sentence recordings. All 413 example slots and 1180 answers have sentence IPA and audio links. Android and Web have streamlined lecture/example/test flow. Pronunciation not certified by French native-speaker review.'
