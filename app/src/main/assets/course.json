@@ -1,0 +1,1544 @@
+{
+  "source": {
+    "title": "フランス語初級文法",
+    "author": "小栗栖等（名古屋大学）",
+    "edition": "2022年9月版",
+    "scope": "序章＋第1〜23章",
+    "attribution": "教育順序と文法事項を参照。例文と説明・問題はアプリ用に独自作成し原著の音声は利用しない。"
+  },
+  "chapters": [
+    {
+      "id": 0,
+      "title": "序章｜綴りと発音",
+      "goal": "フランス語の文字と音の関係を理解し、短い語を声に出す",
+      "sourcePage": 5,
+      "legacyLessons": []
+    },
+    {
+      "id": 1,
+      "title": "名詞と冠詞",
+      "goal": "名詞の性と数を区別し、適切な冠詞を選ぶ",
+      "sourcePage": 15,
+      "legacyLessons": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "id": 2,
+      "title": "形容詞",
+      "goal": "名詞の性・数に合わせて形容詞を変化させる",
+      "sourcePage": 27,
+      "legacyLessons": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": 3,
+      "title": "être・前置詞と冠詞",
+      "goal": "主語に合わせてêtreを変化させ、à・deと冠詞を使う",
+      "sourcePage": 41,
+      "legacyLessons": [
+        1,
+        2,
+        3,
+        14,
+        30,
+        31
+      ]
+    },
+    {
+      "id": 4,
+      "title": "avoir・疑問文と否定文",
+      "goal": "avoirの活用と疑問・否定の基本形を使う",
+      "sourcePage": 51,
+      "legacyLessons": [
+        4,
+        25,
+        27,
+        29
+      ]
+    },
+    {
+      "id": 5,
+      "title": "第1群規則動詞",
+      "goal": "-er動詞の現在形と主語の一致を身につける",
+      "sourcePage": 67,
+      "legacyLessons": [
+        15
+      ]
+    },
+    {
+      "id": 6,
+      "title": "規則動詞の否定・疑問",
+      "goal": "一般動詞でも疑問・否定を作れる",
+      "sourcePage": 81,
+      "legacyLessons": []
+    },
+    {
+      "id": 7,
+      "title": "指示形容詞・第2群動詞",
+      "goal": "ce系の指示と-finir型・rendre型の活用を学ぶ",
+      "sourcePage": 89,
+      "legacyLessons": [
+        13,
+        16,
+        17
+      ]
+    },
+    {
+      "id": 8,
+      "title": "aller・venir",
+      "goal": "移動の表現と近接未来・近接過去の形を知る",
+      "sourcePage": 97,
+      "legacyLessons": [
+        18,
+        20,
+        38
+      ]
+    },
+    {
+      "id": 9,
+      "title": "代名詞の格と位置",
+      "goal": "直接・間接目的語を見分け、代名詞を動詞の前に置く",
+      "sourcePage": 109,
+      "legacyLessons": [
+        46,
+        47
+      ]
+    },
+    {
+      "id": 10,
+      "title": "叙法動詞・複合過去",
+      "goal": "pouvoir等と、助動詞＋過去分詞の基本形を使う",
+      "sourcePage": 125,
+      "legacyLessons": [
+        22,
+        23,
+        24,
+        40,
+        41
+      ]
+    },
+    {
+      "id": 11,
+      "title": "faire・prendre・mettre",
+      "goal": "頻出不規則動詞と複合過去の語順を確認する",
+      "sourcePage": 139,
+      "legacyLessons": [
+        19,
+        21
+      ]
+    },
+    {
+      "id": 12,
+      "title": "代名動詞",
+      "goal": "se leverなどの仕組みと過去形をつくる",
+      "sourcePage": 153,
+      "legacyLessons": [
+        36
+      ]
+    },
+    {
+      "id": 13,
+      "title": "所有形容詞・非人称表現",
+      "goal": "mon/ma/mesと天気・時間などの定型表現を理解する",
+      "sourcePage": 175,
+      "legacyLessons": [
+        12
+      ]
+    },
+    {
+      "id": 14,
+      "title": "関係詞①",
+      "goal": "qui・queで文をつなぎ、先行詞の役割を見分ける",
+      "sourcePage": 189,
+      "legacyLessons": [
+        49
+      ]
+    },
+    {
+      "id": 15,
+      "title": "指示代名詞・関係詞②",
+      "goal": "celui系と関係副詞oùを使い分ける",
+      "sourcePage": 203,
+      "legacyLessons": []
+    },
+    {
+      "id": 16,
+      "title": "半過去・大過去",
+      "goal": "継続・習慣の過去と、それ以前の過去を区別する",
+      "sourcePage": 213,
+      "legacyLessons": [
+        44,
+        45
+      ]
+    },
+    {
+      "id": 17,
+      "title": "比較・最上級・受動態",
+      "goal": "比べ方と受動態、onの使い方を理解する",
+      "sourcePage": 225,
+      "legacyLessons": [
+        34,
+        35
+      ]
+    },
+    {
+      "id": 18,
+      "title": "単純未来・否定表現",
+      "goal": "未来形とpas以外の否定表現を使う",
+      "sourcePage": 235,
+      "legacyLessons": [
+        39,
+        26
+      ]
+    },
+    {
+      "id": 19,
+      "title": "命令形・疑問詞",
+      "goal": "指示・依頼の命令形と疑問詞を選べる",
+      "sourcePage": 249,
+      "legacyLessons": [
+        37,
+        28
+      ]
+    },
+    {
+      "id": 20,
+      "title": "疑問詞・中性代名詞",
+      "goal": "疑問表現を整理し、y・enを活用する",
+      "sourcePage": 261,
+      "legacyLessons": [
+        48
+      ]
+    },
+    {
+      "id": 21,
+      "title": "条件法・話法",
+      "goal": "丁寧な依頼、仮定、発言の伝え方を知る",
+      "sourcePage": 273,
+      "legacyLessons": [
+        50
+      ]
+    },
+    {
+      "id": 22,
+      "title": "時制の一致・間接疑問文",
+      "goal": "間接話法・間接疑問文の基本語順を見極める",
+      "sourcePage": 289,
+      "legacyLessons": []
+    },
+    {
+      "id": 23,
+      "title": "接続法と文学的過去",
+      "goal": "接続法の基本用途を知り、文学的時制は読解事項として認識する",
+      "sourcePage": 303,
+      "legacyLessons": []
+    }
+  ],
+  "units": [
+    {
+      "id": 1,
+      "chapter": 0,
+      "title": "綴りとアクセント記号",
+      "rule": "é・è・ê・ç などの記号は文字の一部。省略しない。アクセント記号の有無によって意味や発音が変わることがある。",
+      "compare": [
+        "cafe（誤）",
+        "café（正）"
+      ],
+      "fr": "Je prends un café.",
+      "ja": "私はコーヒーを一杯飲みます。",
+      "focus": "café は最後の é までが正式な綴り。",
+      "question": "「コーヒー」の正しい綴りは？",
+      "options": [
+        "cafe",
+        "café",
+        "caffé",
+        "caféé"
+      ],
+      "answer": "café",
+      "why": "é はアクセント記号を含めて一文字として覚える。"
+    },
+    {
+      "id": 2,
+      "chapter": 0,
+      "title": "読まない語末字",
+      "rule": "フランス語には発音しない語末の文字が多い。ただし例外があるため、綴りだけで判断せず実際の音を確かめよう。",
+      "compare": [
+        "petit（末尾 t は通常無音）",
+        "petite（末尾 t を発音）"
+      ],
+      "fr": "Il est petit.",
+      "ja": "彼は小柄です。",
+      "focus": "petit の末尾の t は通常読まない。",
+      "question": "petit の語末について基本的に正しい説明は？",
+      "options": [
+        "常に t を読む",
+        "通常 t を読まない",
+        "最後の i を読まない",
+        "語頭 p を読まない"
+      ],
+      "answer": "通常 t を読まない",
+      "why": "女性形 petite では通常 t を発音する点も比較。"
+    },
+    {
+      "id": 3,
+      "chapter": 0,
+      "title": "リエゾンと連続する音",
+      "rule": "語と語がつながると、普段は無音の子音が聞こえる場合がある（リエゾン）。すべての境界で起きるわけではない。",
+      "compare": [
+        "les livres（通常 /le livʁ/）",
+        "les amis（/lez‿ami/）"
+      ],
+      "fr": "Les amis arrivent.",
+      "ja": "友達が到着します。",
+      "focus": "les と amis の間は /z/ でつながる。",
+      "question": "les amis の連音として正しいのは？",
+      "options": [
+        "常に切って読む",
+        "/z/ でつなぐ",
+        "/s/ を強く読む",
+        "les を省く"
+      ],
+      "answer": "/z/ でつなぐ",
+      "why": "語末 s が母音の前で /z/ と発音される代表例。"
+    },
+    {
+      "id": 4,
+      "chapter": 1,
+      "title": "名詞の性",
+      "rule": "フランス語の名詞には男性・女性という文法上の性がある。見た目では必ずしも判別できないので冠詞と一緒に覚える。",
+      "compare": [
+        "un livre（男性）",
+        "une table（女性）"
+      ],
+      "fr": "Voici une table.",
+      "ja": "ここにテーブルがあります。",
+      "focus": "table は女性名詞なので une を使う。",
+      "question": "「1つのテーブル」は？",
+      "options": [
+        "un table",
+        "une table",
+        "des table",
+        "le table"
+      ],
+      "answer": "une table",
+      "why": "table は女性名詞、単数なので une。"
+    },
+    {
+      "id": 5,
+      "chapter": 1,
+      "title": "名詞の数と複数",
+      "rule": "多くの名詞の複数形は -s を付ける。発音が単数と同じことも多く、冠詞・文脈も手がかりになる。",
+      "compare": [
+        "un livre",
+        "des livres"
+      ],
+      "fr": "J’ai deux livres.",
+      "ja": "私は本を2冊持っています。",
+      "focus": "deux の後の livres は複数形。",
+      "question": "「本を2冊」は？",
+      "options": [
+        "deux livre",
+        "deux livres",
+        "deux livrees",
+        "deux le livre"
+      ],
+      "answer": "deux livres",
+      "why": "数詞が2以上なら名詞を複数にする。"
+    },
+    {
+      "id": 6,
+      "chapter": 1,
+      "title": "不定冠詞 un・une・des",
+      "rule": "不特定の数えられる名詞に使う。男性単数 un、女性単数 une、複数 des。",
+      "compare": [
+        "un ami / une amie",
+        "des amis"
+      ],
+      "fr": "Elle a une voiture.",
+      "ja": "彼女は車を1台持っています。",
+      "focus": "voiture は女性名詞単数なので une。",
+      "question": "「車を1台」は？",
+      "options": [
+        "un voiture",
+        "une voiture",
+        "des voiture",
+        "du voiture"
+      ],
+      "answer": "une voiture",
+      "why": "名詞の性と数から選ぶ。"
+    },
+    {
+      "id": 7,
+      "chapter": 1,
+      "title": "定冠詞と部分冠詞",
+      "rule": "特定・一般的なものを示す le/la/les、量を決めない物質を示す du/de la/de l’ を区別する。",
+      "compare": [
+        "J’aime le café.（コーヒー一般が好き）",
+        "Je bois du café.（コーヒーを飲む）"
+      ],
+      "fr": "Je bois du lait.",
+      "ja": "私は牛乳を飲みます。",
+      "focus": "具体的な量を言わない lait に du を付ける。",
+      "question": "「私は牛乳を飲みます」の冠詞は？",
+      "options": [
+        "le",
+        "une",
+        "du",
+        "des"
+      ],
+      "answer": "du",
+      "why": "量が不特定の男性不可算名詞に部分冠詞 du。"
+    },
+    {
+      "id": 8,
+      "chapter": 2,
+      "title": "形容詞の性数一致",
+      "rule": "形容詞は修飾する名詞の性・数に合わせて形が変わる場合がある。規則的には女性形に -e、複数形に -s を付ける。",
+      "compare": [
+        "un petit livre",
+        "une petite maison"
+      ],
+      "fr": "La maison est petite.",
+      "ja": "その家は小さいです。",
+      "focus": "maison は女性単数なので petite。",
+      "question": "女性単数の maison に合う形は？",
+      "options": [
+        "petit",
+        "petite",
+        "petits",
+        "petites"
+      ],
+      "answer": "petite",
+      "why": "女性単数には petite。"
+    },
+    {
+      "id": 9,
+      "chapter": 2,
+      "title": "形容詞の位置",
+      "rule": "多くの形容詞は名詞の後に置くが、petit・grand・beauなどよく使う語は前に置くことがある。",
+      "compare": [
+        "une voiture rouge",
+        "une petite voiture"
+      ],
+      "fr": "J’ai une voiture rouge.",
+      "ja": "私は赤い車を持っています。",
+      "focus": "rouge は通常名詞の後に置く。",
+      "question": "自然な「赤い車」は？",
+      "options": [
+        "rouge voiture",
+        "voiture rouge",
+        "voiture de rouge",
+        "la rouge voiture"
+      ],
+      "answer": "voiture rouge",
+      "why": "色を表す形容詞は一般に名詞の後。"
+    },
+    {
+      "id": 10,
+      "chapter": 2,
+      "title": "êtreの補語としての形容詞",
+      "rule": "être の後の形容詞も、主語の名詞・代名詞が指す対象に性数一致する。",
+      "compare": [
+        "Il est content.",
+        "Elle est contente."
+      ],
+      "fr": "Elle est contente.",
+      "ja": "彼女はうれしそうです。",
+      "focus": "女性を指す elle に対して contente。",
+      "question": "女性が「満足している」は？",
+      "options": [
+        "Elle est content.",
+        "Elle est contente.",
+        "Elle sont contents.",
+        "Elle a content."
+      ],
+      "answer": "Elle est contente.",
+      "why": "主語 elle に合わせて -e を付ける。"
+    },
+    {
+      "id": 11,
+      "chapter": 3,
+      "title": "主語代名詞",
+      "rule": "je / tu / il・elle / nous / vous / ils・elles を主語に置く。tu は親しい相手、vous は丁寧な相手や複数に使う。",
+      "compare": [
+        "Tu vas bien ?",
+        "Vous allez bien ?"
+      ],
+      "fr": "Vous êtes professeur.",
+      "ja": "あなたは先生です。",
+      "focus": "vous は相手への敬意や複数を表せる。",
+      "question": "丁寧に相手に「あなたは？」と呼びかけるなら？",
+      "options": [
+        "tu",
+        "vous",
+        "ils",
+        "nous"
+      ],
+      "answer": "vous",
+      "why": "初対面などでは vous が基本。"
+    },
+    {
+      "id": 12,
+      "chapter": 3,
+      "title": "être の現在形",
+      "rule": "「〜である」のêtreは suis, es, est, sommes, êtes, sont と主語によって変化する。",
+      "compare": [
+        "Je suis japonais.",
+        "Nous sommes japonais."
+      ],
+      "fr": "Nous sommes ici.",
+      "ja": "私たちはここにいます。",
+      "focus": "nous には sommes を使う。",
+      "question": "Nous ___ ici.",
+      "options": [
+        "suis",
+        "es",
+        "sommes",
+        "sont"
+      ],
+      "answer": "sommes",
+      "why": "nous に対応するêtre現在形は sommes。"
+    },
+    {
+      "id": 13,
+      "chapter": 3,
+      "title": "à / de と定冠詞の縮約",
+      "rule": "à+le は au、à+les は aux。de+le は du、de+les は des。la と l’ は通常縮約しない。",
+      "compare": [
+        "à + le → au",
+        "de + les → des"
+      ],
+      "fr": "Je vais au cinéma.",
+      "ja": "私は映画館に行きます。",
+      "focus": "cinéma は男性名詞なので à + le → au。",
+      "question": "à + le は？",
+      "options": [
+        "à le",
+        "au",
+        "aux",
+        "du"
+      ],
+      "answer": "au",
+      "why": "男性単数の定冠詞 le と à は縮約する。"
+    },
+    {
+      "id": 14,
+      "chapter": 4,
+      "title": "avoir の現在形",
+      "rule": "「持つ」のavoirは ai, as, a, avons, avez, ont。年齢や空腹などの表現にも使う。",
+      "compare": [
+        "J’ai un livre.",
+        "Nous avons un livre."
+      ],
+      "fr": "J’ai vingt ans.",
+      "ja": "私は20歳です。",
+      "focus": "年齢を表すときは être ではなく avoir を使う。",
+      "question": "「私は20歳」は？",
+      "options": [
+        "Je suis vingt ans.",
+        "J’ai vingt ans.",
+        "Je vais vingt ans.",
+        "Je peux vingt ans."
+      ],
+      "answer": "J’ai vingt ans.",
+      "why": "フランス語で年齢は avoir＋数詞＋ans。"
+    },
+    {
+      "id": 15,
+      "chapter": 4,
+      "title": "疑問文の作り方",
+      "rule": "初級では平叙文＋上げ調子、est-ce que＋平叙文の語順が使いやすい。倒置形もある。",
+      "compare": [
+        "Tu aimes le café ?",
+        "Est-ce que tu aimes le café ?"
+      ],
+      "fr": "Est-ce que vous parlez français ?",
+      "ja": "あなたはフランス語を話しますか。",
+      "focus": "est-ce que の後は通常の主語＋動詞の語順。",
+      "question": "est-ce que の後に続くのは？",
+      "options": [
+        "vous parlez",
+        "parlez-vous",
+        "parle vous",
+        "parlent vous"
+      ],
+      "answer": "vous parlez",
+      "why": "est-ce que 型は平叙文の語順を保つ。"
+    },
+    {
+      "id": 16,
+      "chapter": 4,
+      "title": "ne … pas の否定",
+      "rule": "書き言葉では活用した動詞を ne と pas で挟む。母音の前は n’ にする。口語では ne が省略されることもある。",
+      "compare": [
+        "Je parle.",
+        "Je ne parle pas."
+      ],
+      "fr": "Je n’ai pas faim.",
+      "ja": "私はお腹が空いていません。",
+      "focus": "ai は母音で始まるため ne → n’。",
+      "question": "Je ___ parle pas.",
+      "options": [
+        "ne",
+        "pas",
+        "non",
+        "jamais"
+      ],
+      "answer": "ne",
+      "why": "基本の否定は ne＋動詞＋pas。"
+    },
+    {
+      "id": 17,
+      "chapter": 5,
+      "title": "-er動詞の活用",
+      "rule": "parler型の現在形は je -e / tu -es / il -e / nous -ons / vous -ez / ils -ent。発音は綴りと一致しないことがある。",
+      "compare": [
+        "Je parle.",
+        "Nous parlons."
+      ],
+      "fr": "Vous parlez français.",
+      "ja": "あなたはフランス語を話します。",
+      "focus": "vous の活用語尾は -ez。",
+      "question": "Vous ___ français.",
+      "options": [
+        "parle",
+        "parles",
+        "parlez",
+        "parlons"
+      ],
+      "answer": "parlez",
+      "why": "vous の -er動詞語尾は -ez。"
+    },
+    {
+      "id": 18,
+      "chapter": 5,
+      "title": "-er動詞の綴りと発音",
+      "rule": "parle, parles, parlent は通常同じように発音される。語尾の違いは主語を見て書く。",
+      "compare": [
+        "Il parle.",
+        "Ils parlent."
+      ],
+      "fr": "Ils parlent anglais.",
+      "ja": "彼らは英語を話します。",
+      "focus": "ils には parlent。語末の -ent は通常発音しない。",
+      "question": "Ils ___ anglais.",
+      "options": [
+        "parle",
+        "parles",
+        "parlons",
+        "parlent"
+      ],
+      "answer": "parlent",
+      "why": "ils の三人称複数形には -ent。"
+    },
+    {
+      "id": 19,
+      "chapter": 6,
+      "title": "動詞の否定を作る",
+      "rule": "-er動詞でも ne＋活用形＋pas が基本。母音始まりの動詞の前では n’ にする。",
+      "compare": [
+        "Elle danse.",
+        "Elle ne danse pas."
+      ],
+      "fr": "Il n’écoute pas la radio.",
+      "ja": "彼はラジオを聞きません。",
+      "focus": "écoute の前では ne を n’ にする。",
+      "question": "Il ___ écoute pas.",
+      "options": [
+        "ne",
+        "n’",
+        "pas",
+        "non"
+      ],
+      "answer": "n’",
+      "why": "母音で始まる動詞には n’ を使う。"
+    },
+    {
+      "id": 20,
+      "chapter": 6,
+      "title": "動詞を疑問にする",
+      "rule": "est-ce que の後は通常の主語・動詞の順序。倒置疑問文では Parlez-vous ? のように順が入れ替わる。",
+      "compare": [
+        "Vous travaillez.",
+        "Est-ce que vous travaillez ?"
+      ],
+      "fr": "Est-ce que tu étudies ?",
+      "ja": "君は勉強していますか。",
+      "focus": "est-ce que＋tu＋étudies の語順。",
+      "question": "自然な疑問文は？",
+      "options": [
+        "Est-ce que tu étudies ?",
+        "Est-ce que étudies tu ?",
+        "Tu est-ce étudies ?",
+        "Étudie est-ce que tu ?"
+      ],
+      "answer": "Est-ce que tu étudies ?",
+      "why": "est-ce que の後は平叙文と同じ語順。"
+    },
+    {
+      "id": 21,
+      "chapter": 7,
+      "title": "指示形容詞",
+      "rule": "ce（男性・子音）/ cet（男性・母音・無音h）/ cette（女性）/ ces（複数）で「この・その」を表す。",
+      "compare": [
+        "ce livre",
+        "cette table"
+      ],
+      "fr": "J’aime cette chanson.",
+      "ja": "私はこの歌が好きです。",
+      "focus": "chanson は女性単数だから cette。",
+      "question": "「このテーブル」は？",
+      "options": [
+        "ce table",
+        "cet table",
+        "cette table",
+        "ces table"
+      ],
+      "answer": "cette table",
+      "why": "table は女性単数。"
+    },
+    {
+      "id": 22,
+      "chapter": 7,
+      "title": "第2群規則動詞 -ir",
+      "rule": "finir型の現在形は je finis / nous finissons / ils finissent。すべての -ir動詞がこの型とは限らない。",
+      "compare": [
+        "Je finis.",
+        "Nous finissons."
+      ],
+      "fr": "Nous finissons tôt.",
+      "ja": "私たちは早く終わります。",
+      "focus": "nous 形は -issons。",
+      "question": "Nous ___ tôt.",
+      "options": [
+        "finis",
+        "finit",
+        "finissons",
+        "finissent"
+      ],
+      "answer": "finissons",
+      "why": "finir型の nous には -issons。"
+    },
+    {
+      "id": 23,
+      "chapter": 7,
+      "title": "rendre型の -re動詞",
+      "rule": "rendre型の現在形は je rends / nous rendons / ils rendent。prendreなどは別の不規則な型。",
+      "compare": [
+        "Je rends ce livre.",
+        "Nous rendons ces livres."
+      ],
+      "fr": "Il rend le livre.",
+      "ja": "彼はその本を返します。",
+      "focus": "三人称単数は rend。",
+      "question": "Il ___ le livre.",
+      "options": [
+        "rends",
+        "rend",
+        "rendons",
+        "rendent"
+      ],
+      "answer": "rend",
+      "why": "il の現在形は rend。"
+    },
+    {
+      "id": 24,
+      "chapter": 8,
+      "title": "aller・venirの活用",
+      "rule": "aller（行く）は vais, vas, va, allons, allez, vont。venir（来る）は viens, viens, vient, venons, venez, viennent。",
+      "compare": [
+        "Je vais à Paris.",
+        "Je viens de Paris."
+      ],
+      "fr": "Nous allons à Paris.",
+      "ja": "私たちはパリに行きます。",
+      "focus": "nous に対する aller の形は allons。",
+      "question": "Nous ___ à Paris.",
+      "options": [
+        "vais",
+        "va",
+        "allez",
+        "allons"
+      ],
+      "answer": "allons",
+      "why": "nous＋aller は nous allons。"
+    },
+    {
+      "id": 25,
+      "chapter": 8,
+      "title": "近接未来と近接過去",
+      "rule": "aller＋不定詞は「これから〜する」、venir de＋不定詞は「〜したばかり」。",
+      "compare": [
+        "Je vais partir.",
+        "Je viens de partir."
+      ],
+      "fr": "Je vais dormir.",
+      "ja": "これから寝ます。",
+      "focus": "vais の後は動詞の不定詞 dormir。",
+      "question": "「これから出発する」は？",
+      "options": [
+        "Je vais partir.",
+        "Je viens de partir.",
+        "Je suis parti.",
+        "Je partirais."
+      ],
+      "answer": "Je vais partir.",
+      "why": "aller＋不定詞で近い未来を表す。"
+    },
+    {
+      "id": 26,
+      "chapter": 9,
+      "title": "直接目的語代名詞",
+      "rule": "「彼を・彼女を・彼らを」などの直接目的語は le/la/les。一般に活用した動詞の前に置く。",
+      "compare": [
+        "Je vois Marie.",
+        "Je la vois."
+      ],
+      "fr": "Je le connais.",
+      "ja": "私は彼を知っています。",
+      "focus": "le は直接目的語「彼を」。",
+      "question": "Je connais Paul. → Je ___ connais.",
+      "options": [
+        "lui",
+        "leur",
+        "le",
+        "y"
+      ],
+      "answer": "le",
+      "why": "Paul は男性単数の直接目的語。"
+    },
+    {
+      "id": 27,
+      "chapter": 9,
+      "title": "間接目的語代名詞",
+      "rule": "「〜に」に当たる à＋人を、lui（単数）/leur（複数）で置き換える場合がある。",
+      "compare": [
+        "Je parle à Marie.",
+        "Je lui parle."
+      ],
+      "fr": "Je lui téléphone.",
+      "ja": "私は彼／彼女に電話します。",
+      "focus": "téléphoner à + 人 → lui téléphoner。",
+      "question": "Je téléphone à Marie. → Je ___ téléphone.",
+      "options": [
+        "la",
+        "le",
+        "lui",
+        "les"
+      ],
+      "answer": "lui",
+      "why": "人を表す à＋単数の間接目的語を lui に。"
+    },
+    {
+      "id": 28,
+      "chapter": 9,
+      "title": "目的語代名詞の位置",
+      "rule": "通常、目的語代名詞は活用形の動詞より前。否定文では ne＋代名詞＋動詞＋pas。",
+      "compare": [
+        "Je le vois.",
+        "Je ne le vois pas."
+      ],
+      "fr": "Je ne la connais pas.",
+      "ja": "私は彼女を知りません。",
+      "focus": "la は動詞 connais の前に置く。",
+      "question": "「私は彼女を見ます」は？",
+      "options": [
+        "Je vois la.",
+        "Je la vois.",
+        "Je lui vois.",
+        "Je vois elle."
+      ],
+      "answer": "Je la vois.",
+      "why": "直接目的語代名詞は通常動詞の前。"
+    },
+    {
+      "id": 29,
+      "chapter": 10,
+      "title": "pouvoir・vouloir・devoir",
+      "rule": "pouvoir＋不定詞＝可能、vouloir＋不定詞＝希望、devoir＋不定詞＝義務・推量の基本形。",
+      "compare": [
+        "Je peux partir.",
+        "Je veux partir."
+      ],
+      "fr": "Je peux venir demain.",
+      "ja": "私は明日来られます。",
+      "focus": "peux＋不定詞 venir で可能を表す。",
+      "question": "「私は来られます」は？",
+      "options": [
+        "Je veux venir.",
+        "Je peux venir.",
+        "Je viens de venir.",
+        "Je suis venu."
+      ],
+      "answer": "Je peux venir.",
+      "why": "pouvoir は可能。"
+    },
+    {
+      "id": 30,
+      "chapter": 10,
+      "title": "複合過去の基本",
+      "rule": "完了した出来事を表す複合過去は、現在形のavoir/être＋過去分詞。多くの他動詞ではavoirを使う。",
+      "compare": [
+        "Je parle.",
+        "J’ai parlé."
+      ],
+      "fr": "J’ai regardé un film.",
+      "ja": "私は映画を観ました。",
+      "focus": "ai＋過去分詞 regardé が複合過去。",
+      "question": "「私は話しました」は？",
+      "options": [
+        "Je parlais.",
+        "Je parle.",
+        "J’ai parlé.",
+        "Je parlerai."
+      ],
+      "answer": "J’ai parlé.",
+      "why": "avoir＋過去分詞の形。"
+    },
+    {
+      "id": 31,
+      "chapter": 10,
+      "title": "過去分詞の基本形",
+      "rule": "規則動詞の過去分詞は -er→-é、-ir（finir型）→-i、-re（rendre型）→-u。例外は別に覚える。",
+      "compare": [
+        "parler → parlé",
+        "finir → fini"
+      ],
+      "fr": "Nous avons fini.",
+      "ja": "私たちは終えました。",
+      "focus": "finir の過去分詞は fini。",
+      "question": "finir の過去分詞は？",
+      "options": [
+        "finis",
+        "fini",
+        "finissant",
+        "finiré"
+      ],
+      "answer": "fini",
+      "why": "第2群規則動詞の過去分詞は -i。"
+    },
+    {
+      "id": 32,
+      "chapter": 11,
+      "title": "faire・prendre・mettre",
+      "rule": "faire（する）/ prendre（取る）/ mettre（置く・着る）は頻出不規則動詞。形を主語と一緒に覚える。",
+      "compare": [
+        "Nous faisons.",
+        "Nous prenons."
+      ],
+      "fr": "Je prends le train.",
+      "ja": "私は電車に乗ります。",
+      "focus": "prendre の je 形は prends。",
+      "question": "Je ___ le train.",
+      "options": [
+        "prendre",
+        "prends",
+        "prend",
+        "prenons"
+      ],
+      "answer": "prends",
+      "why": "je＋prendre は prends。"
+    },
+    {
+      "id": 33,
+      "chapter": 11,
+      "title": "複合過去の否定・目的語",
+      "rule": "否定は助動詞を ne と pas で挟む。目的語代名詞は助動詞の前に置く。",
+      "compare": [
+        "J’ai vu Paul.",
+        "Je ne l’ai pas vu."
+      ],
+      "fr": "Je n’ai pas mangé.",
+      "ja": "私は食べませんでした。",
+      "focus": "n’＋ai＋pas＋mangé の並び。",
+      "question": "複合過去の否定として正しいのは？",
+      "options": [
+        "Je ne ai mangé pas.",
+        "Je n’ai pas mangé.",
+        "Je n’ai mangé pas.",
+        "Je pas ai mangé."
+      ],
+      "answer": "Je n’ai pas mangé.",
+      "why": "ne と pas は助動詞 ai を挟む。"
+    },
+    {
+      "id": 34,
+      "chapter": 12,
+      "title": "代名動詞の現在形",
+      "rule": "se lever は「起きる」。me/te/se/nous/vous/se が主語に一致し、動詞自身も活用する。",
+      "compare": [
+        "Je me lève.",
+        "Nous nous levons."
+      ],
+      "fr": "Je me couche tôt.",
+      "ja": "私は早く寝ます。",
+      "focus": "je に対応して me、coucher は couche。",
+      "question": "Je ___ lève.",
+      "options": [
+        "se",
+        "me",
+        "te",
+        "nous"
+      ],
+      "answer": "me",
+      "why": "je に対応する再帰代名詞は me。"
+    },
+    {
+      "id": 35,
+      "chapter": 12,
+      "title": "代名動詞の複合過去",
+      "rule": "代名動詞の複合過去は基本的にêtreを使う。ただし過去分詞の性数一致は目的語の役割も関係する。",
+      "compare": [
+        "Elle se lève.",
+        "Elle s’est levée."
+      ],
+      "fr": "Elle s’est levée tôt.",
+      "ja": "彼女は早起きしました。",
+      "focus": "se lever の複合過去は s’est levée。",
+      "question": "Elle ___ levée.",
+      "options": [
+        "a se",
+        "s’a",
+        "s’est",
+        "est se"
+      ],
+      "answer": "s’est",
+      "why": "再帰代名詞＋êtreで複合過去をつくる。"
+    },
+    {
+      "id": 36,
+      "chapter": 13,
+      "title": "所有形容詞 mon・ma・mes",
+      "rule": "所有者だけでなく、後に続く名詞の性・数で mon/ma/mes を選ぶ。女性単数でも母音前は mon。",
+      "compare": [
+        "mon livre",
+        "ma maison"
+      ],
+      "fr": "Ma sœur est ici.",
+      "ja": "私の姉／妹はここにいます。",
+      "focus": "sœur は女性単数なので ma。",
+      "question": "「私の家」は？",
+      "options": [
+        "mon maison",
+        "ma maison",
+        "mes maison",
+        "moi maison"
+      ],
+      "answer": "ma maison",
+      "why": "maison は女性単数。"
+    },
+    {
+      "id": 37,
+      "chapter": 13,
+      "title": "天候・時刻の非人称 il",
+      "rule": "天候や時刻の il は具体的な「彼」を指さない。il pleut、il fait froid、il est huit heures など。",
+      "compare": [
+        "Il est heureux.（彼は幸せだ）",
+        "Il fait froid.（寒い）"
+      ],
+      "fr": "Il pleut aujourd’hui.",
+      "ja": "今日は雨が降っています。",
+      "focus": "il は特定の人物を指さない。",
+      "question": "「雨が降っています」は？",
+      "options": [
+        "Il est pleut.",
+        "Il pleut.",
+        "Elle pleut.",
+        "Je pleut."
+      ],
+      "answer": "Il pleut.",
+      "why": "天候を表す非人称動詞 pleuvoir は通常 il と使う。"
+    },
+    {
+      "id": 38,
+      "chapter": 14,
+      "title": "関係代名詞 qui",
+      "rule": "先行詞が関係節内の「主語」なら qui を使う。qui の直後には原則として動詞が続く。",
+      "compare": [
+        "un homme qui parle",
+        "un livre qui est ici"
+      ],
+      "fr": "Voici une personne qui parle français.",
+      "ja": "こちらはフランス語を話す人です。",
+      "focus": "qui は parle の主語の働き。",
+      "question": "「話す人」は？",
+      "options": [
+        "une personne que parle",
+        "une personne qui parle",
+        "une personne où parle",
+        "une personne de parle"
+      ],
+      "answer": "une personne qui parle",
+      "why": "後ろの動詞の主語になる場合は qui。"
+    },
+    {
+      "id": 39,
+      "chapter": 14,
+      "title": "関係代名詞 que",
+      "rule": "先行詞が関係節内の直接目的語なら que（母音前は qu’）。後ろには主語が続くことが多い。",
+      "compare": [
+        "le film qui commence",
+        "le film que je regarde"
+      ],
+      "fr": "Le livre que je lis est intéressant.",
+      "ja": "私が読んでいる本は面白いです。",
+      "focus": "que は je lis の目的語。",
+      "question": "「私が読んでいる本」は？",
+      "options": [
+        "le livre qui je lis",
+        "le livre que je lis",
+        "le livre où je lis",
+        "le livre de je lis"
+      ],
+      "answer": "le livre que je lis",
+      "why": "je lis の目的語になっている。"
+    },
+    {
+      "id": 40,
+      "chapter": 15,
+      "title": "指示代名詞 celui系",
+      "rule": "celui/celle/ceux/celles は「こちらのもの・人」を名詞の代わりに指す。性数で形が変わる。",
+      "compare": [
+        "celui de Paul",
+        "celle de Marie"
+      ],
+      "fr": "Je préfère celle-ci.",
+      "ja": "私はこちら（女性名詞のもの）が好きです。",
+      "focus": "celle は女性単数名詞を受ける。",
+      "question": "女性単数名詞を受けるのは？",
+      "options": [
+        "celui",
+        "celle",
+        "ceux",
+        "celles"
+      ],
+      "answer": "celle",
+      "why": "女性単数は celle。"
+    },
+    {
+      "id": 41,
+      "chapter": 15,
+      "title": "関係副詞 où",
+      "rule": "場所や時間を表す名詞に続く関係節を où で導く。qui/queとの役割の違いを意識する。",
+      "compare": [
+        "la ville où je vis",
+        "la ville que je visite"
+      ],
+      "fr": "C’est la ville où j’habite.",
+      "ja": "ここが私の住んでいる街です。",
+      "focus": "où は場所を表す la ville を説明。",
+      "question": "「私が住む街」は？",
+      "options": [
+        "la ville qui j’habite",
+        "la ville où j’habite",
+        "la ville que j’habite à",
+        "la ville de j’habite"
+      ],
+      "answer": "la ville où j’habite",
+      "why": "場所を受ける関係副詞 où。"
+    },
+    {
+      "id": 42,
+      "chapter": 16,
+      "title": "半過去の形と用法",
+      "rule": "半過去は過去の習慣・背景・続いていた状態を表す。nous現在形の -ons を除いた語幹に -ais/-ait/-ions など。",
+      "compare": [
+        "Je travaille.",
+        "Je travaillais."
+      ],
+      "fr": "Quand j’étais petit, je lisais beaucoup.",
+      "ja": "小さい頃はよく本を読んでいました。",
+      "focus": "étais・lisais は過去の状態・習慣。",
+      "question": "「昔はよく読んでいた」に合う形は？",
+      "options": [
+        "j’ai lu",
+        "je lisais",
+        "je lirai",
+        "je lis"
+      ],
+      "answer": "je lisais",
+      "why": "過去の習慣には半過去。"
+    },
+    {
+      "id": 43,
+      "chapter": 16,
+      "title": "複合過去と半過去",
+      "rule": "複合過去は出来事の発生・完了、半過去はそのときの背景・継続。組み合わせて使える。",
+      "compare": [
+        "Il pleuvait.（雨が降っていた）",
+        "Il a commencé à pleuvoir.（降り始めた）"
+      ],
+      "fr": "Je dormais quand il a téléphoné.",
+      "ja": "彼が電話したとき私は寝ていました。",
+      "focus": "背景 dormais と出来事 a téléphoné を対比。",
+      "question": "「電話した」という完了した出来事は？",
+      "options": [
+        "a téléphoné",
+        "téléphonait",
+        "téléphonera",
+        "téléphone"
+      ],
+      "answer": "a téléphoné",
+      "why": "完結した出来事には複合過去。"
+    },
+    {
+      "id": 44,
+      "chapter": 16,
+      "title": "大過去の基本",
+      "rule": "過去のある時点より前に起きたことは、大過去（avoir/êtreの半過去＋過去分詞）で表す。",
+      "compare": [
+        "J’ai mangé.",
+        "J’avais mangé."
+      ],
+      "fr": "J’avais déjà fini quand il est arrivé.",
+      "ja": "彼が着いたとき私はすでに終えていました。",
+      "focus": "avais fini は「到着より前」を表す。",
+      "question": "「すでに終えていた」は？",
+      "options": [
+        "J’ai fini.",
+        "J’avais fini.",
+        "Je finirai.",
+        "Je finis."
+      ],
+      "answer": "J’avais fini.",
+      "why": "大過去は半過去の助動詞＋過去分詞。"
+    },
+    {
+      "id": 45,
+      "chapter": 17,
+      "title": "比較級",
+      "rule": "plus / aussi / moins＋形容詞・副詞＋que で「より・同程度・より少なく」。形容詞は名詞に一致。",
+      "compare": [
+        "plus grand que",
+        "aussi grand que"
+      ],
+      "fr": "Elle est plus grande que moi.",
+      "ja": "彼女は私より背が高いです。",
+      "focus": "plus grande que で優等比較。",
+      "question": "「〜より大きい」は？",
+      "options": [
+        "plus … que",
+        "très … de",
+        "aussi … de",
+        "moins … avec"
+      ],
+      "answer": "plus … que",
+      "why": "plus＋形容詞＋que。"
+    },
+    {
+      "id": 46,
+      "chapter": 17,
+      "title": "最上級",
+      "rule": "le/la/les＋plus/moins＋形容詞などで「最も〜」。形容詞の位置と冠詞の一致に注意。",
+      "compare": [
+        "une grande ville",
+        "la plus grande ville"
+      ],
+      "fr": "C’est la plus grande ville.",
+      "ja": "それは最も大きな都市です。",
+      "focus": "ville は女性単数なので la plus grande。",
+      "question": "「最も大きな都市」は？",
+      "options": [
+        "le plus grande ville",
+        "la plus grande ville",
+        "la plus grand ville",
+        "les plus grande ville"
+      ],
+      "answer": "la plus grande ville",
+      "why": "冠詞と形容詞が女性単数。"
+    },
+    {
+      "id": 47,
+      "chapter": 17,
+      "title": "受動態と on",
+      "rule": "受動態はêtre＋過去分詞。行為者を示さずに on＋能動形で言い換えられる場合がある。",
+      "compare": [
+        "On ouvre la porte.",
+        "La porte est ouverte."
+      ],
+      "fr": "La porte est fermée.",
+      "ja": "ドアは閉められています。",
+      "focus": "être＋過去分詞が性数一致。",
+      "question": "「ドアは閉められている」に合うのは？",
+      "options": [
+        "La porte est fermé.",
+        "La porte est fermée.",
+        "La porte a fermée.",
+        "La porte sont fermées."
+      ],
+      "answer": "La porte est fermée.",
+      "why": "porte は女性単数で fermée。"
+    },
+    {
+      "id": 48,
+      "chapter": 18,
+      "title": "単純未来",
+      "rule": "単純未来は不定詞に -ai/-as/-a/-ons/-ez/-ont などを付ける（不規則語幹あり）。",
+      "compare": [
+        "Je parle.",
+        "Je parlerai."
+      ],
+      "fr": "Demain, je travaillerai.",
+      "ja": "明日、私は働くでしょう。",
+      "focus": "travaillerai は単純未来。",
+      "question": "「私は話すでしょう」は？",
+      "options": [
+        "Je parlais.",
+        "Je parlerai.",
+        "J’ai parlé.",
+        "Je parle."
+      ],
+      "answer": "Je parlerai.",
+      "why": "parler＋-ai で単純未来。"
+    },
+    {
+      "id": 49,
+      "chapter": 18,
+      "title": "否定 pas以外",
+      "rule": "ne…jamais（決して〜ない）、ne…plus（もう〜ない）、ne…rien（何も〜ない）を整理する。",
+      "compare": [
+        "Je mange encore.",
+        "Je ne mange plus."
+      ],
+      "fr": "Je ne fume jamais.",
+      "ja": "私は決してタバコを吸いません。",
+      "focus": "ne…jamais が頻度の否定。",
+      "question": "「決して〜ない」にする語は？",
+      "options": [
+        "toujours",
+        "jamais",
+        "encore",
+        "aussi"
+      ],
+      "answer": "jamais",
+      "why": "ne…jamais が基本。"
+    },
+    {
+      "id": 50,
+      "chapter": 19,
+      "title": "命令形",
+      "rule": "tu・nous・vous の形を使い、通常主語を省く。-er型の肯定tu命令は原則 -s を落とす。",
+      "compare": [
+        "Tu parles.",
+        "Parle !"
+      ],
+      "fr": "Écoutez, s’il vous plaît.",
+      "ja": "聞いてください。",
+      "focus": "vous に対する命令形は écoutez。",
+      "question": "tu に「話して！」は？",
+      "options": [
+        "Parles !",
+        "Parle !",
+        "Parlez !",
+        "Parlent !"
+      ],
+      "answer": "Parle !",
+      "why": "-er型の肯定tu命令は多くの場合 -s を落とす。"
+    },
+    {
+      "id": 51,
+      "chapter": 19,
+      "title": "疑問形容詞 quel",
+      "rule": "quel/quelle/quels/quelles は後ろの名詞の性と数に一致する。",
+      "compare": [
+        "Quel livre ?",
+        "Quelle heure ?"
+      ],
+      "fr": "Quelle heure est-il ?",
+      "ja": "何時ですか。",
+      "focus": "heure は女性単数なので quelle。",
+      "question": "「何時？」は？",
+      "options": [
+        "Quel heure ?",
+        "Quelle heure ?",
+        "Quels heure ?",
+        "Quelles heure ?"
+      ],
+      "answer": "Quelle heure ?",
+      "why": "heure は女性名詞単数。"
+    },
+    {
+      "id": 52,
+      "chapter": 20,
+      "title": "疑問副詞 quand・où・pourquoi",
+      "rule": "時間は quand、場所は où、理由は pourquoi。疑問文の語順との組み合わせを覚える。",
+      "compare": [
+        "Où vas-tu ?",
+        "Pourquoi pars-tu ?"
+      ],
+      "fr": "Où habitez-vous ?",
+      "ja": "どこに住んでいますか。",
+      "focus": "où は場所を尋ねる。",
+      "question": "「なぜ？」は？",
+      "options": [
+        "où",
+        "qui",
+        "pourquoi",
+        "quand"
+      ],
+      "answer": "pourquoi",
+      "why": "理由を尋ねる疑問副詞。"
+    },
+    {
+      "id": 53,
+      "chapter": 20,
+      "title": "y・en の基本",
+      "rule": "y は場所や à＋物、en は de＋物や数量に関わる要素を受けることが多い。位置は目的語代名詞と同様。",
+      "compare": [
+        "Je vais à Paris → J’y vais.",
+        "Je veux du café → J’en veux."
+      ],
+      "fr": "J’y vais demain.",
+      "ja": "私は明日そこへ行きます。",
+      "focus": "y は前に出た場所を指す。",
+      "question": "「そこへ行く」は？",
+      "options": [
+        "J’en vais.",
+        "J’y vais.",
+        "Je le vais.",
+        "Je lui vais."
+      ],
+      "answer": "J’y vais.",
+      "why": "aller＋場所を y で表す。"
+    },
+    {
+      "id": 54,
+      "chapter": 21,
+      "title": "条件法による丁寧な依頼",
+      "rule": "条件法現在は語幹が単純未来、語尾が半過去に近い。voudrais などは丁寧な希望・依頼に頻出。",
+      "compare": [
+        "Je veux un café.",
+        "Je voudrais un café."
+      ],
+      "fr": "Je voudrais de l’eau.",
+      "ja": "お水をいただきたいです。",
+      "focus": "voudrais は直接的な veux より柔らかな言い方。",
+      "question": "店で丁寧に注文するのは？",
+      "options": [
+        "Je veux un café.",
+        "Je voudrais un café.",
+        "Je prendrai vouloir.",
+        "Je suis un café."
+      ],
+      "answer": "Je voudrais un café.",
+      "why": "丁寧に希望を伝える条件法。"
+    },
+    {
+      "id": 55,
+      "chapter": 21,
+      "title": "仮定と条件法",
+      "rule": "現実とは違う仮定を述べる基本形は si＋半過去、主節に条件法現在。si節に条件法は通常置かない。",
+      "compare": [
+        "Si j’ai le temps, je viens.",
+        "Si j’avais le temps, je viendrais."
+      ],
+      "fr": "Si j’avais le temps, je voyagerais.",
+      "ja": "時間があれば旅行するのに。",
+      "focus": "si節は avais（半過去）、主節は voyagerais（条件法）。",
+      "question": "「もし時間があれば旅行するのに」の主節は？",
+      "options": [
+        "je voyage",
+        "je voyagerais",
+        "je voyageais",
+        "j’ai voyagé"
+      ],
+      "answer": "je voyagerais",
+      "why": "現実と異なる仮定の帰結は条件法。"
+    },
+    {
+      "id": 56,
+      "chapter": 22,
+      "title": "間接疑問文",
+      "rule": "疑問を文の中に埋め込むと、通常は倒置せず平叙文の語順にする。si は「〜かどうか」。",
+      "compare": [
+        "Où est-il ?",
+        "Je sais où il est."
+      ],
+      "fr": "Je ne sais pas où il habite.",
+      "ja": "彼がどこに住んでいるか分かりません。",
+      "focus": "間接疑問は où il habite の語順。",
+      "question": "自然な間接疑問は？",
+      "options": [
+        "Je sais où est-il.",
+        "Je sais où il est.",
+        "Je sais est où il.",
+        "Je sais il où est."
+      ],
+      "answer": "Je sais où il est.",
+      "why": "間接疑問では通常倒置しない。"
+    },
+    {
+      "id": 57,
+      "chapter": 22,
+      "title": "時制の一致と話法",
+      "rule": "発言を過去形の動詞で伝えると、従属節の時制や時間表現が変わる場合がある。初級では直接話法と間接話法の違いから理解する。",
+      "compare": [
+        "Il dit : « Je suis fatigué. »",
+        "Il a dit qu’il était fatigué."
+      ],
+      "fr": "Elle a dit qu’elle était malade.",
+      "ja": "彼女は病気だったと言いました。",
+      "focus": "a dit の後の était は過去の発言内容を伝える。",
+      "question": "過去の発言を伝える自然な形は？",
+      "options": [
+        "Elle a dit qu’elle était malade.",
+        "Elle a dit que elle est malade hier.",
+        "Elle a dit elle malade.",
+        "Elle a dit que était-elle malade."
+      ],
+      "answer": "Elle a dit qu’elle était malade.",
+      "why": "間接話法は que節で伝え、人称・時制を調整する。"
+    },
+    {
+      "id": 58,
+      "chapter": 23,
+      "title": "接続法の基本形",
+      "rule": "必要・希望・不確実な判断などを表す que節で接続法を用いることがある。il faut que が代表例。",
+      "compare": [
+        "Il vient.",
+        "Il faut qu’il vienne."
+      ],
+      "fr": "Il faut que tu viennes.",
+      "ja": "君が来る必要があります。",
+      "focus": "il faut que の後は接続法 viennes。",
+      "question": "「君が来る必要がある」は？",
+      "options": [
+        "Il faut que tu viens.",
+        "Il faut que tu viennes.",
+        "Il faut tu venir.",
+        "Il faut que tu viendras."
+      ],
+      "answer": "Il faut que tu viennes.",
+      "why": "il faut que の後は接続法。"
+    },
+    {
+      "id": 59,
+      "chapter": 23,
+      "title": "書き言葉の過去時制",
+      "rule": "単純過去や前過去は主に文学作品・歴史的叙述で現れる。会話の基礎では複合過去を優先し、まず見分け方を学ぶ。",
+      "compare": [
+        "Il entra.（単純過去・文語）",
+        "Il est entré.（複合過去・一般的）"
+      ],
+      "fr": "Il entra dans la maison.",
+      "ja": "彼は家に入りました。（文語）",
+      "focus": "entra は entrer の単純過去で、現代会話では普通使わない。",
+      "question": "通常の会話で「彼は入った」は？",
+      "options": [
+        "Il entra.",
+        "Il est entré.",
+        "Il entrât.",
+        "Il fût entré."
+      ],
+      "answer": "Il est entré.",
+      "why": "日常の完了した出来事には複合過去を用いる。"
+    }
+  ]
+}

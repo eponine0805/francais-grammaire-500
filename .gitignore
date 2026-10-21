@@ -1,7 +1,10 @@
 .gradle/
-/build/
-/app/build/
-local.properties
 .idea/
+app/build/
+build/
+local.properties
 *.iml
-app/src/main/assets/audio/
+dist/
+dist-preview/
+*.apk
+Netlify-site.zip

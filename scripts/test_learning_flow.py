@@ -1,27 +1,20 @@
 #!/usr/bin/env python3
-"""Word ordering and session save/restore state simulations, not Android instrumentation."""
-import random,json
+import json,random
 from pathlib import Path
-root=Path(__file__).resolve().parents[1]
-rows=json.loads((root/'app/src/main/assets/examples.json').read_text(encoding='utf8'))
-for row in rows:
-    words=row['fr'].split()
-    assert len(words)>=2
-    for seed in range(10):
-        order=list(range(len(words)))
-        random.Random(seed+row['id']).shuffle(order)
-        assert sorted(order)==list(range(len(words)))
-        assert ' '.join(words[i] for i in range(len(words)))==row['fr']
-for seed in range(120):
-    rng=random.Random(seed)
-    ids=rng.sample(range(1,501),rng.randint(1,100))
-    state={'ids':ids,'index':0,'correct':0,'answers':[],'wrong':[]}
-    for i,id in enumerate(ids):
-        ok=rng.random()>0.4
-        state['answers'].append('ok' if ok else 'wrong')
-        if ok:state['correct']+=1
-        else:state['wrong'].append(id)
-        state['index']=i+1
-        state=json.loads(json.dumps(state))
-        assert state['correct']+len(state['wrong'])==state['index']
-print('OK: 5,000 word-order permutations and 120 saved session simulations')
+c=json.loads((Path(__file__).resolve().parents[1]/'app/src/main/assets/course.json').read_text(encoding='utf8'))
+u=c['units']; assert len(u)==59
+for row in u:
+    a=row['fr'].split()
+    assert len(a)>=3
+    for n in range(15):
+        ix=list(range(len(a)));random.Random(row['id']*10+n).shuffle(ix)
+        assert sorted(ix)==list(range(len(a)))
+    assert row['options'].count(row['answer'])==1
+for i in range(24):
+  for j in range(i,24):
+    choices=[k['id'] for k in u if i<=k['chapter']<=j]
+    assert choices and len(choices)==len(set(choices))
+    for limit in [10,20,30,40,50,60,70,80,90,100]:
+      sample=choices[:min(len(choices),limit)]
+      assert len(sample)<=limit and all(i<=u[k-1]['chapter']<=j for k in sample)
+print('PASS: 59 course questions + 15 token permutations per question + 300 chapter ranges')

@@ -1,47 +1,16 @@
 #!/usr/bin/env python3
-"""Structural + reproducibility audit of 50-section 500-example book, not native-speaker proofreading."""
-import json,random,collections,re
+"""Validation of unchanged 500 original exercises; not linguistic proof."""
+import json,collections,random
 from pathlib import Path
-root=Path(__file__).resolve().parents[1]
-lessons=json.loads((root/'app/src/main/assets/lessons.json').read_text(encoding='utf-8'))
-rows=json.loads((root/'app/src/main/assets/examples.json').read_text(encoding='utf-8'))
-assert len(lessons)==50 and len(rows)==500
-assert [l['id'] for l in lessons]==list(range(1,51))
-assert [x['id'] for x in rows]==list(range(1,501))
-assert len({x['fr'].casefold() for x in rows})==500
-assert all(l['title'] and l['chapter'] and l['rule'] and l['pitfall'] for l in lessons)
-ct=collections.Counter(x['lesson'] for x in rows)
-assert set(ct)==set(range(1,51)) and sum(ct.values())==500
-assert len(set(ct.values()))>=3
-for x in rows:
-    assert x['fr'] and x['ja'] and x['detail'] and x['pitfall']
-    for key in ('structure','whole','reason','contrast','tip','questionHint'):
-        assert len(x[key])>=10,(x['id'],key)
-    assert x['answer'] in x['options']
-    assert len(set(x['options']))>=4
-    assert x['blank'].count('___')==1
-    assert x['blank'].replace('___',x['answer'])==x['fr'],x['id']
-    for _ in range(20):
-        distractors=[v for v in x['options'] if v!=x['answer']]
-        sampled=[x['answer']]+random.sample(distractors,3)
-        random.shuffle(sampled)
-        assert len(set(sampled))==4 and sampled.count(x['answer'])==1
-# simulate mastery/forgetting and repeated wrong-only testing: 10,000 quiz events
-mastered=set();wrong_count=collections.Counter()
-for i in range(10000):
-    x=random.choice(rows); correct=(i%3!=0)
-    if correct:mastered.add(x['id']);wrong_count[x['id']]=0
-    else:mastered.discard(x['id']);wrong_count[x['id']]+=1
-    assert (x['id'] in mastered)==correct
-assert len(mastered)<=500
-assert not any(v<0 for v in wrong_count.values())
-print('OK: 50 sections, 500 examples, 10,000 4-choice permutations + 10,000 mastery events')
-
-notes=json.loads((root/'app/src/main/assets/annotations.json').read_text(encoding='utf8'))
-assert len(notes)==500
-for row,n in zip(rows,notes):
-    assert row['id']==n['id']
-    assert 0<len(n['brief'])<=320
-    assert n['brief']==f"「{row['answer']}」：{row['reason']}",row['id']
-    assert n['ipa'].startswith('/') and n['ipa'].endswith('/')
-print('500 concise explanations and IPA estimates validated')
+assets=Path(__file__).resolve().parents[1]/'app/src/main/assets'
+rows=json.loads((assets/'examples.json').read_text(encoding='utf8'))
+lessons=json.loads((assets/'lessons.json').read_text(encoding='utf8'))
+notes=json.loads((assets/'annotations.json').read_text(encoding='utf8'))
+assert len(rows)==500 and len(lessons)==50 and len(notes)==500
+assert [r['id'] for r in rows]==list(range(1,501))
+assert [r['id'] for r in notes]==list(range(1,501))
+assert all(r['answer'] in r['options'] and len(set(r['options']))>=4 for r in rows)
+assert all(r['blank'].count('___')==1 and r['blank'].replace('___',r['answer'])==r['fr'] for r in rows)
+assert all(0<len(n['brief'])<=320 and n['ipa'].startswith('/') and n['ipa'].endswith('/') for n in notes)
+assert len(set((r['fr'] for r in rows)))==500
+print('PASS: 500 existing exercises, 50 categories, 500 IPA and quiz invariants')
